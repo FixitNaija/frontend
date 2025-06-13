@@ -37,7 +37,11 @@ const Report = () => {
         </p>
       </div>
       <div className='flex justify-center items-center mb-[16px] sm:mb-[24px]'>
+<<<<<<< HEAD
         <p className='font-poppins font-[400] text-[15px] sm:text-[16px] w-full max-w-[358px] p-[5px] md:text-[18px] sm:font-normal leading-[22px] sm:leading-[24px] text-center'>Each report brings us one step closer to action and change.</p>
+=======
+        <p className='font-poppins font-[400] text-[15px] sm:text-[16px] w-full max-w-[358px] p-[5px] sm:text-[18px] sm:font-normal leading-[22px] sm:leading-[24px] text-center'>Each report brings us one step closer to action and change.</p>
+>>>>>>> HERITAGE
       </div>
 
       {/* Section 1 */}

@@ -15,12 +15,18 @@
     "@mui/icons-material": "^7.1.0",
     "@mui/material": "^7.1.0",
     "@tailwindcss/vite": "^4.1.7",
+<<<<<<< HEAD
     "axios": "^1.9.0",
+=======
+>>>>>>> HERITAGE
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",
     "react-router": "^7.6.1",
+<<<<<<< HEAD
     "react-toastify": "^11.0.5",
+=======
+>>>>>>> HERITAGE
     "tailwindcss": "^4.1.7",
     "vite-plugin-theme": "^0.8.6"
   },
