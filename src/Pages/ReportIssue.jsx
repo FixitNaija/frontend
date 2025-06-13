@@ -90,7 +90,7 @@ const ReportIssue = () => {
                     </div>
                 </div>
                 <div>
-                    <p className='font-poppins font-medium text-[14px] leading-[18px] pl-[120px] pt-[29px] mb-[4px]'>Upload Image</p>
+                    <p className='font-poppin s font-medium text-[14px] leading-[18px] pl-[120px] pt-[29px] mb-[4px]'>Upload Image</p>
                     <input name='image' onChange={handleChange} type='file' className='border rounded-[6px] w-[727px] h-[42px] font-poppins font-normal text-[16px] leading-[24px] ml-[120px] mb-[16px] py-[8px] pl-[16px]'/>
                     {errors.image && <p className='text-red-500 text-xs ml-[120px]'>{errors.image}</p>}
                 </div>
