@@ -30,7 +30,7 @@ const AboutUs = () => {
         <h1 className="font-[700] text-[24px] leading-[36px] text-[#333333] pt-[48px] sm:pt-[60px]">
           Our Mission
         </h1>
-        <p className="justify-center text-center w-[325px] sm:w-[628px] md:w-[770px] font-[400] text-[16px] leading-[29px] font-poppins text-[#4b4b4b] pt-[34px]  ">
+        <p className="justify-center text-center w-[325px] sm:w-[628px] font-[400] text-[16px] leading-[29px] font-poppins text-[#4b4b4b] pt-[34px]  ">
           To bridge the gap between Nigerian citizens and their government by
           providing a transparent, efficient platform for reporting and tracking
           infrastructure issues. We believe that when citizens have a voice and

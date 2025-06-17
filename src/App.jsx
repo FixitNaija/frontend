@@ -8,6 +8,7 @@ import FAQs from './Components/FAQs'
 import ReportIssue from './Pages/ReportIssue'
 import UserPage from './Pages/UserPage'
 import './App.css'
+import Reset from './Pages/Reset'
 
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/" element={<Homepage />} />
         <Route path="/Signup" element={<CreateAccount />} />
         <Route path="/AboutUs" element={<AboutUs />} />
+        <Route path="/Reset" element={<Reset />} />
       
         <Route path="/Issue" element={<ReportIssue />} />
         <Route path="/FAQs" element={<FAQs />} />
