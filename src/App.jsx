@@ -6,6 +6,7 @@ import CreateAccount from './Pages/CreateAccount'
 import AboutUs from './Pages/AboutUs'
 import FAQs from './Components/FAQs'
 import './App.css'
+import Reset from './Pages/Reset'
 
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/" element={<Homepage />} />
         <Route path="/Signup" element={<CreateAccount />} />
         <Route path="/AboutUs" element={<AboutUs />} />
+        <Route path="/Reset" element={<Reset />} />
       
         <Route path="/FAQs" element={<FAQs />} />
 

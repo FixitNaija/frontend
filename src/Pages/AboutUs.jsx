@@ -86,7 +86,7 @@ const AboutUs = () => {
               Issues Reported
             </p>
             <p >
-                         Citizens have reported infrastructure issues across Nigeria.
+              Citizens have reported infrastructure issues across Nigeria.
             </p>
           </div>
         </div>
