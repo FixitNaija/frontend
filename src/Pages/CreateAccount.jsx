@@ -10,8 +10,8 @@ import { ToastContainer, toast } from "react-toastify";
 import Reset from "./Reset";
 import { Link } from "react-router";
 // import { TextField, IconButton, InputAdornment } from "@mui/material";
-// import Visibility from "@mui/icons-material/Visibility";
-// import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 const CreateAccount = () => {
   const [values, setValues] = useState({
@@ -29,6 +29,7 @@ const CreateAccount = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   // const PasswordInput = () => {
   //   const [showPassword, setShowPassword] = useState(false);
@@ -200,6 +201,8 @@ const CreateAccount = () => {
             Log In
           </h2>
         </div>
+
+
         {/* Sign up tab here */}
 
         {!isLogin && (
@@ -253,37 +256,64 @@ const CreateAccount = () => {
                 <p className="text-red-500 text-sm mt-1">{errors.email}</p>
               )}
             </div>
-            <div className="mt-[14px] ">
+            <div className="mt-[14px] relative ">
               <label htmlFor="password" className="font-poppins mt-[14px]">
                 Password{" "}
               </label>
               <input
                 onChange={handleChange}
-                className="w-full h-[48px] rounded-[16px] border pl-4 mt-2 bg-white"
-                type="password"
+                className="  w-full h-[48px] rounded-[16px] border pl-4 mt-2 bg-white"
+                type={visible ? "text": "password"}
                 id="password"
                 name="password"
                 placeholder="Enter Password"
               />
+
+              <div className=" absolute top-1/2 right-3 mt-[14px]  -translate-y-1/2  cursor-pointer">
+                {visible ? (
+                  <MdOutlineRemoveRedEye onClick={() => setVisible(false)} 
+                  className="text-[#ABABAB] text-[24px]"/>
+                ) : (
+                  <LuEyeClosed onClick={() => setVisible(true)} 
+                  className="text-[#ABABAB] text-[24px]"/>
+                )}
+              </div>
+
+            </div>
               {errors.password && (
                 <p className="text-red-500 text-sm mt-1">{errors.password}</p>
               )}
-            </div>
-            <div className="mt-[14px] ">
-              <label htmlFor="confirmPassword" className="font-poppins mt-[14px]">
+
+            <div className="mt-[14px] relative">
+              <label
+                htmlFor="confirmPassword"
+                className="font-poppins mt-[14px]"
+              >
                 Confirm Password{" "}
               </label>
               <input
+                onChange={handleChange}
                 id="confirmPassword"
                 name="confirmPassword"
-                className="w-full h-[48px] rounded-[16px] border pl-4 mt-2 bg-white"
-                type="password"
+                className="  w-full h-[48px] rounded-[16px] border pl-4 pr-[10px] mt-2 bg-white"
+                type={isVisible ? "text" : "password"}
                 placeholder="Confirm Enter Password"
               />
-              {errors.confirmPassword && (
-                <p className="text-red-500 text-sm mt-1">{errors.confirmPassword}</p>
-              )}
+              <div className=" absolute top-1/2 right-3 mt-[14px]  -translate-y-1/2  cursor-pointer">
+                {isVisible ? (
+                  <MdOutlineRemoveRedEye onClick={() => setIsVisible(false)} 
+                  className="text-[#ABABAB] text-[24px]"/>
+                ) : (
+                  <LuEyeClosed onClick={() => setIsVisible(true)} 
+                  className="text-[#ABABAB] text-[24px]"/>
+                )}
+              </div>
             </div>
+              {errors.confirmPassword && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.confirmPassword}
+                </p>
+              )}
             <div>
               <button
                 type="submit"
@@ -369,13 +399,12 @@ const CreateAccount = () => {
                 Forgot Password?
               </Link>
             </div>
-                  <div className="flex justify-around items-center mt-[24px]">
-            <hr className="w-[98px] border border-[#D1D5DB] "/>
-            <div className="flex justify-center ">Or Continue with</div>
-            <hr className=" w-[98px] border border-[#D1D5DB] "/>
+            <div className="flex justify-around items-center mt-[24px]">
+              <hr className="w-[98px] border border-[#D1D5DB] " />
+              <div className="sm:w-[201px] sm:h-[34px] w-[134px] h-[20px] ">Or Continue with</div>
+              <hr className=" w-[98px] border border-[#D1D5DB] " />
             </div>
             <div className=" flex justify-center items-center align-middle w-full h-[48px] bg-[#DDDDDD] rounded-[16px] text-white mt-6">
-            
               <FcGoogle className="h-[32px] w-[32px] " />
             </div>
           </div>
