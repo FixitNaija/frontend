@@ -84,7 +84,7 @@ const ReportIssue = () => {
                         {errors.state && <p className='text-red-500 text-xs'>{errors.state}</p>}
                     </div>
                     <div>
-                         <p className='font-poppins font-medium text-14px leading-[18px] mb-[4px]'>Local Government</p>
+                        <p className='font-poppins font-medium text-14px leading-[18px] mb-[4px]'>Local Government</p>
                         <input name='lga' value={form.lga} onChange={handleChange} type='text' className='border rounded-[6px] w-[356px] h-[42px]'/>
                         {errors.lga && <p className='text-red-500 text-xs'>{errors.lga}</p>}
                     </div>
@@ -95,7 +95,7 @@ const ReportIssue = () => {
                     {errors.image && <p className='text-red-500 text-xs ml-[120px]'>{errors.image}</p>}
                 </div>
                 <div className='flex items-center pl-[120px]'>
-                  <button type='submit' className='flex justify-center items-center bg-[#15803D] text-white font-poppins w-[727px] h-[42px] rounded-[8px] px-8 py-2 mt-4 mb-9'> <LiaTelegram />Submit Report</button>
+                <button type='submit' className='flex justify-center items-center bg-[#15803D] text-white font-poppins w-[727px] h-[42px] rounded-[8px] px-8 py-2 mt-4 mb-9'> <LiaTelegram />Submit Report</button>
                 </div>
             </section>
             </form>
