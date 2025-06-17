@@ -6,10 +6,12 @@ import Report from '../Components/Report'
 import Faq from '../Components/FAQs'
 import Join from '../Components/Join'
 import Create from '../Pages/CreateAccount'
+import Reset from './Reset'
 
 const Homepage = () => {
   return (
     <div>
+      {/* <Reset /> */}
       <Navbar />
         <Herosection />
         <Report />
