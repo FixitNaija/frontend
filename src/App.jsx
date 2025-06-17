@@ -6,6 +6,7 @@ import CreateAccount from './Pages/CreateAccount'
 import AboutUs from './Pages/AboutUs'
 import FAQs from './Components/FAQs'
 import ReportIssue from './Pages/ReportIssue'
+import UserPage from './Pages/UserPage'
 import './App.css'
 import Reset from './Pages/Reset'
 
@@ -21,6 +22,7 @@ const App = () => {
       
         <Route path="/Issue" element={<ReportIssue />} />
         <Route path="/FAQs" element={<FAQs />} />
+        <Route path="/UserPage" element={<UserPage />} />
 
       </Routes>
     </div>

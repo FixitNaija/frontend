@@ -69,7 +69,7 @@ const ReportIssue = () => {
                 </div>
                 <div className=''>
                     <p className='font-poppins font-medium text-[14px] leading-[18px] pl-[120px] pt-[29px] mb-[4px]'>Description</p>
-                    <input name='description' value={form.description} onChange={handleChange} type='text' placeholder='Provide details about the issue...' className='border font-poppins rounded-[6px] w-[727px] h-[118px] font-normal text-[16px] leading-[24px] ml-[120px] pl-[16px] pt-[-10px]'/>
+                    <textarea name='description' value={form.description} onChange={handleChange} type='text' placeholder='Provide details about the issue...' className='border font-poppins rounded-[6px] w-[727px] h-[118px] font-normal text-[16px] leading-[24px] ml-[120px] pl-[16px] pt-[-10px]'/>
                     {errors.description && <p className='text-red-500 text-xs ml-[120px]'>{errors.description}</p>}
                 </div>
                 <div>
