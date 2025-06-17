@@ -24,7 +24,7 @@ const Herosection = () => {
             </div>
             <div className='block sm:flex justify-between items-center  ml-[16px] sm:ml-[100px] mr-[16px] sm:mr-[100px] mt-[24px] sm:mt-[40px]'>
                 <div className=' w-[358px] sm:w-[286px] h-[148px] block justify-center align-center text-center  ml-[-10px] sm:ml-[100px] mt[40px]' >
-                    <p className='font-poppins text-[24px] sm:text-[48px] font-semibold leading-[28px] sm:leading-[48px] text-[#15803D]'>5,280+</p>
+                    <p className='font-poppins text-[24px] sm:text-[24px] md:text-[48px] font-semibold leading-[28px] sm:leading-[48px] text-[#15803D]'>5,280+</p>
                     <p className='font-poppins font-normal text-[14px] sm:text-[16px] leading-[24px]'>Issues Reported</p>
                 </div>
                 <div className='w-[358px] sm:w-[286px] h-[148px] block justify-center align-center text-center  ml-[-10px] sm:ml-[100px] mt[40px]'>

@@ -6,6 +6,7 @@ import Ogun from "../assets/Ogun.png";
 import Correct from "../assets/correct.png";
 import Location from "../assets/location.png";
 import Todo from "../assets/todo.png";
+import { Link } from 'react-router'
 
 const Join = () => {
   return (
@@ -100,10 +101,12 @@ const Join = () => {
                 {" "}
                 Join Community{" "}
               </button>
+              <Link to='/Issue'>
               <button className="text-black bg-[#ffff] hover:bg-[#A1EEAF] mt-[24px] rounded-[8px] h-[48px] w-[200px] p-[5px] mb-[100px] cursor-pointer">
                 {" "}
                 Report Issue{" "}
               </button>
+              </Link>
             </div>
           </div>
         </div>

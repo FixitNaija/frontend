@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { FiHome, FiAlertCircle, FiClock, FiUsers, FiMenu, FiX } from 'react-icons/fi';
 import { IoSettingsOutline } from "react-icons/io5";
 import { RxPerson } from "react-icons/rx";
-
+import Fixit from '../assets/Fixitlogo.png'
+import { Link } from 'react-router'
 const Dashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -13,8 +14,9 @@ const Dashboard = () => {
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
-      <div className={`fixed md:relative z-20 w-64 bg-blue-800 text-white transition-all duration-300 ease-in-out ${sidebarOpen ? 'left-0' : '-left-full'} md:left-0 h-full`}>
-        <div className="flex items-center justify-between p-4 border-b border-blue-700">
+      <div className={`fixed md:relative z-20 w-64 bg-white-800 text-black transition-all duration-300 ease-in-out ${sidebarOpen ? 'left-0' : '-left-full'} md:left-0 h-full`}>
+        <div className="flex-col items-center justify-between p-4 border-b border-blue-700">
+          <Link to='/'><img src={Fixit} alt='logo'/></Link>
           <h1 className="text-xl font-bold">Community Infrastructure platform</h1>
           <button className="md:hidden" onClick={toggleSidebar}>
             <FiX size={24} />
@@ -23,19 +25,19 @@ const Dashboard = () => {
         <nav className="p-4">
           <ul className="space-y-2">
             <li>
-              <a href="#" className="flex items-center p-2 rounded-lg bg-blue-700">
+              <a href="#" className="flex items-center p-2 rounded-lg bg-lightgreen-700">
                 <FiHome className="mr-3" />
                 <span>Dashboard</span>
               </a>
             </li>
             <li>
-              <a href="#" className="flex items-center p-2 rounded-lg hover:bg-blue-700">
+              <a href="#" className="flex items-center p-2 rounded-lg hover:bg-lightgreen-700">
                 <RxPerson className="mr-3" />
                 <span>Issues</span>
               </a>
             </li>
             <li>
-              <a href="#" className="flex items-center p-2 rounded-lg hover:bg-blue-700">
+              <a href="#" className="flex items-center p-2 rounded-lg hover:bg-lightgreen-700">
                 <IoSettingsOutline className="mr-3" />
                 <span>Settings</span>
               </a>
@@ -55,7 +57,7 @@ const Dashboard = () => {
         </header>
 
         {/* Dashboard Content */}
-        <main className="container mx-auto px-4 py-8">
+        <main className="container px-4 py-8">
           <div className="max-w-6xl mx-auto">
             {/* Header */}
             <div className="mb-8">
@@ -64,11 +66,11 @@ const Dashboard = () => {
             </div>
 
             {/* Stats Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
-              <StatCard title="Active Issues" value="10" icon={<FiAlertCircle size={20} />} />
-              <StatCard title="Resolved This Week" value="10" icon={<FiClock size={20} />} />
-              <StatCard title="Average Response time" value="50 days" icon={<FiClock size={20} />} />
-              <StatCard title="Community Engagement" value="10" icon={<FiUsers size={20} />} />
+            <div className="flex gap-10 mb-8  text-[12px] leading-[18px] font-medium ">
+              <StatCard title="Active Issues" value="10" className='w-[367px] h-[86px]' icon={<FiAlertCircle size={20} />} />
+              <StatCard title="Resolved This Week" value="10"  className='w-[367px] h-[86px]' icon={<FiClock size={20} />} />
+              <StatCard title="Average Response time" value="50 days" className='w-[367px] h-[86px]' icon={<FiClock size={20} />} />
+              <StatCard title="Community Engagement" value="10"  className='w-[367px] h-[86px]' icon={<FiUsers size={20} />} />
             </div>
 
             {/* Recent Issues Section */}
