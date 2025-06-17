@@ -121,7 +121,9 @@ const Navbar = () => {
               <Link to='/Signup'>
                 <button className='border border-[#15803D] bg-white text-[#15803D] rounded-lg px-6 py-2 font-poppins text-base font-medium'>Join Community</button>
               </Link>
+              <Link to='/Issue'>
               <button className='border border-[#15803D] bg-[#15803D] text-white rounded-lg px-6 py-2 font-poppins text-base font-medium'>Report Issue</button>
+              </Link>
             </li>
           </ul>
         </div>

@@ -84,7 +84,6 @@ const AboutUs = () => {
             <p className="font-Poppins font-[600] text-[16px] leading-[24px] text-center mx-auto py-[8px] text-[#333333] ">
               Issues Reported
             </p>
-
             <p className=" font-[400] text-[12px] sm:text-[14px] leading-[18px] sm:leading-[24px] text-center mx-auto text-[#4B5563] w-[248px] pb-[24px] ">
               Citizens have reported infrastructure issues across Nigeria.
             </p>
