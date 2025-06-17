@@ -125,7 +125,7 @@ const CreateAccount = () => {
             console.log("Login API response:", response.data);
             toast.success(response.data.message);
             setTimeout(() => {
-              navigate("/");
+              navigate("/UserPage");
             }, 3000);
           })
           .catch((error) => {
@@ -148,10 +148,16 @@ const CreateAccount = () => {
       } else {
         // Signup API call here
 
+       
+
         console.log("Form submitted:", values);
         signUp(values)
           .then((response) => {
             console.log("Signup API response:", response.data);
+            toast.success(response.data.message);
+            setTimeout(() => {
+              navigate("/CreateAccount");
+            }, 3000);
           })
           .catch((error) => {
             console.log("Signup API error:", error);
