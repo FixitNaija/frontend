@@ -8,20 +8,12 @@ import Correct from "../assets/correct.png";
 import Round from "../assets/rounded.png";
 import ArrowUp from "../assets/arrowup.png";
 import Love from "../assets/love.png";
-<<<<<<< HEAD
 import Navbar from "../Components/navbar";
-=======
-import Navbar from "../Components/Navbar";
->>>>>>> HERITAGE
 
 const AboutUs = () => {
   return (
     <div className="bg-[#FFFFFF] md:bg-[#FBFBFB] w-full font-poppins  ">
-<<<<<<< HEAD
       <Navbar />
-=======
-      {/* <Navbar /> */}
->>>>>>> HERITAGE
       <div className="bg-[#15803D] flex flex-col sm:w-full sm:h-[364px]  items-center text-center ">
         <h1 className=" text-[#ffffff] font-[700] text-[40px] leading-[48px] justify-center  align-middle w-[344px] pt-[30px] sm:pt-[90px] sm:w-[598px] ">
           Building Better Communities Together{" "}
@@ -38,11 +30,7 @@ const AboutUs = () => {
         <h1 className="font-[700] text-[24px] leading-[36px] text-[#333333] pt-[48px] sm:pt-[60px]">
           Our Mission
         </h1>
-<<<<<<< HEAD
         <p className="justify-center text-center w-[325px] sm:w-[628px] font-[400] text-[16px] leading-[29px] font-poppins text-[#4b4b4b] pt-[34px]  ">
-=======
-        <p className="justify-center text-center w-[325px] sm:w-[628px] md:w-[770px] font-[400] text-[16px] leading-[29px] font-poppins text-[#4b4b4b] pt-[34px]  ">
->>>>>>> HERITAGE
           To bridge the gap between Nigerian citizens and their government by
           providing a transparent, efficient platform for reporting and tracking
           infrastructure issues. We believe that when citizens have a voice and
@@ -52,40 +40,26 @@ const AboutUs = () => {
           <h1 className="text-[16px] leading-[28px]  text-left font-[600]  text-[#15803D] px-[24px] py-[16px] ">
             The Problem We're Solving
           </h1>
-<<<<<<< HEAD
           <p className="font-Poppins font-[400] text-[14px] leading-[24px] px-[24px] py-[16px] text-left text-[#008435] w-[320px] sm:w-[628px] md:w-[770px] ">
-=======
-          <p className="font-family: Poppinsfont-[400] text-[14px] leading-[24px] px-[24px] py-[16px] text-left text-[#008435] w-[320px] sm:w-[628px] md:w-[770px] ">
->>>>>>> HERITAGE
             For too long, Nigerian citizens have struggled with inadequate
             infrastructure and limited channels to report issues to relevant
             authorities. Traditional complaint systems are often slow, opaque,
             and ineffective. FixIt Naija changes this by creating a direct,
             transparent line of communication that benefits everyone.{" "}
-<<<<<<< HEAD
-
-=======
->>>>>>> HERITAGE
           </p>
         </div>
       </div>
 
-<<<<<<< HEAD
        
     <section className="">
     <div className=" bg-amber-300">
       <div className="sm:px-[100px] sm:py-[60px]" >
          <h1 className="font-poppins font-[700] pt-[60px] text-[24px] leading-[36px] text-center align-middle text-[#333333]">
-=======
-      <div className="w-full font-poppins flex py-[60px] flex-col justify-center items-center h-[68px] my-[60px]">
-        <h1 className="font-poppins font-[700] px-0 text-[24px] leading-[36px] text-center align-middle text-[#333333]">
->>>>>>> HERITAGE
           {" "}
           Our Impacts{" "}
         </h1>
         <p className=" font-poppins text-[#868686] font-[400] text-[16px] leading-[24px] py-[8px] sm:py-[16px] text-center align-middle px-[24px]">
           Real numbers, real change across Nigeria
-<<<<<<< HEAD
           </p>
       </div>
       </div>
@@ -102,12 +76,6 @@ const AboutUs = () => {
       <div className="w-full font-poppins flex py-[60px] flex-col justify-center items-center h-[68px] my-[60px]">
       <section className="flex flex-col  sm:flex-row justify-around gap-[20px] items-center px-[10px]">
         <div className="  mx-auto border bg-[#941010] border-white rounded-[16px] pb-[16px] shadow-[0px 4px 24px 0px #00000014] h-[237px] p-[24px] flex flex-col items-center justify-center  w-[310px] sm:w-[248px]">
-=======
-
-          </p>
-      <section className="flex flex-col  sm:flex-row justify-around gap-[20px] items-center px-[10px]">
-        <div className="  mx-auto border bg-[#FFFFFF] border-white rounded-[16px] pb-[16px] shadow-[0px 4px 24px 0px #00000014] h-[237px] p-[24px] flex flex-col items-center justify-center  w-[310px] sm:w-[248px]">
->>>>>>> HERITAGE
           <img className="pt-[24px] " src={Location} alt="" />
           <div className="text-center font-poppins ">
             <p className="font-poppins font-[700] text-[24px] leading-[36px] pt-[10px] text-center align-middle text-[#333333] ">
@@ -116,13 +84,9 @@ const AboutUs = () => {
             <p className="font-Poppins font-[600] text-[16px] leading-[24px] text-center mx-auto py-[8px] text-[#333333] ">
               Issues Reported
             </p>
-<<<<<<< HEAD
-            <p >
-              Citizens have reported infrastructure issues across Nigeria.
-=======
+
             <p className=" font-[400] text-[12px] sm:text-[14px] leading-[18px] sm:leading-[24px] text-center mx-auto text-[#4B5563] w-[248px] pb-[24px] ">
               Citizens have reported infrastructure issues across Nigeria.
->>>>>>> HERITAGE
             </p>
           </div>
         </div>
@@ -170,15 +134,9 @@ const AboutUs = () => {
         </div>
           
         </section>
-<<<<<<< HEAD
-      </div> 
-
-{/*        
-=======
       </div>
 
        
->>>>>>> HERITAGE
       <section className="flex flex-col sm:flex-row justify-center py-[60px] items-center">
         <div className="  mx-auto border border-white rounded-[16px] pb-[16px] shadow-[0px 4px 24px 0px #00000014] h-[237px] bg-[#fbfbfb] p-[24px] flex flex-col items-center justify-center   w-[310px] sm:w-[248px]">
           <img className="pt-[24px]" src={Eye} alt="" />
@@ -230,11 +188,7 @@ const AboutUs = () => {
             </p>
           </div>
         </div>
-<<<<<<< HEAD
-      </section> */}
-=======
       </section>
->>>>>>> HERITAGE
       <Footer />
     </div>
   );
