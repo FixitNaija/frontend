@@ -30,6 +30,7 @@ const CreateAccount = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [visible, setVisible] = useState(false);
+  // const [signingUp, setSigningUp] = useState(false);
 
   // const PasswordInput = () => {
   //   const [showPassword, setShowPassword] = useState(false);
@@ -114,6 +115,8 @@ const CreateAccount = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (validate()) {
@@ -153,7 +156,7 @@ const CreateAccount = () => {
         console.log("Form submitted:", values);
         signUp(values)
           .then((response) => {
-            console.log("Signup API response:", response.data);
+            console.log("Signup API response:", response);
             toast.success(response.data.message);
             setTimeout(() => {
               navigate("/CreateAccount");
@@ -323,7 +326,7 @@ const CreateAccount = () => {
             <div>
               <button
                 type="submit"
-                className="w-full h-[56px] bg-[#15803D] rounded-[16px] text-white mt-6 hover:bg-green-700 transition"
+                className="cursor-pointer w-full h-[56px] bg-[#15803D] rounded-[16px] text-white mt-6 hover:bg-green-700 transition"
               >
                 Create Account{" "}
               </button>
@@ -336,12 +339,12 @@ const CreateAccount = () => {
                 </span>
               </p>
             </div>
-            <div className="flex justify-around items-center mt-[24px]">
+            <div className="flex justify-between sm:justify-around items-center mt-[24px]">
               <hr className="w-[98px] border border-[#D1D5DB] " />
               <div className="flex justify-center ">Or Continue with</div>
               <hr className=" w-[98px] border border-[#D1D5DB] " />
             </div>
-            <div className=" flex justify-center items-center align-middle w-full h-[48px] bg-[#DDDDDD] rounded-[16px] text-white mt-6">
+            <div className="cursor-pointer flex justify-center items-center align-middle w-full h-[48px] bg-[#DDDDDD] rounded-[16px] text-white mt-6">
               <FcGoogle className="h-[32px] w-[32px] " />
             </div>
           </div>
@@ -395,12 +398,12 @@ const CreateAccount = () => {
             <div>
               <button
                 type="submit"
-                className="w-full h-[56px] bg-[#15803D] rounded-[16px] text-white mt-6 hover:bg-green-700 transition"
+                className="w-full h-[56px] bg-[#15803D] rounded-[16px] text-white mt-6 hover:bg-green-700 transition cursor-pointer"
               >
                 Log In{" "}
               </button>
             </div>
-            <div className=" flex justify-end ">
+            <div className=" flex justify-end cursor-pointer ">
               <Link to="/Reset" className="flex  text-[#15803D]">
                 Forgot Password?
               </Link>
@@ -410,7 +413,7 @@ const CreateAccount = () => {
               <div className="sm:w-[201px] sm:h-[34px] w-[134px] h-[20px] ">Or Continue with</div>
               <hr className=" w-[98px] border border-[#D1D5DB] " />
             </div>
-            <div className=" flex justify-center items-center align-middle w-full h-[48px] bg-[#DDDDDD] rounded-[16px] text-white mt-6">
+            <div className=" flex justify-center items-center align-middle w-full h-[48px] bg-[#DDDDDD] rounded-[16px] text-white mt-6 cursor-pointer">
               <FcGoogle className="h-[32px] w-[32px] " />
             </div>
           </div>

@@ -61,7 +61,7 @@ const Dashboard = () => {
           <div className="max-w-6xl mx-auto">
             {/* Header */}
             <div className="mb-8">
-              <h1 className="text-3xl font-bold text-gray-800">Welcome back, John!</h1>
+              <h1 className="text-3xl font-bold text-gray-800">Welcome back, John!  </h1>
               <p className="text-gray-600">Here's what's happening in your community.</p>
             </div>
 
