@@ -185,7 +185,7 @@ const CreateAccount = () => {
       <ToastContainer />
       <form onSubmit={handleSubmit} className="p-4 w-full max-w-[496px]">
         <div className="">
-          <img src={Logo} alt="Fixit Logo" />
+          <Link to={'/'}><img src={Logo} alt="Fixit Logo" /></Link>
         </div>
 
         <div className="flex  mt-8 bg-[#fcfcfc]  border border-[#E6E5F9] rounded-l-[16px]">
