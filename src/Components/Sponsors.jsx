@@ -22,11 +22,11 @@ const Sponsors = () => {
       </div>
       <div className="flex flex-col sm:flex-row w-full px-[16px] rounded gap-[32px]  ">
         <div
-          className="  mx-auto border border-white rounded-[16px]  h-[213px] w-[392px] pb-[16px]  bg-[#fbfbfb] p-[24px] flex flex-col items-center justify-center "
+          className="  mx-auto border border-white rounded-[16px]  h-[213px] w-[300px] sm:w-[392px] pb-[16px]  bg-[#fbfbfb] pt-[24px] flex flex-col items-center justify-center "
           style={{ boxShadow: "0 0 8px rgba(0, 0, 0, 0.5)" }}
         >
-          <img className="pt-[24px]" src={Todo} alt="" />
-          <div className="text-center font-poppins">
+          <img className="" src={Todo} alt="" />
+          <div className="text-center font-poppins ">
             <p className="font-Poppins font-[600] text-[16px] leading-[24px] text-center mx-auto py-[20px] ">
               Report an Issue
             </p>
@@ -40,32 +40,30 @@ const Sponsors = () => {
       
 
         <div
-          className=" p-[24px]  flex flex-col items-center justify-center rounded-[16px]  h-[213px] w-[392px] pb-[16px]  bg-[#fbfbfb]]"
+          className="  mx-auto border border-white rounded-[16px]  h-[213px] w-[300px] sm:w-[392px] pb-[16px]  bg-[#fbfbfb] pt-[24px] flex flex-col items-center justify-center "
           style={{ boxShadow: "0 0 8px rgba(0, 0, 0, 0.5)" }}
         >
           <img src={Location} alt="" />
           <div className="text-center">
-            <p className="font-Poppins font-[600] text-[16px] leading-[24px] text-center mx-auto py-[20px">
-              Report an Issue
+            <p className="font-Poppins font-[600] text-[16px] leading-[24px] text-center mx-auto py-[20px]">
+             Track Progress
             </p>
             <p>
-              Submit details about infrastructure problems in your area with
-              photos and location.
+             Follow the status of reported issues and receive updates as they’re addressed.
             </p>
           </div>
         </div>
         <div
-          className="p-[24px]  flex flex-col items-center justify-center rounded-[16px]  h-[213px] w-[392px] pb-[16px]  bg-[#fbfbfb]]"
+          className="  mx-auto border border-white rounded-[16px]  h-[213px] w-[300px] sm:w-[392px] pb-[16px]  bg-[#fbfbfb] pt-[24px] flex flex-col items-center justify-center "
           style={{ boxShadow: "0 0 8px rgba(0, 0, 0, 0.5)" }}
         >
           <img src={Correct} alt="" />
-          <div className="font-Poppins font-[600] text-[16px] leading-[24px] text-center mx-auto py-[20px">
-            <p className="font-Poppins font-[600] text-[16px] leading-[24px] text-center mx-auto py-[20px">
-              Report an Issue
+          <div className="">
+            <p className="font-Poppins font-[600] text-[16px] leading-[24px] text-center mx-auto py-[20px]">
+              See Results
             </p>
-            <p>
-              Submit details about infrastructure problems in your area with
-              photos and location.
+            <p className=' font-[poppins] text-[14px] leading-[24px] text-center font-[400] align-middle '>
+              View analytics on issue resolution and impact on your community.
             </p>
           </div>
         </div>
