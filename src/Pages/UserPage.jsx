@@ -13,13 +13,83 @@ import Trash from '../assets/Trash.png';
 import Light from '../assets/Streetlight.png';
 import { AiOutlineLike } from "react-icons/ai";
 import { BiComment } from "react-icons/bi";
+import { useEffect } from 'react';
 
 const Dashboard = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [category, setCategory] = useState('All Categories');
+    const [status, setStatus] = useState('All Status');
+    const [time, setTime] = useState('All Time');
+
+    useEffect(() => {
+        const storedUsername = localStorage.getItem('fixitnaija_username');
+        if (storedUsername) {
+            setUsername(storedUsername);
+        }
+    }, []);
 
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);
     };
+
+    const issues = [
+        {
+            img: PotHoles,
+            title: 'Large pothole on Main Street',
+            location: 'Anuoluwapo Estate Road F Panseke Abeokuta',
+            description: 'Deep pothole causing traffic hazard near the intersection',
+            likes: 24,
+            comments: 8,
+            date: '2023-11-15',
+            category: 'Road Damage',
+            status: 'Reported',
+            time: 'This Month',
+        },
+        {
+            img: Light,
+            title: 'Broken Streetlight',
+            location: 'Rounder Soyeye, Lafenwa Abeokuta',
+            description: 'The area becomes dark posing safety risks for pedestrians',
+            likes: 18,
+            comments: 8,
+            date: '2023-10-14',
+            category: 'Electricity',
+            status: 'In Progress',
+            time: 'This Month',
+        },
+        {
+            img: Road,
+            title: 'Bad Roads',
+            location: 'Adigbe-opako, Abeokuta',
+            description: 'The roads have worsen due to rainfall and lack of maintenance',
+            likes: 12,
+            comments: 3,
+            date: '2023-09-15',
+            category: 'Road Damage',
+            status: 'Resolved',
+            time: 'This Month',
+        },
+        {
+            img: Trash,
+            title: 'Overflowing Trash Bin',
+            location: 'Kuto Market, Abeokuta',
+            description: 'Trash bin near the park has now turned to a dump place',
+            likes: 24,
+            comments: 8,
+            date: '2023-11-15',
+            category: 'Others',
+            status: 'Reported',
+            time: 'Today',
+        },
+    ];
+
+    // Filtering logic
+    const filteredIssues = issues.filter(issue => {
+        const matchCategory = category === 'All Categories' || issue.category === category;
+        const matchStatus = status === 'All Status' || issue.status === status;
+        const matchTime = time === 'All Time' || issue.time === time;
+        return matchCategory && matchStatus && matchTime;
+    });
 
     return (
         <div className="flex h-screen bg-gray-100">
@@ -89,7 +159,11 @@ const Dashboard = () => {
                             <div className="border-b border-gray-200 px-6 py-4 flex flex-wrap items-center gap-4">
                                 <h2 className="text-lg font-semibold text-gray-800">Recent Issues</h2>
                                 <div className="flex flex-wrap gap-2 ml-auto">
-                                    <select className="bg-gray-100 border border-gray-300 text-gray-700 py-1 px-3 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <select
+                                        className="bg-gray-100 border border-gray-300 text-gray-700 py-1 px-3 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        value={category}
+                                        onChange={e => setCategory(e.target.value)}
+                                    >
                                         <option>All Categories</option>
                                         <option>Road Damage</option>
                                         <option>Electricity</option>
@@ -97,13 +171,21 @@ const Dashboard = () => {
                                         <option>Drainage</option>
                                         <option>Others</option>
                                     </select>
-                                    <select className="bg-gray-100 border border-gray-300 text-gray-700 py-1 px-3 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <select
+                                        className="bg-gray-100 border border-gray-300 text-gray-700 py-1 px-3 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        value={status}
+                                        onChange={e => setStatus(e.target.value)}
+                                    >
                                         <option>All Status</option>
                                         <option>Reported</option>
                                         <option>In Progress</option>
                                         <option>Resolved</option>
                                     </select>
-                                    <select className="bg-gray-100 border border-gray-300 text-gray-700 py-1 px-3 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <select
+                                        className="bg-gray-100 border border-gray-300 text-gray-700 py-1 px-3 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        value={time}
+                                        onChange={e => setTime(e.target.value)}
+                                    >
                                         <option>All Time</option>
                                         <option>Today</option>
                                         <option>This Week</option>
@@ -114,77 +196,25 @@ const Dashboard = () => {
 
                             {/* Issues List */}
                             <div>
-                                <div className='flex flex-col sm:flex-row justify-between mt-[24px] mx-[66px] mb-[17px]'>
-                                    <div>
-                                        <img src={PotHoles} alt='Potholes'/>
-                                    </div>
-                                    <div>
-                                        <h2 className='font-poppins font-medium  text-[20px] leading-[38px]' > Large pothole on Main Street </h2>
-                                        <p className='font-poppins font-normal text-[16px] leading-[28px] '> Anuoluwapo Estate Road F Panseke Abeokuta </p>
-                                        <p className='font-poppins font-normal text-[16px] leading-[28px] '> Deep pothole causing traffic hazard near the intersection</p>
-                                        <div className='flex justify-between '>
-                                            <div className='flex gap-[12px]'>
-                                                <p className='flex items-center font-poppins font-normal text-[16px] leading-[28px] '> <AiOutlineLike /> 24 </p>
-                                                <p className='flex items-center font-poppins font-normal text-[16px] leading-[28px] '> <BiComment /> 8 </p>
+                                {filteredIssues.map((issue, idx) => (
+                                    <div key={idx} className='flex flex-col sm:flex-row justify-between mt-[24px] mx-[66px] mb-[17px]'>
+                                        <div>
+                                            <img src={issue.img} alt={issue.title} />
+                                        </div>
+                                        <div>
+                                            <h2 className='font-poppins font-medium  text-[20px] leading-[38px]'>{issue.title}</h2>
+                                            <p className='font-poppins font-normal text-[16px] leading-[28px]'>{issue.location}</p>
+                                            <p className='font-poppins font-normal text-[16px] leading-[28px]'>{issue.description}</p>
+                                            <div className='flex justify-between '>
+                                                <div className='flex gap-[12px]'>
+                                                    <p className='flex items-center font-poppins font-normal text-[16px] leading-[28px]'><AiOutlineLike /> {issue.likes}</p>
+                                                    <p className='flex items-center font-poppins font-normal text-[16px] leading-[28px]'><BiComment /> {issue.comments}</p>
+                                                </div>
+                                                <p className='font-poppins font-normal text-[14px] leading-[22px] pr-[50px] sm:pr-[5px]'>{issue.date}</p>
                                             </div>
-                                            <p className='font-poppins font-normal text-[14px] leading-[22px] pr-[50px] sm:pr-[5px]'> 2023-11-15 </p>
                                         </div>
                                     </div>
-                                </div>
-                                <div className='flex flex-col sm:flex-row justify-between mt-[24px] mx-[66px] mb-[17px] '>
-                                    <div>
-                                        <img src={Light} />
-                                    </div>
-                                    <div>
-                                        <h2 className='font-poppins font-medium  text-[20px] leading-[38px]'> Broken Streetlight </h2>
-                                        <p className='font-poppins font-normal text-[16px] leading-[28px] '> Rounder Soyeye, Lafenwa Abeokuta </p>
-                                        <p className='font-poppins font-normal text-[16px] leading-[28px] '> The area becomes dark posing safety risks for pedestrians </p>
-                                        <div className='flex justify-between'>
-                                            <div className='flex gap-[12px]'>
-                                                <p className='flex items-center font-poppins font-normal text-[16px] leading-[28px] '> <AiOutlineLike /> 18 </p>
-                                                <p className='flex items-center font-poppins font-normal text-[16px] leading-[28px] '> <BiComment /> 8 </p>
-                                            </div>
-                                            <p className='font-poppins font-normal text-[14px] leading-[22px]'> 2023-10-14 </p>
-                                        </div >
-
-                                    </div>
-                                </div> 
-                                <div className='flex flex-col sm:flex-row justify-between mt-[24px] mx-[66px] mb-[17px]'>
-                                    <div>
-                                        <img src={Road} />
-                                    </div>
-                                    <div>
-                                        <h2 className='font-poppins font-medium  text-[20px] leading-[38px]'> Bad Roads </h2>
-                                        <p className='font-poppins font-normal text-[16px] leading-[28px] '> Adigbe-opako, Abeokuta </p>
-                                        <p className='font-poppins font-normal text-[16px] leading-[28px] '> The roads have worsen due to rainfall and lack of maintenance </p>
-                                        <div className='flex justify-between'>
-                                            <div className='flex gap-[12px] '>
-                                                <p className='flex font-poppins font-normal text-[16px] leading-[28px] items-center '> <AiOutlineLike /> 12 </p>
-                                                <p className=' flex font-poppins font-normal text-[16px] leading-[28px] items-center '> <BiComment />  3 </p>
-                                            </div>
-                                            <p className='font-poppins font-normal text-[14px] leading-[22px]'>  2023-09-15 </p>
-                                        </div>
-
-                                    </div>
-                                </div> 
-                                <div className='flex flex-col sm:flex-row justify-between mt-[24px] mx-[66px] mb-[17px]'>
-                                    <div>
-                                        <img src={Trash} />
-                                    </div>
-                                    <div>
-                                        <h2 className='font-poppins font-medium  text-[20px] leading-[38px]'> Overflowing Trash Bin </h2>
-                                        <p className='font-poppins font-normal text-[16px] leading-[28px] '> Kuto Market, Abeokuta </p>
-                                        <p className='font-poppins font-normal text-[16px] leading-[28px] '> Trash bin near the park has now turned to a dump place </p>
-                                        <div className='flex justify-between'>
-                                            <div className='flex gap-[12px]'>
-                                                <p className='flex items-center font-poppins font-normal text-[16px] leading-[28px] '> <AiOutlineLike /> 24 </p>
-                                                <p className='flex items-center font-poppins font-normal text-[16px] leading-[28px] '> <BiComment /> 8 </p>
-                                            </div>
-                                            <p className='font-poppins font-normal text-[14px] leading-[22px]'> 2023-11-15 </p>
-                                        </div>
-
-                                    </div>
-                                </div>
+                                ))}
                             </div>
 
                         </div>
