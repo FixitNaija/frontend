@@ -9,6 +9,7 @@ import Round from "../assets/rounded.png";
 import ArrowUp from "../assets/arrowup.png";
 import Love from "../assets/love.png";
 import Navbar from "../Components/navbar";
+import Join from "../Components/Join";
 
 const AboutUs = () => {
   return (
@@ -194,7 +195,7 @@ const AboutUs = () => {
         </div>
       </section>
       </section>
-
+      <Join/>
       <Footer />
     </div>
   );

@@ -7,6 +7,7 @@ import Faq from '../Components/FAQs'
 import Join from '../Components/Join'
 import Create from '../Pages/CreateAccount'
 import Reset from './Reset'
+import Sponsors from '../Components/Sponsors'
 
 const Homepage = () => {
   return (
@@ -15,6 +16,7 @@ const Homepage = () => {
       <Navbar />
         <Herosection />
         <Report />
+        <Sponsors />
         <Join />
         <Faq />
         <Footer />
