@@ -68,6 +68,12 @@
 // export default Navbar 
 
 
+
+
+
+
+
+
 import React, { useState } from 'react';
 import Logo from '../assets/Fixitlogo.png'
 import { Link } from 'react-router'
@@ -113,9 +119,11 @@ const Navbar = () => {
             </li>
             <li className='flex gap-2'>
               <Link to='/Signup'>
-                <button className='border border-[#15803D] bg-white text-[#15803D] rounded-lg px-6 py-2 font-poppins text-base font-medium'>Join Community</button>
+                <button className='border border-[#15803D] bg-white text-[#15803D] hover:bg-[#A1EEAF] cursor-pointer  rounded-lg px-6 py-2 font-poppins text-base font-medium'>Join Community</button>
               </Link>
-              <button className='border border-[#15803D] bg-[#15803D] text-white rounded-lg px-6 py-2 font-poppins text-base font-medium'>Report Issue</button>
+              <Link to='/Issue'>
+              <button className='border border-[#15803D] bg-[#15803D] text-white rounded-lg px-6 py-2 font-poppins text-base hover:bg-[#A1EEAF] cursor-pointer font-medium'>Report Issue</button>
+              </Link>
             </li>
           </ul>
         </div>

@@ -41,16 +41,20 @@ function Reset() {
               placeholder="Email"
               className=" w-[288px] sm:w-[540px]  rounded-[6px] pl-[13px] h-[46px] border border-[#D2D9E9]"
             />
-            <button className="text-[#FFFFFF] font-Poppins font-[500] text-[16px] rounded-[12px] bg-[#15803D] mt-[24px] sm:mt-[38px] w-[288px] sm:w-[540px] h-[46px] cursor-pointer">
-              Reset Password
-            </button>
+              <button className="text-[#FFFFFF] font-Poppins font-[500] text-[16px] rounded-[12px] bg-[#15803D] mt-[24px] sm:mt-[38px] w-[288px] sm:w-[540px] h-[46px] cursor-pointer">
+            <Link to="/Verify">
+                Reset Password
+            </Link>
+              </button>
           </div>
         </div>
         <div className="flex flex-col items-center ">
-          <Link to="/Signup#Login">
+          <Link to="/Signup ">
+          <h2 className="cursor-pointer flex justify-center items-center text-[#333333] font-Poppins font-[500] text-[16px] mt-[24px]">
             <button className="text-[#259A48] font-Poppins font-[500] text-[16px] rounded-[12px] bg-[#F7F7F7] mt-[16px]  w-[172px]  h-[46px] mb-[27px] cursor-pointer">
               Back Log in{" "}
             </button>
+          </h2>
           </Link>
         </div>
       </section>
