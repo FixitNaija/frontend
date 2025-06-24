@@ -18,10 +18,10 @@ export const baseInstance = axios.create({
   withCredentials: false
 });
 
-baseInstance.post('/api/v1/user/signup', userData)
-  .then(response => {
-    console.log('Signup successful:', response.data);
-  })
-  .catch(error => {
-    console.error('Signup error:', error.response?.data || error.message);
-  });
+// baseInstance.post('/api/v1/user/signup', userData)
+//   .then(response => {
+//     console.log('Signup successful:', response.data);
+//   })
+//   .catch(error => {
+//     console.error('Signup error:', error.response?.data || error.message);
+//   });
