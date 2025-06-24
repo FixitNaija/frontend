@@ -1,6 +1,6 @@
 import { React } from "react";
 import Logo from "../assets/Fixitlogo.png";
-import Caution from "../assets/caution.png";
+import Caution from "../assets/Caution.png";
 import Lock from "../assets/lock.png";
 import { Link } from "react-router";
 
