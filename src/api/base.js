@@ -1,31 +1,4 @@
-// import axios from 'axios';
 
-
-// const userData = {
-//   firstName: 'ABIOLA',
-//   lastName: 'TADE',
-//   email: 'teecrown@gmail.com',
-//   password: 'Abcd@1234',
-//   confirmPassword: 'Abcd@1234' // Add if required
-// };
-
-
-
-// export const baseInstance = axios.create({
-//   baseURL: 'https://fixitbackend-7zrf.onrender.com/',
-//   timeout: 50000,
-//   headers: {
-//     'Content-Type': 'application/json',
-//     // 'Access-Control-Allow-Origin': '*',
-// },
-// withCredentials: false
-// });
-// // axios.post('https://fixitbackend-7zrf.onrender.com/api/v1/user/signup',
-// //    userData, {
-// //   headers: {
-// //     'Content-Type': 'application/json'
-// //   }
-// // });
 import axios from 'axios';
 
 const userData = {
