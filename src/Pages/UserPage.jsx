@@ -24,7 +24,7 @@ const Dashboard = () => {
     useEffect(() => {
         const storedUsername = localStorage.getItem('fixitnaija_username');
         if (storedUsername) {
-            setUsername(storedUsername);
+            // setUsername(storedUsername);
         }
     }, []);
 
