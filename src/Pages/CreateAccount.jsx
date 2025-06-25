@@ -9,6 +9,7 @@ import { LuEyeClosed } from "react-icons/lu";
 import { ToastContainer, toast } from "react-toastify";
 import Reset from "./Reset";
 import { Link } from "react-router";
+import Cookies from 'js-cookie'
 // import { TextField, IconButton, InputAdornment } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
@@ -122,10 +123,14 @@ const CreateAccount = () => {
     if (validate()) {
       if (isLogin) {
         // Login API call here
-        console.log(FormData, values);
-        login(values)
+        // console.log(FormData, values);
+        const {email, password} = values;
+        const newValues = {email, password};
+        console.log("Form submitted:", newValues);
+        login(newValues)
           .then((response) => {
             console.log("Login API response:", response.data);
+            Cookies.set('token', response.data.token, {expires: 3})
             toast.success(response.data.message);
             setTimeout(() => {
               navigate("/UserPage");
@@ -149,17 +154,16 @@ const CreateAccount = () => {
           console.error("Login API error:", error);
         }
       } else {
-        // Signup API call here
-
-       
+        // Signup API call here 
 
         console.log("Form submitted:", values);
         signUp(values)
           .then((response) => {
             console.log("Signup API response:", response);
+            Cookies.set('response', response.data.token, {expires: 3})
             toast.success(response.data.message);
             setTimeout(() => {
-              navigate("/CreateAccount");
+              navigate("/Verify");
             }, 3000);
           })
           .catch((error) => {
