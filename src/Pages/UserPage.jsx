@@ -21,8 +21,8 @@ const Dashboard = () => {
     const [category, setCategory] = useState('All Categories');
     const [status, setStatus] = useState('All Status');
     const [time, setTime] = useState('All Time');
-    const [username, setUsername] = useState('');
-    const [userData, setUserData] = useState('')
+    // const [username, setUsername] = useState('');
+    const [userData, setUserData] = useState({})
 
     useEffect(() => {
         // const storedUsername = localStorage.getItem('fixitnaija_username');
