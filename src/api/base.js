@@ -1,13 +1,6 @@
 
 import axios from 'axios';
 
-const userData = {
-  firstName: 'ABIOLA',
-  lastName: 'TADE',
-  email: 'teecrown@gmail.com',
-  password: 'Abcd@1234',
-  // confirmPassword: 'Abcd@1234' // Add if required
-};
 
 export const baseInstance = axios.create({
   baseURL: 'https://fixitbackend-7zrf.onrender.com/',

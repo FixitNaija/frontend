@@ -9,7 +9,7 @@ import { LuEyeClosed } from "react-icons/lu";
 import { ToastContainer, toast } from "react-toastify";
 import Reset from "./Reset";
 import { Link } from "react-router";
-import Cookies from 'js-cookie'
+import Cookies from "js-cookie";
 // import { TextField, IconButton, InputAdornment } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
@@ -31,6 +31,7 @@ const CreateAccount = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [loading, setLoading] = useState(false);
   // const [signingUp, setSigningUp] = useState(false);
 
   // const PasswordInput = () => {
@@ -116,21 +117,20 @@ const CreateAccount = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (validate()) {
+      setLoading(true);
       if (isLogin) {
         // Login API call here
         // console.log(FormData, values);
-        const {email, password} = values;
-        const newValues = {email, password};
+        const { email, password } = values;
+        const newValues = { email, password };
         console.log("Form submitted:", newValues);
         login(newValues)
           .then((response) => {
             console.log("Login API response:", response.data);
-            Cookies.set('token', response.data.token, {expires: 3})
+            Cookies.set("token", response.data.token, { expires: 3 });
             toast.success(response.data.message);
             setTimeout(() => {
               navigate("/UserPage");
@@ -138,7 +138,8 @@ const CreateAccount = () => {
           })
           .catch((error) => {
             console.log("Login API error:", error);
-          });
+          })
+          .finally(() => setLoading(false));
         try {
           // const response = await fetch('https://fixitbackend-7zrf.onrender.com/api/v1/user/login', {
           //   method: 'POST',
@@ -154,21 +155,24 @@ const CreateAccount = () => {
           console.error("Login API error:", error);
         }
       } else {
-        // Signup API call here 
-
+        // Signup API call here
         console.log("Form submitted:", values);
         signUp(values)
           .then((response) => {
             console.log("Signup API response:", response);
-            Cookies.set('response', response.data.token, {expires: 3})
-            toast.success(response.data.message);
+            Cookies.set("response", response.data.token, { expires: 3 });
+            toast.success(response?.data?.message);
             setTimeout(() => {
               navigate("/Verify");
             }, 3000);
           })
           .catch((error) => {
             console.log("Signup API error:", error);
-          });
+            toast.error(
+              error.response?.data?.message || "An error occurred during signup"
+            );
+          })
+          .finally(() => setLoading(false));
         // try {
         //   const response = await fetch('https://fixitbackend-7zrf.onrender.com/api/v1/user/signup', {
         //     method: 'POST',
@@ -189,7 +193,9 @@ const CreateAccount = () => {
       <ToastContainer />
       <form onSubmit={handleSubmit} className="p-4 w-full max-w-[496px]">
         <div className="">
-          <Link to={'/'}><img src={Logo} alt="Fixit Logo" /></Link>
+          <Link to={"/"}>
+            <img src={Logo} alt="Fixit Logo" />
+          </Link>
         </div>
 
         <div className="flex  mt-8 bg-[#fcfcfc]  border border-[#E6E5F9] rounded-l-[16px]">
@@ -214,7 +220,6 @@ const CreateAccount = () => {
             Log In
           </h2>
         </div>
-
 
         {/* Sign up tab here */}
 
@@ -276,7 +281,7 @@ const CreateAccount = () => {
               <input
                 onChange={handleChange}
                 className="  w-full h-[48px] rounded-[16px] border pl-4 mt-2 bg-white"
-                type={visible ? "text": "password"}
+                type={visible ? "text" : "password"}
                 id="password"
                 name="password"
                 placeholder="Enter Password"
@@ -284,18 +289,21 @@ const CreateAccount = () => {
 
               <div className=" absolute top-1/2 right-3 mt-[14px]  -translate-y-1/2  cursor-pointer">
                 {visible ? (
-                  <MdOutlineRemoveRedEye onClick={() => setVisible(false)} 
-                  className="text-[#ABABAB] text-[24px]"/>
+                  <MdOutlineRemoveRedEye
+                    onClick={() => setVisible(false)}
+                    className="text-[#ABABAB] text-[24px]"
+                  />
                 ) : (
-                  <LuEyeClosed onClick={() => setVisible(true)} 
-                  className="text-[#ABABAB] text-[24px]"/>
+                  <LuEyeClosed
+                    onClick={() => setVisible(true)}
+                    className="text-[#ABABAB] text-[24px]"
+                  />
                 )}
               </div>
-
             </div>
-              {errors.password && (
-                <p className="text-red-500 text-sm mt-1">{errors.password}</p>
-              )}
+            {errors.password && (
+              <p className="text-red-500 text-sm mt-1">{errors.password}</p>
+            )}
 
             <div className="mt-[14px] relative">
               <label
@@ -314,25 +322,30 @@ const CreateAccount = () => {
               />
               <div className=" absolute top-1/2 right-3 mt-[14px]  -translate-y-1/2  cursor-pointer">
                 {isVisible ? (
-                  <MdOutlineRemoveRedEye onClick={() => setIsVisible(false)} 
-                  className="text-[#ABABAB] text-[24px]"/>
+                  <MdOutlineRemoveRedEye
+                    onClick={() => setIsVisible(false)}
+                    className="text-[#ABABAB] text-[24px]"
+                  />
                 ) : (
-                  <LuEyeClosed onClick={() => setIsVisible(true)} 
-                  className="text-[#ABABAB] text-[24px]"/>
+                  <LuEyeClosed
+                    onClick={() => setIsVisible(true)}
+                    className="text-[#ABABAB] text-[24px]"
+                  />
                 )}
               </div>
             </div>
-              {errors.confirmPassword && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.confirmPassword}
-                </p>
-              )}
+            {errors.confirmPassword && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.confirmPassword}
+              </p>
+            )}
             <div>
               <button
                 type="submit"
                 className="cursor-pointer w-full h-[56px] bg-[#15803D] rounded-[16px] text-white mt-6 hover:bg-green-700 transition"
+                disabled={loading}
               >
-                Create Account{" "}
+                {loading ? "Loading..." : "Create Account"}
               </button>
             </div>
             <div className=" mt-[24px] ">
@@ -403,8 +416,9 @@ const CreateAccount = () => {
               <button
                 type="submit"
                 className="w-full h-[56px] bg-[#15803D] rounded-[16px] text-white mt-6 hover:bg-green-700 transition cursor-pointer"
+                disabled={loading}
               >
-                Log In{" "}
+                {loading ? "Loading..." : "Log In"}
               </button>
             </div>
             <div className=" flex justify-end cursor-pointer ">
@@ -414,7 +428,9 @@ const CreateAccount = () => {
             </div>
             <div className="flex justify-around items-center mt-[24px]">
               <hr className="w-[98px] border border-[#D1D5DB] " />
-              <div className="sm:w-[201px] sm:h-[34px] w-[134px] h-[20px] ">Or Continue with</div>
+              <div className="sm:w-[201px] sm:h-[34px] w-[134px] h-[20px] ">
+                Or Continue with
+              </div>
               <hr className=" w-[98px] border border-[#D1D5DB] " />
             </div>
             <div className=" flex justify-center items-center align-middle w-full h-[48px] bg-[#DDDDDD] rounded-[16px] text-white mt-6 cursor-pointer">
