@@ -25,9 +25,14 @@ const Dashboard = () => {
     const [userData, setUserData] = useState('')
 
     useEffect(() => {
-        const storedUsername = localStorage.getItem('fixitnaija_username');
-        if (storedUsername) {
-            // setUsername(storedUsername);
+        // const storedUsername = localStorage.getItem('fixitnaija_username');
+        // if (storedUsername) {
+        //     setUsername(storedUsername);
+        // }
+        let savedToken = Cookies.get('token')
+        if(savedToken){
+            const data = jwtDecode(savedToken)
+            setUserData(data)
         }
     }, []);
     console.log(userData)
