@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FiHome, FiClock, FiMenu, FiX } from 'react-icons/fi';
 import { IoSettingsOutline } from "react-icons/io5";
 import { RxPerson } from "react-icons/rx";
@@ -13,21 +13,29 @@ import Trash from '../assets/Trash.png';
 import Light from '../assets/Streetlight.png';
 import { AiOutlineLike } from "react-icons/ai";
 import { BiComment } from "react-icons/bi";
-import { useEffect } from 'react';
+import Cookies from 'js-cookie'
+import {jwtDecode} from 'jwt-decode'
 
 const Dashboard = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [category, setCategory] = useState('All Categories');
     const [status, setStatus] = useState('All Status');
     const [time, setTime] = useState('All Time');
+    // const [username, setUsername] = useState('');
+    const [userData, setUserData] = useState({})
 
     useEffect(() => {
-        const storedUsername = localStorage.getItem('fixitnaija_username');
-        if (storedUsername) {
-            // setUsername(storedUsername);
+        // const storedUsername = localStorage.getItem('fixitnaija_username');
+        // if (storedUsername) {
+        //     setUsername(storedUsername);
+        // }
+        let savedToken = Cookies.get('token')
+        if(savedToken){
+            const data = jwtDecode(savedToken)
+            setUserData(data)
         }
     }, []);
-
+    console.log(userData)
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);
     };
@@ -141,7 +149,7 @@ const Dashboard = () => {
                     <div className="max-w-6xl mx-auto">
                         {/* Header */}
                         <div className="mb-8">
-                            <h1 className="text-3xl font-bold text-gray-800">Welcome back, John!</h1>
+                            <h1 className="text-3xl font-bold text-gray-800">Welcome back, {userData?.user?.name || 'User'}!</h1>
                             <p className="text-gray-600">Here's what's happening in your community.</p>
                         </div>
 
