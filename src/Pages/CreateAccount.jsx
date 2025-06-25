@@ -160,6 +160,7 @@ const CreateAccount = () => {
         signUp(values)
           .then((response) => {
             console.log("Signup API response:", response);
+            Cookies.set('response', response.data.token, {expires: 3})
             toast.success(response.data.message);
             setTimeout(() => {
               navigate("/Verify");
