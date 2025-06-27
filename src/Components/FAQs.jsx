@@ -386,9 +386,9 @@ export default function FAQs() {
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="   pl-[24px] w-[174px] sm:w-[326px]  md:w-[502px] h-[48px] text-[16px]  font-poppins border border-[#15803D] bg-[#ffff] rounded-l-[40px] "
+                  className="  mt-[1px] pl-[24px] w-[174px] sm:w-[326px]  md:w-[502px] h-[48px] text-[16px]  font-poppins border border-[#15803D] bg-[#ffff] rounded-l-[40px] "
                 />
-                <button className="w-[110px] h-[48px] text-white bg-[#15803D] rounded-r-[40px] p-[5px]">
+                <button className="w-[110px] h-[48px] text-white bg-[#15803D] rounded-r-[40px] cursor-pointer font-poppins text-[16px] font-[500] leading-[24px] hover:bg-[#A1EEAF]">
                   {" "}
                   Subscribe{" "}
                 </button>

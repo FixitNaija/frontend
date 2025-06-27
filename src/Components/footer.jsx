@@ -30,7 +30,7 @@ function footer() {
               <div className="min-w-[120px]">
                 <h3 className="font-bold mb-2">Get involved</h3>
                 <ol className="cursor-pointer space-y-1">
-                  <li className="hover:text-[#0011ff]">Contact us</li>
+                  {/* <li className="hover:text-[#0011ff]">Contact us</li> */}
                   <Link to="/AboutUs">
                     <li className="hover:text-[#0011ff]">About us</li>
                   </Link>
@@ -43,7 +43,7 @@ function footer() {
                       FAQs
                     </a>
                   </li>
-                  <li className="hover:text-[#0011ff]">Blog</li>
+                  {/* <li className="hover:text-[#0011ff]">Blog</li> */}
                 </ol>
               </div>
               <div>
@@ -52,7 +52,7 @@ function footer() {
                   <li className="hover:text-[#0011ff]">Announcements</li>
                   <li className="hover:text-[#0011ff]">News letter</li>
                   <li className="hover:text-[#0011ff]">Feedback</li>
-                  <li className="hover:text-[#0011ff]">Follow us</li>
+                  {/* <li className="hover:text-[#0011ff]">Follow us</li> */}
                   <li className="hover:text-[#0011ff]">Updates</li>
                 </ol>
               </div>
@@ -106,9 +106,9 @@ function footer() {
           <div>
             <h3 className="font-bold">Get involved</h3>
             <ol className="cursor-pointer my-4 leading-8 space-y-1">
-              <li className="hover:text-[#0011ff]">Contact us</li>
+              {/* <li className="hover:text-[#0011ff]">Contact us</li> */}
               <li className="hover:text-[#0011ff]">About us</li>
-              <li className="hover:text-[#0011ff]">Support</li>
+             <a href="#support"> <li className="hover:text-[#0011ff]">Support</li></a>
               <li>
                 <a
                   href="#FAQ"
@@ -117,7 +117,7 @@ function footer() {
                   FAQs
                 </a>
               </li>
-              <li className="hover:text-[#0011ff]">Blog</li>
+              {/* <li className="hover:text-[#0011ff]">Blog</li> */}
             </ol>
           </div>
           <div>
@@ -126,7 +126,7 @@ function footer() {
               <li className="hover:text-[#0011ff]">Announcements</li>
               <li className="hover:text-[#0011ff]">News letter</li>
               <li className="hover:text-[#0011ff]">Feedback</li>
-              <li className="hover:text-[#0011ff]">Follow us</li>
+              {/* <li className="hover:text-[#0011ff]">Follow us</li> */}
               <li className="hover:text-[#0011ff]">Updates</li>
             </ol>
           </div>
@@ -150,9 +150,9 @@ function footer() {
           <p className="underline cursor-pointer">Cookies Settings</p>
           <p>© 2025 Fixitnaija All rights reserved.</p>
         </div>
-        <div className="flex gap-4 mt-4 w-[132px]">
-          <BsFacebook />
-          <FaInstagramSquare />
+        <div className="flex gap-4 mt-4 w-[132px] cursor-pointer">
+          <a href="http://facebook.com"><BsFacebook /></a>
+          <a href="http://Intagram.com"><FaInstagramSquare /></a>
           <RiTwitterXFill />
           <FaLinkedin />
         </div>

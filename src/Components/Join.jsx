@@ -12,7 +12,7 @@ const Join = () => {
   return (
     <div>
       
-      <div className='relative bg-[url("../src/assets/bg2.jpg")] bg-center bg-cover  bg-no-repeat w-full h-[460px] mt-[20px] bg-opacity-60'>
+      <div className='relative bg-[url("../src/assets/bg2.jpg")] bg-center bg-cover  bg-no-repeat w-full h-[460px] mt-[20px] bg-opacity-60 z-10'>
         {/* overlay  */}
         <div className="absolute inset-0 bg-black opacity-40 z-0"></div>
         <div className="relative z-50">
@@ -28,7 +28,7 @@ const Join = () => {
 
             <div className="flex gap-[5px] sm:gap-[16px] justify-center mb[20px] px-[8px] sm:px-[16px]">
               <Link to='/Signup'>
-              <button className="text-white bg-[#15803D] hover:bg-[#A1EEAF] mt-[24px] rounded-[8px] h-[48px] w-[159px] sm:w-[200px] p-[5px] mb-[100px] cursor-pointer">
+              <button className="text-white bg-[#15803D]  hover:bg-[#A1EEAF] mt-[24px] rounded-[8px] h-[48px] w-[159px] sm:w-[200px] p-[5px] mb-[100px] cursor-pointer">
                 {" "}
                 Join Community{" "}
               </button>

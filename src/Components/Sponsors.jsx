@@ -68,7 +68,7 @@ const Sponsors = () => {
           </div>
         </div>
       </div>
-      <div>
+      {/* <div>
         <p className="justify-center flex font-poppins text-[24px] my-[40px]">
           Our Trusted Partners
         </p>
@@ -78,7 +78,7 @@ const Sponsors = () => {
           <img src={Huxxle} alt="" />
           <img src={Ogun} alt="" />
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }
