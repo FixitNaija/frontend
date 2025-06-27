@@ -9,7 +9,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className='scroll-smooth w-full bg-white shadow'>
+    <div className='fixed top-0 left-0 z-50 scroll-smooth w-full bg-white shadow hover:bg-[#A1EEAF] '>
       <div className='flex justify-between items-center px-4 md:px-[100px] py-4'>
         {/* Logo */}
         <div className='nav-logo'>
@@ -35,9 +35,9 @@ const Navbar = () => {
               </div>
               {hide && (
                 <div className='absolute right-0 mt-2 bg-white border rounded shadow z-50'>
-                  <a href="#FAQ"><p className="px-4 py-2 hover:bg-gray-100">FAQs</p></a>
-                  <p className="px-4 py-2 hover:bg-gray-100">Blog</p>
-                  <p className="px-4 py-2 hover:bg-gray-100">Support</p>
+                  <a href="#FAQ"><p className="px-4 py-2  hover:bg-[#A1EEAF]">FAQs</p></a>
+                  <p className="px-4 py-2 hover:bg-[#A1EEAF]">Blog</p>
+                  <p className="px-4 py-2 hover:bg-[#A1EEAF]">Support</p>
                 </div>
               )}
             </li>

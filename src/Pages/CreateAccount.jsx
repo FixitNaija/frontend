@@ -137,6 +137,7 @@ const CreateAccount = () => {
             }, 3000);
           })
           .catch((error) => {
+            // toast.error(response.data.message);
             console.log("Login API error:", error);
           })
           .finally(() => setLoading(false));
@@ -200,7 +201,7 @@ const CreateAccount = () => {
 
         <div className="flex  mt-8 bg-[#fcfcfc]  border border-[#E6E5F9] rounded-l-[16px]">
           <h2
-            className={`cursor-pointer flex-1 h-[48px] flex justify-center items-center rounded-l-[16px] transition ${
+            className={`cursor-pointer hover:bg-[#A1EEAF] flex-1 h-[48px] flex justify-center items-center rounded-l-[16px] transition ${
               !isLogin
                 ? "bg-[#1A1A1A] text-white "
                 : "bg-[#E6E5F9] text-[#4B4B4B]"
@@ -210,7 +211,7 @@ const CreateAccount = () => {
             Create an Account
           </h2>
           <h2
-            className={`cursor-pointer flex-1 h-[48px]  flex justify-center items-center rounded-[16px] transition ${
+            className={`cursor-pointer hover:bg-[#A1EEAF] flex-1 h-[48px]  flex justify-center items-center rounded-[16px] transition ${
               isLogin
                 ? "bg-[#1A1A1A] text-white"
                 : "bg-[#E6E5F9] text-[#4B4B4B]"

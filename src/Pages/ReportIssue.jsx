@@ -37,7 +37,7 @@ const ReportIssue = () => {
                         <input type='text' className='border rounded-[6px] w-[356px] h-[42px]'/>
                     </div>
                     <div>
-                         <p className='font-poppins font-medium text-14px leading-[18px] mb-[4px]'>Local Government</p>
+                        <p className='font-poppins font-medium text-14px leading-[18px] mb-[4px]'>Local Government</p>
                         <input type='text' className='border rounded-[6px] w-[356px] h-[42px]'/>
                     </div>
                 </div>
