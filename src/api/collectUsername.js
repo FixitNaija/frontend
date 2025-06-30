@@ -4,3 +4,9 @@ export function collectUsername(username) {
     localStorage.setItem('fixitnaija_username', username);
   }
 }
+
+export function collectEmail(email){
+  if (email){
+    localStorage.setItem("fixitnaija_email", email)
+  }
+}

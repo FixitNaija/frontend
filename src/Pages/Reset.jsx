@@ -51,7 +51,7 @@ function Reset() {
         <div className="flex flex-col items-center ">
           <Link to="/Signup ">
           <h2 className="cursor-pointer flex justify-center items-center text-[#333333] font-Poppins font-[500] text-[16px] mt-[24px]">
-            <button className="text-[#259A48] font-Poppins font-[500] text-[16px] rounded-[12px] bg-[#F7F7F7] mt-[16px]  w-[172px]  h-[46px] mb-[27px] cursor-pointer">
+            <button className="text-[#259A48] font-Poppins font-[500] text-[16px] rounded-[12px] bg-[#F7F7F7] mt-[16px]  w-[172px]  h-[46px] mb-[27px] cursor-pointer" >
               Back Log in{" "}
             </button>
           </h2>
