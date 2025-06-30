@@ -6,13 +6,14 @@ import PotHoles from '../assets/Holes.png';
 import Road from '../assets/Badroads.png';
 import Trash from '../assets/Trash.png';
 import Light from '../assets/Streetlight.png';
+import { FiMenu, FiX, FiHome } from 'react-icons/fi';
+import { IoSettingsOutline } from "react-icons/io5";
+import { RxPerson } from "react-icons/rx";
 
 const UserIssue = () => {
 
     const [sidebarOpen, setSidebarOpen] = useState(false);
-    const [category, setCategory] = useState('All Categories');
-    const [status, setStatus] = useState('All Status');
-    const [time, setTime] = useState('All Time');
+    
 
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);
@@ -68,10 +69,18 @@ const UserIssue = () => {
         },
     ];
     const filteredIssues = issues.filter(issue => {
-        const matchCategory = category === 'All Categories' || issue.category === category;
-        const matchStatus = status === 'All Status' || issue.status === status;
-        const matchTime = time === 'All Time' || issue.time === time;
-        return matchCategory && matchStatus && matchTime;
+       
+        const currentDate = new Date();
+        const issueDate = new Date(issue.date);
+        const timeDifference = currentDate - issueDate;
+        const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+
+        if (issue.time === 'Today') {
+            return daysDifference === 0;
+        } else if (issue.time === 'This Month') {
+            return issueDate.getMonth() === currentDate.getMonth() && issueDate.getFullYear() === currentDate.getFullYear();
+        }
+        return false;
     });
 
     return (
