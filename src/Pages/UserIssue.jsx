@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react'
 import { AiOutlineLike } from "react-icons/ai";
 import { BiComment } from "react-icons/bi";
 import PotHoles from '../assets/Holes.png';
@@ -7,6 +8,8 @@ import Trash from '../assets/Trash.png';
 import Light from '../assets/Streetlight.png';
 
 const UserIssue = () => {
+
+    const [sidebarOpen, setSidebarOpen] = useState(false);
 
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);
