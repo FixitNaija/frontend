@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { AiOutlineLike } from "react-icons/ai";
 import { BiComment } from "react-icons/bi";
 import PotHoles from '../assets/Holes.png';
