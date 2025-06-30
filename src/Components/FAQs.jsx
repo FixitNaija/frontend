@@ -9,7 +9,10 @@ import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 
 export default function FAQs() {
   return (
-    <div id="FAQ"  className=" font-poppins bg-white border-b-blue-900 max-w-[1240px] mt-[24px] mx-auto">
+    <div
+      id="FAQ"
+      className=" font-poppins bg-white border-b-blue-900 max-w-[1240px] mt-[24px] mx-auto"
+    >
       <div className="p-[16px] sm:p-[24px] lg:p-[100px]">
         <div>
           <h1 className="text-[40px] lg:text-[48px] leading-[60px] sm:leading-[72px] font-poppins font-[700] text-[#333] text-center">
@@ -301,8 +304,10 @@ export default function FAQs() {
                     padding: "5px",
                   }}
                 >
-                  No. You can report without creating an account. But if you
-                  sign up you can track your past reports.
+                  Yes, you need to signup before making a report. This helps us
+                  track your report , provide updates ,and ensure accountability
+                  .It also allows you to follow up on the status of your report
+                  anytime.
                 </Typography>
               </div>
             </AccordionDetails>
@@ -355,20 +360,21 @@ export default function FAQs() {
             </AccordionDetails>
           </Accordion>
           <div className="flex flex-col justify-center items-center align-middle">
-            <p className="text-[16px] font-Poppins sm:text-[24px] font-[500] leading-[48px] "> Do You Still Have Questions ?</p>
+            <p className="text-[16px] font-Poppins sm:text-[24px] font-[500] leading-[48px] ">
+              {" "}
+              Do You Still Have Questions ?
+            </p>
             <button className="text-white bg-[#15803D] mt-[24px] rounded-[8px] h-[48px] w-[200px] p-[5px] mb-[100px]">
               {" "}
               Reach Out to Us{" "}
             </button>
           </div>
-
         </div>
 
         <div className="mt-[24px] mb-[60px] ">
           <div className="">
             <div className="max-w-[1240px] py-[40px] bg-[#E8FFD9] rounded-[40px] text-center font-poppins">
               <h1 className=" text-[40px] sm:text-[48px] font-[600] leading-[60px] text-center text-[#333333] font-poppins w-[90%] mx-auto">
-
                 {" "}
                 Subscribe to our Newsletter
               </h1>
@@ -380,9 +386,9 @@ export default function FAQs() {
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="   pl-[24px] w-[174px] sm:w-[326px]  md:w-[502px] h-[48px] text-[16px]  font-poppins border border-[#15803D] bg-[#ffff] rounded-l-[40px] "
+                  className="  mt-[1px] pl-[24px] w-[174px] sm:w-[326px]  md:w-[502px] h-[48px] text-[16px]  font-poppins border border-[#15803D] bg-[#ffff] rounded-l-[40px] "
                 />
-                <button className="w-[110px] h-[48px] text-white bg-[#15803D] rounded-r-[40px] p-[5px]">
+                <button className="w-[110px] h-[48px] text-white bg-[#15803D] rounded-r-[40px] cursor-pointer font-poppins text-[16px] font-[500] leading-[24px] hover:bg-[#A1EEAF]">
                   {" "}
                   Subscribe{" "}
                 </button>
