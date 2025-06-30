@@ -10,6 +10,10 @@ import { ToastContainer, toast } from "react-toastify";
 import Reset from "./Reset";
 import { Link } from "react-router";
 import Cookies from "js-cookie";
+import { GoogleLogin } from "@react-oauth/google";
+// import { useGoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
+
 // import { TextField, IconButton, InputAdornment } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
@@ -24,6 +28,8 @@ const CreateAccount = () => {
     confirmPassword: "",
   });
 
+  
+
   const navigate = useNavigate();
 
   const [errors, setErrors] = useState({});
@@ -33,7 +39,6 @@ const CreateAccount = () => {
   const [visible, setVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   // const [signingUp, setSigningUp] = useState(false);
-
   // const PasswordInput = () => {
   //   const [showPassword, setShowPassword] = useState(false);
 
@@ -137,7 +142,8 @@ const CreateAccount = () => {
             }, 3000);
           })
           .catch((error) => {
-            // toast.error(response.data.message);
+            Cookies.set("email",)
+        
             console.log("Login API error:", error);
           })
           .finally(() => setLoading(false));
@@ -242,6 +248,8 @@ const CreateAccount = () => {
                 <p className="text-red-500 text-sm mt-1">{errors.firstName}</p>
               )}
             </div>
+
+
             <div className="mt-[14px] ">
               <label htmlFor="lastName" className="font-poppins mt-[14px]">
                 Last Name
@@ -363,8 +371,32 @@ const CreateAccount = () => {
               <hr className=" w-[98px] border border-[#D1D5DB] " />
             </div>
             <div className="cursor-pointer flex justify-center items-center align-middle w-full h-[48px] bg-[#DDDDDD] rounded-[16px] text-white mt-6">
-              <FcGoogle className="h-[32px] w-[32px] " />
-            </div>
+              <FcGoogle className="h-[32px] w-[32px] " 
+                onSuccess={(credentialResponse) => {
+                  if (credentialResponse.credential) {
+    // Decode the JWT token to get user information
+    const user = jwtDecode(credentialResponse.credential);      
+                   // handle the response, e.g., send token to your backend
+    console.log("Decoded user info",user);}}
+                  }
+                  onError={(error) => {
+                  console.error("Login Failed:", error);}}
+                  
+              />
+
+              </div>
+              {/* // Google Login component  */}
+              <GoogleLogin
+                onSuccess={(credentialResponse) => {
+                  if (credentialResponse.credential) {
+    // Decode the JWT token to get user information
+    const user = jwtDecode(credentialResponse.credential);      
+                   // handle the response, e.g., send token to your backend
+    console.log("Decoded user info",user);}}
+                  }
+                  onError={(error) => {
+                  console.error("Login Failed:", error);}}
+                  />
           </div>
         )}
 
@@ -416,7 +448,7 @@ const CreateAccount = () => {
             <div>
               <button
                 type="submit"
-                className="w-full h-[56px] bg-[#15803D] rounded-[16px] text-white mt-6 hover:bg-green-700 transition cursor-pointer"
+                className="w-full h-[56px]  bg-[#15803D] rounded-[16px] text-white mt-6 hover:bg-green-700 transition cursor-pointer"
                 disabled={loading}
               >
                 {loading ? "Loading..." : "Log In"}

@@ -2,7 +2,16 @@
     import Logo from "../assets/Fixitlogo.png";
     import { FaEnvelope } from "react-icons/fa";
     import { Link } from "react-router";
+
+
+
+
+
+
+
+
     const Verify = () => {
+        
     return (
         <div className="font-Poppins mt-[60px]">
         <div className="sm:px-[60px] md:px-[70px] lg:px-[90px] w-full">
@@ -22,7 +31,7 @@
                 </h2>
                 <p className="w-[310px] text-center font-Poppins font-[500] text-[16px] mb-[16px] leading-[24px] text-[#333333]">
                 To keep a trusted and safe community we’ve sent an email to{" "}
-                <span className="text-[#259A48] "> example203@gmail.com </span>for
+                <span className="text-[#259A48] "> {response.data.email || 'User'}</span>for
                 verification.
                 </p>
             </div>
