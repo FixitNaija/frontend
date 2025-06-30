@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useState } from 'react'
 import { AiOutlineLike } from "react-icons/ai";
 import { BiComment } from "react-icons/bi";
 import PotHoles from '../assets/Holes.png';
@@ -8,6 +9,11 @@ import Light from '../assets/Streetlight.png';
 
 
 const UserIssue = () => {
+
+    const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [category, setCategory] = useState('All Categories');
+    const [status, setStatus] = useState('All Status');
+    const [time, setTime] = useState('All Time');
 
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);
