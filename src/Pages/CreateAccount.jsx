@@ -556,11 +556,11 @@ const CreateAccount = () => {
       } else {
         signUp(values)
           .then((response) => {
-            Cookies.set("response", response.data.token, { expires: 3 });
+            Cookies.set("email", response.data.email , {expires: 1});
             toast.success(response?.data?.message);
             setTimeout(() => {
-              navigate("/OtpVerify");
-            }, 3000);
+  navigate(`/OtpVerify`);
+}, 3000);
           })
           .catch((error) => {
             toast.error(
@@ -849,6 +849,7 @@ const CreateAccount = () => {
             <div className="flex justify-center w-full mt-4 cursor-pointer">
               <GoogleLogin
                 onSuccess={async (credentialResponse) => {
+                  console.log("Credential Response:", credentialResponse);
                   if (credentialResponse.credential) {
                     try {
                       const res = await axios.post(

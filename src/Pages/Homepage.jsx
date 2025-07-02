@@ -16,7 +16,7 @@ const Homepage = () => {
     <div>
     
       <Navbar />
-      <OtpVerify />
+      
         <Herosection />
         <Report />
         <Sponsors />
