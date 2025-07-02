@@ -1,16 +1,15 @@
-import React, { useState , useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "../assets/Fixitlogo.png";
 // import { FaEnvelope } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate, useLocation, Link } from "react-router";
 import axios from "axios";
-import cookies from 'js-cookie' 
-
+import cookies from "js-cookie";
 
 const OtpVerify = () => {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState()
+  const [email, setEmail] = useState();
   const location = useLocation();
 
   const navigate = useNavigate();
@@ -18,8 +17,8 @@ const OtpVerify = () => {
 
   // Get email from location state or fallback
   const params = new URLSearchParams(location.search);
-const userEmail = params.get("email") || "example203@gmail.com";
-console.log( userEmail)
+  const userEmail = params.get("email") || "example203@gmail.com";
+  console.log(userEmail);
   const handleChange = (e, idx) => {
     const value = e.target.value.replace(/[^0-9]/g, "");
     if (!value) return;
@@ -43,12 +42,12 @@ console.log( userEmail)
     }
   };
 
-useEffect(() => {
-    let savedEmail = cookies.get('email')
-    if(savedEmail){
-        setEmail(savedEmail)
+  useEffect(() => {
+    let savedEmail = cookies.get("email");
+    if (savedEmail) {
+      setEmail(savedEmail);
     }
-}, []);
+  }, []);
 
   const handlePaste = (e) => {
     const paste = e.clipboardData
@@ -71,8 +70,8 @@ useEffect(() => {
     setLoading(true);
     try {
       // Replace with your backend endpoint
-      const res = await axios.post(
-        "https://fixitbackend-7zrf.onrender.com/api/auth/verify-otp",
+      const res = await axios.get(
+        "https://fixitbackend-7zrf.onrender.com/api/v1/user/verify",
         {
           email: userEmail,
           otp: otpValue,
@@ -93,8 +92,8 @@ useEffect(() => {
     setLoading(true);
     try {
       // Replace with your backend endpoint for resending OTP
-      await axios.post(
-        "https://fixitbackend-7zrf.onrender.com/api/auth/resend-otp",
+      await axios.get(
+        "https://fixitbackend-7zrf.onrender.com/api/v1/user/verify",
         {
           email: userEmail,
         }
@@ -124,8 +123,8 @@ useEffect(() => {
             </h2>
             <p className="w-[310px] text-center font-Poppins font-[500] text-[16px] mb-[16px] leading-[24px] text-[#333333]">
               We sent a 6-digit code to{" "}
-              <span className="text-[#259A48]">{email}</span>. Please enter
-              it below to verify your account.
+              <span className="text-[#259A48]">{email}</span>. Please enter it
+              below to verify your account.
             </p>
           </div>
           <form
