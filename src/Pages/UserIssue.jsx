@@ -7,6 +7,7 @@ import PotHoles from '../assets/Holes.png';
 import Road from '../assets/Badroads.png';
 import Trash from '../assets/Trash.png';
 import Light from '../assets/Streetlight.png';
+import Fixit from '../assets/Fixitlogo.png';
 import { FiMenu, FiX, FiHome } from 'react-icons/fi';
 import { IoSettingsOutline } from "react-icons/io5";
 import { RxPerson } from "react-icons/rx";

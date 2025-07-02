@@ -5,6 +5,7 @@ import Footer from '../Components/footer'
 import Report from '../Components/Report'
 import Faq from '../Components/FAQs'
 import Join from '../Components/Join'
+import OtpVerify from './OtpVerify'
 
 
 import Sponsors from '../Components/Sponsors'
@@ -15,6 +16,7 @@ const Homepage = () => {
     <div>
     
       <Navbar />
+      <OtpVerify />
         <Herosection />
         <Report />
         <Sponsors />
