@@ -13,6 +13,7 @@
 
 
   import { GoogleOAuthProvider } from '@react-oauth/google';
+import OtpVerify from './Pages/OtpVerify'
 
   const clientId = '520912190280-qrqi24j6n2mql9et0h5usdgt40370alg.apps.googleusercontent.com';
 
@@ -34,7 +35,7 @@
           <Route path="/AboutUs" element={<AboutUs />} />
           <Route path="/Reset" element={<Reset />} />
           <Route path="/Verify" element={<Verify />} />
-        
+          <Route path="/OtpVerify" element={<OtpVerify />} />
           <Route path="/Issue" element={<ReportIssue />} />
           <Route path="/FAQs" element={<FAQs />} />
           <Route path="/UserPage" element={<UserPage />} />

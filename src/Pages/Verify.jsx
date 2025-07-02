@@ -1,16 +1,22 @@
     import React from "react";
     import Logo from "../assets/Fixitlogo.png";
     import { FaEnvelope } from "react-icons/fa";
-    import { Link } from "react-router";
+    import { Link, useLocation } from "react-router";
+    // import cookie from "js-cookie";
 
 
 
-
+// {response.data.email || 'User'}
 
 
 
 
     const Verify = () => {
+        const location = useLocation();
+        const userEmail = location.state?.email || "example203@gmail.com"; // fallback if not passed
+
+
+
         
     return (
         <div className="font-Poppins mt-[60px]">
@@ -31,7 +37,7 @@
                 </h2>
                 <p className="w-[310px] text-center font-Poppins font-[500] text-[16px] mb-[16px] leading-[24px] text-[#333333]">
                 To keep a trusted and safe community we’ve sent an email to{" "}
-                <span className="text-[#259A48] "> {response.data.email || 'User'}</span>for
+                <span className="text-[#259A48] ">{userEmail} </span>for
                 verification.
                 </p>
             </div>

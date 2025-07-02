@@ -9,7 +9,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className='fixed top-0 left-0 z-50 scroll-smooth w-full bg-white shadow hover:bg-[#A1EEAF] '>
+    <div className='fixed top-0 left-0 z-50 scroll-smooth w-full bg-white shadow  '>
       <div className='flex justify-between items-center px-4 md:px-[100px] py-4'>
         {/* Logo */}
         <div className='nav-logo'>

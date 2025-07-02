@@ -1,10 +1,36 @@
-import { React } from "react";
+import { React, useState } from "react";
 import Logo from "../assets/Fixitlogo.png";
 import Caution from "../assets/Caution.png";
 import Lock from "../assets/lock.png";
 import { Link } from "react-router";
 
 function Reset() {
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("true");
+
+  const handleSubmit = (e) => {
+    if (!email) {
+      alert("imput a valid Email");
+    } else {
+      alert("a mail has been sent into your mailbox");
+    }
+    e.preventDefault();
+  };
+
+  const handleEmailChange = (e) => {
+    // Validate email format
+    let email = e.target.value;
+    if (!email) {
+      setError("Email is required");
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setError("Invalid email format");
+    } else {
+      setError(true);
+    }
+
+    setEmail(email);
+  };
   return (
     <div className="font-Poppins mt-[48px]">
       <div className="sm:px-[60px] md:px-[70px] lg:px-[90px] w-full">
@@ -33,28 +59,31 @@ function Reset() {
               your password.
             </p>
           </div>
-          <div className="flex flex-col mt-[16px]  pt-[24px]">
-            <label htmlFor="email">Email address </label>
-            <input
-              type="email"
-              id="email"
-              placeholder="Email"
-              className=" w-[288px] sm:w-[540px]  rounded-[6px] pl-[13px] h-[46px] border border-[#D2D9E9]"
-            />
+          <form onSubmit={handleSubmit}>
+            <div className="flex flex-col mt-[16px]  pt-[24px]">
+              <label htmlFor="email">Email address </label>
+              <input
+                onChange={handleEmailChange}
+                type="email"
+                id="email"
+                placeholder="Email"
+                className=" w-[288px] sm:w-[540px]  rounded-[6px] pl-[13px] h-[46px] border border-[#D2D9E9]"
+                value={email}
+              />
+              {error ? "invalid Entry" : ""}
               <button className="text-[#FFFFFF] font-Poppins font-[500] text-[16px] rounded-[12px] bg-[#15803D] mt-[24px] sm:mt-[38px] w-[288px] sm:w-[540px] h-[46px] cursor-pointer">
-            <Link to="/Verify">
-                Reset Password
-            </Link>
+                <Link to="/Verify">Reset Password</Link>
               </button>
-          </div>
+            </div>
+          </form>
         </div>
         <div className="flex flex-col items-center ">
           <Link to="/Signup ">
-          <h2 className="cursor-pointer flex justify-center items-center text-[#333333] font-Poppins font-[500] text-[16px] mt-[24px]">
-            <button className="text-[#259A48] font-Poppins font-[500] text-[16px] rounded-[12px] bg-[#F7F7F7] mt-[16px]  w-[172px]  h-[46px] mb-[27px] cursor-pointer" >
-              Back Log in{" "}
-            </button>
-          </h2>
+            <h2 className="cursor-pointer flex justify-center items-center text-[#333333] font-Poppins font-[500] text-[16px] mt-[24px]">
+              <button className="text-[#259A48] font-Poppins font-[500] text-[16px] rounded-[12px] bg-[#F7F7F7] mt-[16px]  w-[172px]  h-[46px] mb-[27px] cursor-pointer">
+                Back Log in{" "}
+              </button>
+            </h2>
           </Link>
         </div>
       </section>
