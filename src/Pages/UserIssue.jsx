@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import { Link } from 'react-router';
 import { AiOutlineLike } from "react-icons/ai";
 import { BiComment } from "react-icons/bi";
 import PotHoles from '../assets/Holes.png';
@@ -87,7 +88,7 @@ const UserIssue = () => {
         <div>
             <div className={`fixed md:relative z-20 w-64 bg-white text-black transition-all duration-300 ease-in-out ${sidebarOpen ? 'left-0' : '-left-full'} md:left-0 h-full`}>
                 <div className="flex-col items-center justify-between p-4 border-b border-blue-700">
-                    <Link to='/'><img src={Fixit} alt='logo' /></Link>
+                    <Link to='/Homepage'><img src={Fixit} alt='logo' /></Link>
                     <h1 className="text-xl font-bold">Community Infrastructure platform</h1>
                     <button className="md:hidden" onClick={toggleSidebar}>
                         <FiX size={24} />
@@ -96,16 +97,16 @@ const UserIssue = () => {
                 <nav className="p-4">
                     <ul className="space-y-2">
                         <li className='hover:bg-green-100  rounded-lg transition-colors'>
-                            <a href="UserPage" className="flex items-center p-2">
+                            <Link to="/UserPage" className="flex items-center p-2">
                                 <FiHome className="mr-3" />
                                 <span>Dashboard</span>
-                            </a>
+                            </Link>
                         </li>
                         <li className='hover:bg-green-100 rounded-lg transition-colors'>
-                            <a href="UserIssue" className="flex items-center p-2">
+                            <Link to="/UserIssue" className="flex items-center p-2">
                                 <RxPerson className="mr-3" />
                                 <span>Issues</span>
-                            </a>
+                            </Link>
                         </li>
                         <li className='hover:bg-green-100 rounded-lg transition-colors'>
                             <a href="#" className="flex items-center p-2">

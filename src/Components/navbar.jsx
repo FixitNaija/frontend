@@ -1,15 +1,39 @@
 import React, { useState } from 'react';
 import Logo from '../assets/Fixitlogo.png'
-import { Link } from 'react-router'
+import { Link, useLocation, useNavigate } from 'react-router';
 import { IoIosArrowDown } from "react-icons/io";
 import { RxHamburgerMenu } from "react-icons/rx";
 
 const Navbar = () => {
   const [hide, setHide] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Handler for FAQ navigation
+  const handleFaqClick = (e) => {
+    e.preventDefault();
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        const faqSection = document.getElementById('FAQ');
+        if (faqSection) {
+          faqSection.scrollIntoView({ behavior: 'smooth' });
+        }
+        setIsOpen(false);
+      }, 100);
+    } else {
+      // If already on homepage, just scroll
+      const faqSection = document.getElementById('FAQ');
+      if (faqSection) {
+        faqSection.scrollIntoView({ behavior: 'smooth' });
+      }
+      setIsOpen(false);
+    }
+  };
 
   return (
-    <div className='fixed top-0 left-0 z-50 scroll-smooth w-full bg-white shadow hover:bg-[#A1EEAF] '>
+    <div className='fixed top-0 left-0 z-50 scroll-smooth w-full bg-white shadow hover:bg-[#FFFFFF] '>
       <div className='flex justify-between items-center px-4 md:px-[100px] py-4'>
         {/* Logo */}
         <div className='nav-logo'>
@@ -35,7 +59,7 @@ const Navbar = () => {
               </div>
               {hide && (
                 <div className='absolute right-0 mt-2 bg-white border rounded shadow z-50'>
-                  <a href="#FAQ"><p className="px-4 py-2  hover:bg-[#A1EEAF]">FAQs</p></a>
+                  <a href="/#FAQ" onClick={handleFaqClick}><p className="px-4 py-2  hover:bg-[#A1EEAF]">FAQs</p></a>
                   <p className="px-4 py-2 hover:bg-[#A1EEAF]">Blog</p>
                   <p className="px-4 py-2 hover:bg-[#A1EEAF]">Support</p>
                 </div>
@@ -65,7 +89,7 @@ const Navbar = () => {
               </div>
               {hide && (
                 <div className='ml-4 mt-2 bg-white border rounded shadow z-50'>
-                  <a href="#FAQ"><p className="px-4 py-2 hover:bg-gray-100">FAQs</p></a>
+                  <a href="/#FAQ" onClick={handleFaqClick}><p className="px-4 py-2 hover:bg-gray-100">FAQs</p></a>
                   <p className="px-4 py-2 hover:bg-gray-100">Blog</p>
                   <p className="px-4 py-2 hover:bg-gray-100">Support</p>
                 </div>
