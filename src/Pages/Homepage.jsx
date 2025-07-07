@@ -16,8 +16,7 @@ const Homepage = () => {
     <div>
     
       <Navbar />
-      {/* <OtpVerify /> */}
-      <ReportSubmit />
+      
         <Herosection />
         <Report />
         <Sponsors />
