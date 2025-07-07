@@ -13,8 +13,9 @@ import Trash from '../assets/Trash.png';
 import Light from '../assets/Streetlight.png';
 import { AiOutlineLike } from "react-icons/ai";
 import { BiComment } from "react-icons/bi";
+import { GoBell, GoSearch } from "react-icons/go";
 import Cookies from 'js-cookie'
-import {jwtDecode} from 'jwt-decode'
+import { jwtDecode } from 'jwt-decode'
 
 const Dashboard = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -22,6 +23,8 @@ const Dashboard = () => {
     const [status, setStatus] = useState('All Status');
     const [time, setTime] = useState('All Time');
     // const [username, setUsername] = useState('');
+    const [showMobileSearch, setShowMobileSearch] = useState(false);
+    const [searchValue, setSearchValue] = useState("");
     const [userData, setUserData] = useState({})
 
     useEffect(() => {
@@ -30,15 +33,15 @@ const Dashboard = () => {
         //     setUsername(storedUsername);
         // }
         let savedToken = Cookies.get('token')
-        if(savedToken){
+        if (savedToken) {
             const data = jwtDecode(savedToken)
             setUserData(data)
         }
     }, []);
-    console.log(userData)
-    const toggleSidebar = () => {
-        setSidebarOpen(!sidebarOpen);
-    };
+    // console.log(userData)
+    // const toggleSidebar = () => {
+    //     setSidebarOpen(!sidebarOpen);
+    // };
 
     const issues = [
         {
@@ -99,10 +102,18 @@ const Dashboard = () => {
         return matchCategory && matchStatus && matchTime;
     });
 
+    // Handle search (can be customized as needed)
+    const handleSearch = (e) => {
+        e.preventDefault();
+        // You can add your search logic here, e.g., filter issues or call an API
+        // For now, just log the value
+        // console.log('Searching for:', searchValue);
+    };
+
     return (
-        <div className="flex h-screen bg-gray-100">
+        <div className="flex min-h-screen bg-gray-100">
             {/* Sidebar */}
-            <div className={`fixed md:relative z-20 w-64 bg-white text-black transition-all duration-300 ease-in-out ${sidebarOpen ? 'left-0' : '-left-full'} md:left-0 h-full`}>
+            {/* <div className={`fixed md:relative z-20 w-64 bg-white text-black transition-all duration-300 ease-in-out ${sidebarOpen ? 'left-0' : '-left-full'} md:left-0 h-full`}>
                 <div className="flex-col items-center justify-between p-4 border-b border-blue-700">
                     <Link to='/Homepage'><img src={Fixit} alt='logo' /></Link>
                     <h1 className="text-xl font-bold">Community Infrastructure platform</h1>
@@ -132,23 +143,59 @@ const Dashboard = () => {
                         </li>
                     </ul>
                 </nav>
-            </div>
+            </div> */}
 
             {/* Main Content */}
-            <div className="flex-1 overflow-auto">
-                {/* Mobile Header */}
-                <header className="md:hidden bg-blue shadow p-4 flex items-center">
-                    <button onClick={toggleSidebar} className="mr-4">
-                        <FiMenu size={24} />
-                    </button>
-                    <h1 className="text-xl font-bold text-gray-800">Dashboard</h1>
-                </header>
-
-                {/* Dashboard Content */}
-                <main className="container px-4 py-8">
-                    <div className="max-w-6xl mx-auto">
+            <div className="flex-1 min-w-0">
+                <main className="max-w-full w-full px-2 sm:px-4 py-8 mx-auto">
+                    <div className="w-full flex flex-row sm:justify-between sm:items-center p-2 bg-white shadow-sm gap-2 overflow-x-auto">
+                        {/* Search Box */}
+                        <div className="flex-1 flex items-center min-w-0 mb-2 sm:mb-0">
+                            {/* Show input on sm and up, icon on xs */}
+                            <form onSubmit={handleSearch} className="w-full flex items-center">
+                                <input
+                                    type="text"
+                                    placeholder="Search for issues..."
+                                    value={searchValue}
+                                    onChange={e => setSearchValue(e.target.value)}
+                                    className={`hidden sm:block w-full max-w-full sm:w-[350px] md:w-[500px] lg:w-[700px] px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 ${showMobileSearch ? 'sm:block' : ''}`}
+                                />
+                                <button
+                                    type="button"
+                                    className="sm:hidden p-2 rounded-full border border-gray-300 bg-white text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    onClick={() => setShowMobileSearch(prev => !prev)}
+                                >
+                                    <GoSearch className="w-5 h-5" />
+                                </button>
+                                {/* Show input on mobile if toggled */}
+                                {showMobileSearch && (
+                                    <input
+                                        type="text"
+                                        placeholder="Search for issues..."
+                                        value={searchValue}
+                                        onChange={e => setSearchValue(e.target.value)}
+                                        autoFocus
+                                        className="block sm:hidden w-full px-4 py-2 ml-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        onBlur={() => setShowMobileSearch(false)}
+                                    />
+                                )}
+                            </form>
+                        </div>
+                        {/* Right Side: Notification + Profile */}
+                        <div className="flex items-center gap-2 sm:gap-4 justify-end">
+                            <GoBell className="w-5 h-5 text-gray-600 cursor-pointer" />
+                            <div className="flex items-center gap-2">
+                                <div className="w-8 h-8 rounded-full bg-green-600 flex items-center justify-center text-white font-semibold text-sm">
+                                    JS
+                                </div>
+                                <span className="text-gray-800 font-medium hidden xs:inline-block">John Samuel</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div className="max-w-6xl w-full mx-auto">
                         {/* Header */}
-                        <div className="mb-8">
+                        <div className="pt-[10px] mb-8">
                             <h1 className="text-3xl font-bold text-gray-800">Welcome back, {userData?.user?.name || 'User'}!</h1>
                             <p className="text-gray-600">Here's what's happening in your community.</p>
                         </div>
@@ -205,7 +252,7 @@ const Dashboard = () => {
                             {/* Issues List */}
                             <div>
                                 {filteredIssues.map((issue, idx) => (
-                                    <div key={idx} className='flex flex-col sm:flex-row justify-between mt-[24px] mx-[66px] mb-[17px]'>
+                                    <div key={idx} className='flex flex-col sm:flex-row justify-between mt-6 sm:mx-8 mb-4 w-full overflow-x-auto'>
                                         <div>
                                             <img src={issue.img} alt={issue.title} />
                                         </div>

@@ -556,8 +556,9 @@ const CreateAccount = () => {
       } else {
         signUp(values)
           .then((response) => {
-            Cookies.set("response", response.data.token, { expires: 3 });
+            Cookies.set("email", response.data.email, { expires: 1 });
             toast.success(response?.data?.message);
+            // console.log("Signup API response:", response);
             setTimeout(() => {
               navigate("/OtpVerify");
             }, 3000);

@@ -7,6 +7,7 @@ import PotHoles from '../assets/Holes.png';
 import Road from '../assets/Badroads.png';
 import Trash from '../assets/Trash.png';
 import Light from '../assets/Streetlight.png';
+import { GoBell, GoSearch } from "react-icons/go";
 import Fixit from '../assets/Fixitlogo.png';
 import { FiMenu, FiX, FiHome } from 'react-icons/fi';
 import { IoSettingsOutline } from "react-icons/io5";
@@ -15,7 +16,9 @@ import { RxPerson } from "react-icons/rx";
 const UserIssue = () => {
 
     const [sidebarOpen, setSidebarOpen] = useState(false);
-    
+    const [showMobileSearch, setShowMobileSearch] = useState(false);
+    const [searchValue, setSearchValue] = useState("");
+
 
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);
@@ -70,8 +73,10 @@ const UserIssue = () => {
             time: 'Today',
         },
     ];
+    // Responsive search bar state
+
+
     const filteredIssues = issues.filter(issue => {
-       
         const currentDate = new Date();
         const issueDate = new Date(issue.date);
         const timeDifference = currentDate - issueDate;
@@ -85,9 +90,16 @@ const UserIssue = () => {
         return false;
     });
 
+    // Handle search (customize as needed)
+    const handleSearch = (e) => {
+        e.preventDefault();
+        // Add your search logic here
+        // console.log('Searching for:', searchValue);
+    };
+
     return (
         <div>
-            <div className={`fixed md:relative z-20 w-64 bg-white text-black transition-all duration-300 ease-in-out ${sidebarOpen ? 'left-0' : '-left-full'} md:left-0 h-full`}>
+            {/* <div className={`fixed md:relative z-20 w-64 bg-white text-black transition-all duration-300 ease-in-out ${sidebarOpen ? 'left-0' : '-left-full'} md:left-0 h-full`}>
                 <div className="flex-col items-center justify-between p-4 border-b border-blue-700">
                     <Link to='/Homepage'><img src={Fixit} alt='logo' /></Link>
                     <h1 className="text-xl font-bold">Community Infrastructure platform</h1>
@@ -117,17 +129,62 @@ const UserIssue = () => {
                         </li>
                     </ul>
                 </nav>
-            </div>
+            </div> */}
             <div>
-                <header className="md:hidden bg-blue shadow p-4 flex items-center">
+                {/* <header className="md:hidden bg-blue shadow p-4 flex items-center">
                     <button onClick={toggleSidebar} className="mr-4">
                         <FiMenu size={24} />
                     </button>
                     <h1 className="text-xl font-bold text-gray-800">Dashboard</h1>
-                </header>
+                </header> */}
                 <div>
-                    {filteredIssues.map((issue, idx) => (
-                        <div key={idx} className='flex flex-col sm:flex-row justify-between mt-[24px] mx-[66px] mb-[17px]'>
+                    <div className="w-full flex flex-row sm:justify-between sm:items-center p-2 bg-white shadow-sm gap-2 overflow-x-auto">
+                        {/* Search Box */}
+                        <div className="flex-1 flex items-center min-w-0 mb-2 sm:mb-0">
+                            <form onSubmit={handleSearch} className="w-full flex items-center">
+                                <input
+                                    type="text"
+                                    placeholder="Search for issues..."
+                                    value={searchValue}
+                                    onChange={e => setSearchValue(e.target.value)}
+                                    className={`hidden sm:block w-full max-w-full sm:w-[350px] md:w-[500px] lg:w-[700px] px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 ${showMobileSearch ? 'sm:block' : ''}`}
+                                />
+                                <button
+                                    type="button"
+                                    className="sm:hidden p-2 rounded-full border border-gray-300 bg-white text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    onClick={() => setShowMobileSearch(prev => !prev)}
+                                >
+                                    <GoSearch className="w-5 h-5" />
+                                </button>
+                                {/* Show input on mobile if toggled */}
+                                {showMobileSearch && (
+                                    <input
+                                        type="text"
+                                        placeholder="Search for issues..."
+                                        value={searchValue}
+                                        onChange={e => setSearchValue(e.target.value)}
+                                        autoFocus
+                                        className="block sm:hidden w-full px-4 py-2 ml-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        onBlur={() => setShowMobileSearch(false)}
+                                    />
+                                )}
+                            </form>
+                        </div>
+                        {/* Right Side: Notification + Profile */}
+                        <div className="flex items-center gap-2 sm:gap-4 justify-end">
+                            <GoBell className="w-5 h-5 text-gray-600 cursor-pointer" />
+                            <div className="flex items-center gap-2">
+                                <div className="w-8 h-8 rounded-full bg-green-600 flex items-center justify-center text-white font-semibold text-sm">
+                                    JS
+                                </div>
+                                <span className="text-gray-800 font-medium hidden xs:inline-block">John Samuel</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* {filteredIssues.map((issue, idx) => ( */}
+                    {issues.map((issue, idx) => (
+                        <div key={idx} className=' w-full flex flex-col sm:flex-row justify-between align-center mt-2 sm:mx-4 mb-2 gap-1 sm:gap-2'>
                             <div>
                                 <img src={issue.img} alt={issue.title} />
                             </div>
