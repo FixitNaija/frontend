@@ -10,6 +10,14 @@ export const baseInstance = axios.create({
   },
   withCredentials: false
 });
+export const formDataBaseInstance = axios.create({
+  baseURL: 'https://fixitbackend-7zrf.onrender.com/',
+  timeout: 50000,
+  headers: {
+    'Content-Type': 'multipart/form-data',
+  },
+  withCredentials: false
+});
 
 // baseInstance.post('/api/v1/user/signup', userData)
 //   .then(response => {
