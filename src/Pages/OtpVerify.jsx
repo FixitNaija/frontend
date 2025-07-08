@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Logo from "../assets/Fixitlogo.png";
 // import { FaEnvelope } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
@@ -6,6 +6,7 @@ import { useNavigate, useLocation, Link } from "react-router";
 import Cookies from 'js-cookie';
 import axios from "axios";
 import cookies from "js-cookie";
+import { OTPVerify } from "../api/data"; 
 
 const OtpVerify = () => {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
@@ -93,8 +94,8 @@ const OtpVerify = () => {
 
     try {
       // Replace with your backend endpoint
-      const res = await axios.get(
-        "https://fixitbackend-7zrf.onrender.com/api/v1/user/verify",
+      const res = await axios.get(OTPVerify,
+        // "https://fixitbackend-7zrf.onrender.com/api/v1/user/verify",
         {
           email: userEmail,
           otp: otpValue,
