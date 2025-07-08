@@ -3,6 +3,7 @@ import Logo from "../assets/Fixitlogo.png";
 // import { FaEnvelope } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate, useLocation, Link } from "react-router";
+import Cookies from 'js-cookie';
 import axios from "axios";
 import cookies from "js-cookie";
 
@@ -13,7 +14,8 @@ const OtpVerify = () => {
   const location = useLocation();
 
   const navigate = useNavigate();
-  const inputsRef = React.useRef([]);
+  const inputsRef = useRef([]);
+  
 
   // Get email from location state or fallback
   const params = new URLSearchParams(location.search);
@@ -59,6 +61,13 @@ const OtpVerify = () => {
       inputsRef.current[5].focus();
     }
   };
+
+   useEffect(() => {
+          let savedEmail = Cookies.get('email')
+          if(savedEmail){
+              setEmail(savedEmail)
+          }
+      }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

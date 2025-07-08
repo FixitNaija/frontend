@@ -5,15 +5,17 @@
   import CreateAccount from './Pages/CreateAccount'
   import AboutUs from './Pages/AboutUs'
   import FAQs from './Components/FAQs'
-  import ReportIssue from './Pages/ReportIssue'
+  import Issue from './Pages/Issue'
   import UserPage from './Pages/UserPage'
   import './App.css'
   import Reset from './Pages/Reset'
   import Verify from './Pages/Verify'
+  import UserIssue from './Pages/UserIssue'
 
 
   import { GoogleOAuthProvider } from '@react-oauth/google';
 import OtpVerify from './Pages/OtpVerify'
+import DashboardLayout from './Components/DashboardLayout'
 
   const clientId = '520912190280-qrqi24j6n2mql9et0h5usdgt40370alg.apps.googleusercontent.com';
 
@@ -36,9 +38,15 @@ import OtpVerify from './Pages/OtpVerify'
           <Route path="/Reset" element={<Reset />} />
           <Route path="/Verify" element={<Verify />} />
           <Route path="/OtpVerify" element={<OtpVerify />} />
-          <Route path="/Issue" element={<ReportIssue />} />
+          <Route path="/Issue" element={<Issue />} />
           <Route path="/FAQs" element={<FAQs />} />
-          <Route path="/UserPage" element={<UserPage />} />
+          {/* <Route path="/UserPage" element={<UserPage />} />
+          <Route path="/UserIssue" element={<UserIssue />} /> */}
+          <Route path="/" element={<DashboardLayout />}>
+  <Route path="UserPage" element={<UserPage />} />
+  <Route path="UserIssue" element={<UserIssue />} />
+  {/* Add more routes as needed */}
+</Route>
 
         </Routes>
         </GoogleOAuthProvider>
