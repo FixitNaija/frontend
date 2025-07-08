@@ -18,7 +18,7 @@ const OtpVerify = () => {
   // Get email from location state or fallback
   const params = new URLSearchParams(location.search);
   const userEmail = params.get("email") || "example203@gmail.com";
-  console.log(userEmail);
+  // console.log(userEmail);
   const handleChange = (e, idx) => {
     const value = e.target.value.replace(/[^0-9]/g, "");
     if (!value) return;
@@ -66,8 +66,22 @@ const OtpVerify = () => {
     if (!otpValue || otpValue.length < 6) {
       toast.error("Please enter the 6-digit OTP code.");
       return;
+
+
+
+   
+
+
+
+
     }
     setLoading(true);
+
+
+
+
+
+
     try {
       // Replace with your backend endpoint
       const res = await axios.get(
@@ -87,6 +101,7 @@ const OtpVerify = () => {
       setLoading(false);
     }
   };
+
 
   const handleResend = async () => {
     setLoading(true);
