@@ -3,6 +3,7 @@
   import { Routes, Route} from 'react-router'
   import Homepage from './Pages/Homepage'
   import CreateAccount from './Pages/CreateAccount'
+  import ReportSubmit from './Pages/ReportSubmit'
   import AboutUs from './Pages/AboutUs'
   import FAQs from './Components/FAQs'
   import Issue from './Pages/Issue'
@@ -40,6 +41,7 @@ import DashboardLayout from './Components/DashboardLayout'
           <Route path="/OtpVerify" element={<OtpVerify />} />
           <Route path="/Issue" element={<Issue />} />
           <Route path="/FAQs" element={<FAQs />} />
+          <Route path="./ReportSubmit" element={<ReportSubmit/>} />
           {/* <Route path="/UserPage" element={<UserPage />} />
           <Route path="/UserIssue" element={<UserIssue />} /> */}
           <Route path="/" element={<DashboardLayout />}>

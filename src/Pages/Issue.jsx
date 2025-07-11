@@ -4,6 +4,7 @@ import { AiOutlinePicture } from "react-icons/ai";
 import { issue } from '../api/data';
 import Cookies from 'js-cookie'
 import { jwtDecode } from 'jwt-decode';
+import { toast } from 'react-toastify';
 
 const ReportIssue = () => {
     const [form, setForm] = useState({
@@ -13,7 +14,7 @@ const ReportIssue = () => {
         location: '',
         state: '',
         localGovernment: '',
-        image: null
+        images: null
     });
     const [errors, setErrors] = useState({});
     const [token, setToken] = useState()
@@ -41,7 +42,7 @@ const ReportIssue = () => {
         if (!form.location) newErrors.location = 'Location is required';
         if (!form.state) newErrors.state = 'State is required';
         if (!form.localGovernment) newErrors.localGovernment = 'Local Government is required';
-        if (!form.image) newErrors.image = 'Image is required';
+        if (!form.images) newErrors.images = 'Image is required';
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
@@ -59,10 +60,14 @@ const ReportIssue = () => {
             await issue(formData, token)
                 .then(response => {
                     console.log('Issue reported successfully:', response);
-                    navigate('/ReportSubmit')
+                    toast.success(response.data.message)
+                    setTimeout(() => {
+                        navigate('/ReportSubmit')                       
+                    }, 2000);
                 })
                 .catch(error => {
                     console.error('Error reporting issue:', error || error.message);
+                    toast.error('Issue not reported successfully');
                 })
                 .finally(() => {
                     setLoading(false);
@@ -142,8 +147,8 @@ const ReportIssue = () => {
                             </div>
                             <div className='block items-center '>
                                 <p className='font-poppins font-medium text-[14px] leading-[18px] pt-[29px] mb-[4px]'>Upload Image</p>
-                                <input name='image' onChange={handleChange} type='file' className='border rounded-[6px] w-[310px] sm:w-[620px] lg:w-[720px] h-[42px] font-poppins font-normal text-[16px] leading-[24px]  mb-[16px] py-[8px] pl-[16px]' />
-                                {errors.image && <p className='text-red-500 text-xs text-left'>{errors.image}</p>}
+                                <input name='images' onChange={handleChange} type='file' className='border rounded-[6px] w-[310px] sm:w-[620px] lg:w-[720px] h-[42px] font-poppins font-normal text-[16px] leading-[24px]  mb-[16px] py-[8px] pl-[16px]' />
+                                {errors.images && <p className='text-red-500 text-xs text-left'>{errors.images}</p>}
                             </div>
                             <button type='submit' className='flex items-center justify-center gap-2 bg-[#15803D] hover:bg-[#176c3a] transition-colors duration-200 text-white font-poppins font-medium text-[16px] rounded-[6px] w-[310px] sm:w-[620px] lg:w-[720px] h-[42px] mt-6 mb-8'>
                                 {loading ?'Loading...':<><AiOutlinePicture className="w-5 h-5" />

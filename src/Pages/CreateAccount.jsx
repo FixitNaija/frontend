@@ -727,7 +727,7 @@ const CreateAccount = () => {
             <div>
               <button
                 type="submit"
-                className="cursor-pointer w-full h-[56px] bg-[#15803D] rounded-[16px] text-white mt-6 hover:bg-green-700 transition"
+                className="cursor-pointer w-full h-[56px] bg-[#15803D] rounded-[8px] text-white mt-6 hover:bg-green-700 transition"
                 disabled={loading}
               >
                 {loading ? "Loading..." : "Create Account"}

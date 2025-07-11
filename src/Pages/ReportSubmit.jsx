@@ -75,7 +75,7 @@ const ReportSubmit = () => {
           Submit Another Report
         </button>
       </div>
-      <Footer />
+      <Footer className="mt-[20px]"/>
     </div>
   );
 };
