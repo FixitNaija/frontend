@@ -17,7 +17,7 @@ const Herosection = () => {
                         <br /> track public infrastructure problems in your community.Join us in making a
                         <br /> difference by highlighting issues in your community.
                     </p>
-                    <Link to='/Issue'>
+                    <Link to='/signup'>
                     <button  className='border font-poppins  hover:bg-[#A1EEAF] cursor-pointer text-[16px] leading-[24px] sm:text-base font-medium border-[#15803D] bg-[#15803D] text-[#fff] rounded-[8px] sm:rounded-lg w-[170px] sm:w-[183px] h-[48px] pt-[12px] pb-[12px]  pl-[24px] sm:pl-[42px]  pr-[24px] sm:pr-[42px] ml-[16px] sm:ml-[100px]  mr-[110px] sm:mr-[323px] mt-[60px] sm:mt-[84px]'>Report Issue</button>
                     </Link>
                 </div>

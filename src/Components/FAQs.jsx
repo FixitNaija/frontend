@@ -370,11 +370,11 @@ export default function FAQs() {
             </button>
           </div>
         </div>
-
-        <div className="mt-[24px] mb-[60px] ">
-          <div className="">
-            <div className="max-w-[1240px] py-[40px] bg-[#E8FFD9] rounded-[40px] text-center font-poppins">
-              <h1 className=" text-[40px] sm:text-[48px] font-[600] leading-[60px] text-center text-[#333333] font-poppins w-[90%] mx-auto">
+               
+        <div className="mt-[24px] mb-[60px] " >
+          <div  className="">
+            <div  className="max-w-[1240px] py-[40px] bg-[#E8FFD9] rounded-[40px] text-center font-poppins">
+              <h1 id="News" className=" text-[40px] sm:text-[48px] font-[600] leading-[60px] text-center text-[#333333] font-poppins w-[90%] mx-auto">
                 {" "}
                 Subscribe to our Newsletter
               </h1>

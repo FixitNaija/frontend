@@ -27,14 +27,14 @@ const Join = () => {
             </p>
 
             <div className="flex gap-[5px] sm:gap-[16px] justify-center mb[20px] px-[8px] sm:px-[16px]">
-              <Link to='/Signup'>
+              <Link to='/news'>
               <button className="text-white bg-[#15803D]  hover:bg-[#A1EEAF] mt-[24px] rounded-[8px] h-[48px] w-[159px] sm:w-[200px] p-[5px] mb-[100px] cursor-pointer">
                 {" "}
                 Join Community{" "}
               </button>
               </Link>
             
-              <Link to='/Issue'>
+              <Link to='/signup'>
               <button className="text-black bg-[#ffff] hover:bg-[#A1EEAF] mt-[24px] rounded-[8px] h-[48px] w-[159px] sm:w-[200px] p-[5px] mb-[100px] cursor-pointer">
                 {" "}
                 Report Issue{" "}

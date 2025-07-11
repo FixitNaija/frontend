@@ -35,7 +35,7 @@ const DashboardLayout = () => {
             <li className={`hover:bg-green-100 rounded-lg transition-colors ${location.pathname === '/UserIssue' ? 'bg-green-100' : ''}`}>
               <Link to="/UserIssue" className="flex items-center p-2">
                 <RxPerson className="mr-3" />
-                <span>Issues</span>
+                <span>My Issues</span>
               </Link>
             </li>
             <li className='hover:bg-green-100 rounded-lg transition-colors'>
