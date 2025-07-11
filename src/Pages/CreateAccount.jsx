@@ -445,8 +445,33 @@
 //               </div>
 //               <hr className=" w-[98px] border border-[#D1D5DB] " />
 //             </div>
-//             <div className=" flex justify-center items-center align-middle w-full h-[48px] bg-[#DDDDDD] rounded-[16px] text-white mt-6 cursor-pointer">
-//               <FcGoogle className="h-[32px] w-[32px] " />
+//             {/* <div className=" flex justify-center items-center align-middle w-full h-[48px] bg-[#DDDDDD] rounded-[16px] text-white mt-6 cursor-pointer">
+//             <FcGoogle className="h-[32px] w-[32px] " />
+//             </div> */}
+
+//             <div className="flex justify-center w-full mt-4 cursor-pointer">
+//               <GoogleLogin
+//                 onSuccess={async (credentialResponse) => {
+//                   console.log("Credential Response:", credentialResponse);
+//                   if (credentialResponse.credential) {
+//                     try {
+//                       const res = await axios.post(
+//                         "https://fixitbackend-7zrf.onrender.com/api/auth/google", // <-- Replace with your backend endpoint
+//                         { token: credentialResponse.credential }
+//                       );
+//                       Cookies.set("token", res.data.token, { expires: 3 });
+//                       toast.success("Login successful!");
+//                       navigate("/UserPage");
+//                     } catch (error) {
+//                       toast.error("Google login failed");
+//                       console.error(error);
+//                     }
+//                   }
+//                 }}
+//                 onError={() => {
+//                   toast.error("Google login failed");
+//                 }}
+//               />
 //             </div>
 //           </div>
 //         )}
@@ -607,6 +632,7 @@ const CreateAccount = () => {
         </div>
 
         {/* Sign up tab here */}
+
         {!isLogin && (
           <div className="mt-[29px] mb-[14px]">
             <div>
@@ -746,20 +772,24 @@ const CreateAccount = () => {
               <div className="flex justify-center ">Or Continue with</div>
               <hr className=" w-[98px] border border-[#D1D5DB] " />
             </div>
-            {/* Only show the icon for display, not for login */}
+            {/* Only show the icon for display, not for login
             <div className="cursor-pointer flex justify-center items-center align-middle w-full h-[48px] bg-[#DDDDDD] rounded-[16px] text-white mt-6">
               <FcGoogle className="h-[32px] w-[32px] " />
-            </div>
+            </div> */}
             {/* Google Login component */}
             <div className="flex justify-center mt-4">
-              <GoogleLogin
+              <GoogleLogin className=' h-[32px] w-[32px] '
                 onSuccess={async (credentialResponse) => {
                   if (credentialResponse.credential) {
                     try {
                       // Send credential to your backend for verification
-                      const res = await axios.post(
+                      const res = await axios.get(
                         "https://fixitbackend-7zrf.onrender.com/auth/google", // <-- Replace with your backend endpoint
-                        { token: credentialResponse.credential }
+                        {
+                          params:{
+                            token: credentialResponse.credential
+                          }
+                        }
                       );
                       Cookies.set("token", res.data.token, { expires: 3 });
                       toast.success("Login successful!");
@@ -848,13 +878,13 @@ const CreateAccount = () => {
             </div> */}
 
             <div className="flex justify-center w-full mt-4 cursor-pointer">
-              <GoogleLogin
+              <GoogleLogin className="h-[32px] w-[32px]"
                 onSuccess={async (credentialResponse) => {
                   console.log("Credential Response:", credentialResponse);
                   if (credentialResponse.credential) {
                     try {
-                      const res = await axios.post(
-                        "https://fixitbackend-7zrf.onrender.com/api/auth/google", // <-- Replace with your backend endpoint
+                      const res = await axios.get(
+                        "https://fixitbackend-7zrf.onrender.com/auth/google",
                         { token: credentialResponse.credential }
                       );
                       Cookies.set("token", res.data.token, { expires: 3 });

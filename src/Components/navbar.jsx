@@ -32,6 +32,36 @@ const Navbar = () => {
     }
   };
 
+
+// for newsLetter Navigation
+const handleNewsLetter = (e) => {
+    e.preventDefault();
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        const newsLetter = document.getElementById('News');
+        if (newsLetter) {
+          newsLetter.scrollIntoView({ behavior: 'smooth' });
+        }
+        setIsOpen(false);
+      }, 100);
+    } else {
+      // If already on homepage, just scroll
+      const newsLetter = document.getElementById('News');
+      if (newsLetter) {
+        newsLetter.scrollIntoView({ behavior: 'smooth' });
+      }
+      setIsOpen(false);
+    }
+  };
+
+
+
+
+
+
+
+
   return (
     <div className='fixed top-0 left-0 z-50 scroll-smooth w-full bg-white shadow  '>
       <div className='flex justify-between items-center px-4 md:px-[100px] py-4'>
@@ -66,11 +96,11 @@ const Navbar = () => {
               )}
             </li>
             <li className='flex gap-2'>
-              <Link to='/Signup'>
+              <a href='/#News' onClick={handleNewsLetter}>
                 <button className='border border-[#15803D] bg-white text-[#15803D] hover:bg-[#A1EEAF] cursor-pointer  rounded-lg px-6 py-2 font-poppins text-base font-medium'>Join Community</button>
-              </Link>
-              <Link to='/Issue'>
-              <button className='border border-[#15803D] bg-[#15803D] text-white rounded-lg px-6 py-2 font-poppins text-base hover:bg-[#A1EEAF] cursor-pointer font-medium'>Report Issue</button>
+              </a>
+              <Link to='/Signup'>
+              <button className='border border-[#15803D] bg-[#15803D] text-white rounded-lg px-6 py-2 font-poppins text-base hover:bg-[#A1EEAF] cursor-pointer font-medium'>Get Started</button>
               </Link>
             </li>
           </ul>

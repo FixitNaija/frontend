@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Logo from "../assets/Fixitlogo.png";
 // import { FaEnvelope } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
@@ -6,6 +6,7 @@ import { useNavigate, useLocation, Link } from "react-router";
 import Cookies from 'js-cookie';
 import axios from "axios";
 import cookies from "js-cookie";
+import { OTPVerify } from "../api/data"; 
 
 const OtpVerify = () => {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
@@ -20,7 +21,7 @@ const OtpVerify = () => {
   // Get email from location state or fallback
   const params = new URLSearchParams(location.search);
   const userEmail = params.get("email") || "example203@gmail.com";
-  console.log(userEmail);
+  // console.log(userEmail);
   const handleChange = (e, idx) => {
     const value = e.target.value.replace(/[^0-9]/g, "");
     if (!value) return;
@@ -77,6 +78,12 @@ const OtpVerify = () => {
       return;
     }
     setLoading(true);
+
+
+
+
+
+
     try {
       // Replace with your backend endpoint
       const res = await axios.get(
@@ -88,7 +95,7 @@ const OtpVerify = () => {
       );
       toast.success(res.data.message || "OTP verified successfully!");
       setTimeout(() => {
-        navigate("/UserPage");
+        navigate("/CreateAccount");
       }, 2000);
     } catch (error) {
       toast.error(error.response?.data?.message || "OTP verification failed.");
@@ -97,12 +104,13 @@ const OtpVerify = () => {
     }
   };
 
+
   const handleResend = async () => {
     setLoading(true);
     try {
       // Replace with your backend endpoint for resending OTP
       await axios.get(
-        "https://fixitbackend-7zrf.onrender.com/api/v1/user/verify",
+        "https://fixitbackend-7zrf.onrender.com/api/v1/user/reVerify",
         {
           email: userEmail,
         }
