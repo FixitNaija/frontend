@@ -76,14 +76,6 @@ const OtpVerify = () => {
     if (!otpValue || otpValue.length < 6) {
       toast.error("Please enter the 6-digit OTP code.");
       return;
-
-
-
-   
-
-
-
-
     }
     setLoading(true);
 
@@ -94,8 +86,8 @@ const OtpVerify = () => {
 
     try {
       // Replace with your backend endpoint
-      const res = await axios.get(OTPVerify,
-        // "https://fixitbackend-7zrf.onrender.com/api/v1/user/verify",
+      const res = await axios.get(
+        "https://fixitbackend-7zrf.onrender.com/api/v1/user/verify",
         {
           email: userEmail,
           otp: otpValue,
@@ -103,7 +95,7 @@ const OtpVerify = () => {
       );
       toast.success(res.data.message || "OTP verified successfully!");
       setTimeout(() => {
-        navigate("/UserPage");
+        navigate("/CreateAccount");
       }, 2000);
     } catch (error) {
       toast.error(error.response?.data?.message || "OTP verification failed.");
@@ -118,7 +110,7 @@ const OtpVerify = () => {
     try {
       // Replace with your backend endpoint for resending OTP
       await axios.get(
-        "https://fixitbackend-7zrf.onrender.com/api/v1/user/verify",
+        "https://fixitbackend-7zrf.onrender.com/api/v1/user/reVerify",
         {
           email: userEmail,
         }

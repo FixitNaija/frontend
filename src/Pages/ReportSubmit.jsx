@@ -1,6 +1,8 @@
 import React from "react";
 import { FaCheckCircle, FaMapMarkerAlt, FaRegImage, FaClock, FaEnvelope, FaMapPin } from "react-icons/fa";
 import { useNavigate } from "react-router";
+import Navbar from '../Components/navbar';
+import Footer from '../Components/footer'
 
 const ReportSubmit = () => {
   const navigate = useNavigate();
@@ -15,6 +17,7 @@ const ReportSubmit = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-[#F9FAFB] p-6">
+      <Navbar />
       {/* Success Icon & Message */}
       <div className="flex flex-col items-center mb-6 text-center">
         <FaCheckCircle className="text-green-500 text-5xl mb-2" />
@@ -72,6 +75,7 @@ const ReportSubmit = () => {
           Submit Another Report
         </button>
       </div>
+      <Footer className="mt-[20px]"/>
     </div>
   );
 };

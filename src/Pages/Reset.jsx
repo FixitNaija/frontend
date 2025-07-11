@@ -2,19 +2,32 @@ import { React, useState } from "react";
 import Logo from "../assets/Fixitlogo.png";
 import Caution from "../assets/Caution.png";
 import Lock from "../assets/lock.png";
-import { Link } from "react-router";
+import { Link , useNavigate} from "react-router";
+import axios from "axios";
+
 
 function Reset() {
   const [email, setEmail] = useState("");
-  const [error, setError] = useState("true");
+  const [error, setError] = useState("");
+const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    if (!email) {
-      alert("imput a valid Email");
-    } else {
-      alert("a mail has been sent into your mailbox");
-    }
+  const handleSubmit =async (e) => {
     e.preventDefault();
+    if (!email) {
+      setError("Email is required");
+      return;
+    }
+  try {
+    await axios.post("https://fixitbackend-7zrf.onrender.com/api/v1/user/resetpassword",{ email});
+    alert("a mail has been sent into your mailbox");
+    navigate("/OtpVerify");
+    } 
+    
+    catch (error) {
+      console.error("Error sending reset password request:", error);
+      setError("Failed to send reset password request. Please try again.");
+    }
+    
   };
 
   const handleEmailChange = (e) => {
@@ -38,13 +51,13 @@ function Reset() {
       </div>
       <section>
         <div className=" flex items-center justify-center my-[40px] sm:mt-0 ">
-          <div className="flex  flex-row justify-center items-center   bg-[#FF6D001A] w-[310px] h-[44px]">
+          {/* <div className="flex  flex-row justify-center items-center   bg-[#FF6D001A] w-[310px] h-[44px]">
             <img src={Caution} alt="" />
             <h1 className="text-[#FF6D00] font-[500] text-[14px] leading[17px]">
               {" "}
               Please provide a valid email address.
             </h1>
-          </div>
+          </div> */}
         </div>
         <div className="items-center flex flex-col justify-center">
           <div className="font-Poppins items-center">
@@ -70,9 +83,17 @@ function Reset() {
                 className=" w-[288px] sm:w-[540px]  rounded-[6px] pl-[13px] h-[46px] border border-[#D2D9E9]"
                 value={email}
               />
-              {error ? "invalid Entry" : ""}
-              <button className="text-[#FFFFFF] font-Poppins font-[500] text-[16px] rounded-[12px] bg-[#15803D] mt-[24px] sm:mt-[38px] w-[288px] sm:w-[540px] h-[46px] cursor-pointer">
-                <Link to="/Verify">Reset Password</Link>
+             
+               {typeof error === "string" && (
+      <span className="text-red-500 text-sm mt-1">{error}</span>
+      )}
+             
+              <button
+              onSuccess={handleSubmit} 
+              disabled={typeof error === "string" && error !== ""}
+              type="submit" className="text-[#FFFFFF] font-Poppins font-[500] text-[16px] rounded-[12px] bg-[#15803D] mt-[24px] sm:mt-[38px] w-[288px] sm:w-[540px] h-[46px] cursor-pointer">
+              
+                Reset Password
               </button>
             </div>
           </form>
