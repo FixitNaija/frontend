@@ -6,9 +6,31 @@ import Ogun from "../assets/Ogun.png";
 import Correct from "../assets/correct.png";
 import Location from "../assets/location.png";
 import Todo from "../assets/todo.png";
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 
 const Join = () => {
+  const navigate = useNavigate()
+  const handleNewsLetter = (e) => {
+    e.preventDefault();
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        const newsLetter = document.getElementById('News');
+        if (newsLetter) {
+          newsLetter.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+      }, 100);
+    } else {
+      // If already on homepage, just scroll
+      const newsLetter = document.getElementById('News');
+      if (newsLetter) {
+        newsLetter.scrollIntoView({ behavior: 'smooth' });
+      }
+      
+    }
+  };
+
   return (
     <div>
       
@@ -27,7 +49,7 @@ const Join = () => {
             </p>
 
             <div className="flex gap-[5px] sm:gap-[16px] justify-center mb[20px] px-[8px] sm:px-[16px]">
-              <Link to='/news'>
+              <Link to='/Signup' onClick={handleNewsLetter}>
               <button className="text-white bg-[#15803D]  hover:bg-[#A1EEAF] mt-[24px] rounded-[8px] h-[48px] w-[159px] sm:w-[200px] p-[5px] mb-[100px] cursor-pointer">
                 {" "}
                 Join Community{" "}
