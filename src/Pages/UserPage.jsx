@@ -201,11 +201,11 @@ const Dashboard = () => {
                         </div>
 
                         {/* Stats Cards */}
-                        <div className="grid sm:grid-col md:grid-6 lg:flex gap-4 mb-8  text-[12px] leading-[18px] font-medium hover:bg-[#A1EEAF]">
-                            <StatCard title="Active Issues" value="10" className='w-[367px] h-[86px]' icon={<CiLocationOn size={20} />} />
-                            <StatCard title="Resolved This Week" value="10" className='w-[367px] h-[86px]' icon={<IoMdCheckmarkCircleOutline size={20} color='lightgreen' />} />
-                            <StatCard title="Average Response time" value="50 days" className='w-[367px] h-[86px]' icon={<FiClock size={20} color='lightpurple' />} />
-                            <StatCard title="Community Engagement" value="10" className='w-[367px] h-[86px]' icon={<MdShowChart size={20} color='orange' />} />
+                        <div className="grid sm:grid-col md:grid-6 lg:flex gap-4 mb-8  text-[12px] leading-[18px] font-medium ">
+                            <StatCard title="Active Issues" value="10" className='w-[367px] h-[86px] cursor-pointer hover:bg-[#A1EEAF]' icon={<CiLocationOn size={20} />} />
+                            <StatCard title="Resolved This Week" value="10" className='w-[367px] h-[86px] cursor-pointer hover:bg-[#A1EEAF]' icon={<IoMdCheckmarkCircleOutline size={20} color='lightgreen' />} />
+                            <StatCard title="Average Response time" value="50 days" className='w-[367px] h-[86px] cursor-pointer hover:bg-[#A1EEAF]' icon={<FiClock size={20} color='lightpurple' />} />
+                            <StatCard title="Community Engagement" value="10" className='w-[367px] h-[86px] hover:bg-[#A1EEAF] cursor-pointer' icon={<MdShowChart size={20} color='orange' />} />
                         </div>
 
                         {/* Recent Issues Section */}
