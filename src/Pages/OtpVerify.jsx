@@ -89,12 +89,12 @@ const OtpVerify = () => {
       const res = await axios.post(
         "https://fixitbackend-7zrf.onrender.com/api/v1/user/verify",
        {
-        params:
-        {
+
+       params: {
           email: userEmail,
           otp: otpValue,
-        }
         },
+         }
       );
       toast.success(res.data.message || "OTP verified successfully!");
       setTimeout(() => {
@@ -112,8 +112,9 @@ const OtpVerify = () => {
     setLoading(true);
     try {
       // Replace with your backend endpoint for resending OTP
-      await axios.get(
+      await axios.post(
         "https://fixitbackend-7zrf.onrender.com/api/v1/user/reVerify",
+        
         {
           email: userEmail,
         }

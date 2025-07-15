@@ -201,11 +201,11 @@ const Dashboard = () => {
                         </div>
 
                         {/* Stats Cards */}
-                        <div className="grid sm:grid-col-4 md:grid-cols-4  gap-4 mb-8  text-[12px] leading-[18px] font-medium ">
-                            <StatCard title="Active Issues" value="10" className='w-full h-[86px] hover:bg-[#A1EEAF] cursor-pointer' icon={<CiLocationOn size={20} />} />
-                            <StatCard title="Resolved This Week" value="10" className='w-full h-[86px] hover:bg-[#A1EEAF] cursor-pointer' icon={<IoMdCheckmarkCircleOutline size={20} color='lightgreen' />} />
-                            <StatCard title="Average Response time" value="50 days" className='w-full h-[86px] hover:bg-[#A1EEAF] cursor-pointer ' icon={<FiClock size={20} color='lightpurple' />} />
-                            <StatCard title="Community Engagement" value="10" className='w-full h-[86px] hover:bg-[#A1EEAF] cursor-pointer ' icon={<MdShowChart size={20} color='orange' />} />
+                        <div className="grid sm:grid-col md:grid-6 lg:flex gap-4 mb-8  text-[12px] leading-[18px] font-medium ">
+                            <StatCard title="Active Issues" value="10" className='w-[367px] h-[86px]' icon={<CiLocationOn size={20} />} />
+                            <StatCard title="Resolved This Week" value="10" className='w-[367px] h-[86px]' icon={<IoMdCheckmarkCircleOutline size={20} color='lightgreen' />} />
+                            <StatCard title="Average Response time" value="50 days" className='w-[367px] h-[86px]' icon={<FiClock size={20} color='lightpurple' />} />
+                            <StatCard title="Community Engagement" value="10" className='w-[367px] h-[86px]' icon={<MdShowChart size={20} color='orange' />} />
                         </div>
 
                         {/* Recent Issues Section */}
@@ -299,7 +299,7 @@ const StatCard = ({ title, value, icon }) => {
 const IssueItem = ({ title, location, description, stats, date }) => {
     return (
         <div className="p-6 hover:bg-gray-50">
-            <div className="flex justify-between items-start">
+            <div className="flex  items-start">
                 <div>
                     <h3 className="text-lg font-semibold text-gray-800">{title}</h3>
                     <p className="text-gray-600">{location}</p>
