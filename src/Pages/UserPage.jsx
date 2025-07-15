@@ -183,7 +183,7 @@ const Dashboard = () => {
                         </div>
                         {/* Right Side: Notification + Profile */}
                         <div className="flex items-center gap-2 sm:gap-4 justify-end">
-                            <GoBell className="w-5 h-5 text-gray-600 cursor-pointer" />
+                            <GoBell className="w-8 h-8 text-gray-600 cursor-pointer" />
                             <div className="flex items-center gap-2">
                                 <div className="w-8 h-8 rounded-full bg-green-600 flex items-center justify-center text-white font-semibold text-sm">
                                     JS
@@ -201,11 +201,11 @@ const Dashboard = () => {
                         </div>
 
                         {/* Stats Cards */}
-                        <div className="grid sm:grid-col md:grid-6 lg:flex gap-4 mb-8  text-[12px] leading-[18px] font-medium hover:bg-[#A1EEAF]">
-                            <StatCard title="Active Issues" value="10" className='w-[367px] h-[86px]' icon={<CiLocationOn size={20} />} />
-                            <StatCard title="Resolved This Week" value="10" className='w-[367px] h-[86px]' icon={<IoMdCheckmarkCircleOutline size={20} color='lightgreen' />} />
-                            <StatCard title="Average Response time" value="50 days" className='w-[367px] h-[86px]' icon={<FiClock size={20} color='lightpurple' />} />
-                            <StatCard title="Community Engagement" value="10" className='w-[367px] h-[86px]' icon={<MdShowChart size={20} color='orange' />} />
+                        <div className="grid sm:grid-col-4 md:grid-cols-4  gap-4 mb-8  text-[12px] leading-[18px] font-medium ">
+                            <StatCard title="Active Issues" value="10" className='w-full h-[86px] hover:bg-[#A1EEAF] cursor-pointer' icon={<CiLocationOn size={20} />} />
+                            <StatCard title="Resolved This Week" value="10" className='w-full h-[86px] hover:bg-[#A1EEAF] cursor-pointer' icon={<IoMdCheckmarkCircleOutline size={20} color='lightgreen' />} />
+                            <StatCard title="Average Response time" value="50 days" className='w-full h-[86px] hover:bg-[#A1EEAF] cursor-pointer ' icon={<FiClock size={20} color='lightpurple' />} />
+                            <StatCard title="Community Engagement" value="10" className='w-full h-[86px] hover:bg-[#A1EEAF] cursor-pointer ' icon={<MdShowChart size={20} color='orange' />} />
                         </div>
 
                         {/* Recent Issues Section */}
@@ -283,8 +283,8 @@ const Dashboard = () => {
 // Stat Card Component
 const StatCard = ({ title, value, icon }) => {
     return (
-        <div className="bg-white rounded-lg shadow p-4 sm:p-6 flex items-start w-full h-full min-h-[86px]">
-            <div className="p-2 rounded-full bg-blue-100 text-blue-600 mr-4 flex-shrink-0">
+        <div className="bg-white rounded-lg shadow p-4 sm:p-4 sm:pr-6 flex  gap-2 md:gap-0 sm:gap-1 lg:gap-5 items-start w-full h-full min-h-[86px] hover:bg-[#A1EEAF] cursor-pointer">
+            <div className="p-1 rounded-full bg-blue-100 text-blue-600 mr-1 flex-shrink-0">
                 {icon}
             </div>
             <div>
