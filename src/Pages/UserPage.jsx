@@ -263,7 +263,7 @@ const Dashboard = () => {
                                             <div className='flex justify-between '>
                                                 <div className='flex gap-[12px]'>
                                                     <p className='flex items-center font-poppins font-normal text-[16px] leading-[28px]'><AiOutlineLike /> {issue.likes}</p>
-                                                    <p className='flex items-center font-poppins font-normal text-[16px] leading-[28px]'><BiComment /> {issue.comments}</p>
+                                                    <p className='flex items-center font-poppins font-normal text-[16px] leading-[28px]'><BiComment /> {issue.cgitomments}</p>
                                                 </div>
                                                 <p className='font-poppins font-normal text-[14px] leading-[22px] pr-[50px] sm:pr-[5px]'>{issue.date}</p>
                                             </div>
