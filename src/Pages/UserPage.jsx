@@ -13,19 +13,20 @@ import Trash from '../assets/Trash.png';
 import Light from '../assets/Streetlight.png';
 import { AiOutlineLike } from "react-icons/ai";
 import { BiComment } from "react-icons/bi";
-import { GoBell, GoSearch } from "react-icons/go";
+import { GoBell } from "react-icons/go";
 import Cookies from 'js-cookie'
 import { jwtDecode } from 'jwt-decode'
 
 const Dashboard = () => {
-    // const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [sidebarOpen, setSidebarOpen] = useState(false);
     const [category, setCategory] = useState('All Categories');
     const [status, setStatus] = useState('All Status');
     const [time, setTime] = useState('All Time');
     // const [username, setUsername] = useState('');
-    const [showMobileSearch, setShowMobileSearch] = useState(false);
-    const [searchValue, setSearchValue] = useState("");
     const [userData, setUserData] = useState({})
+    const [searchValue, setSearchValue] = useState("");
+    const [searchResults, setSearchResults] = useState(null);
+
 
     useEffect(() => {
         // const storedUsername = localStorage.getItem('fixitnaija_username');
@@ -38,6 +39,48 @@ const Dashboard = () => {
             setUserData(data)
         }
     }, []);
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        const value = searchValue.trim().toLowerCase();
+        if (!value) {
+            setSearchResults(null); // Show all if search is empty
+            return;
+        }
+        const results = issues.filter(issue =>
+            issue.title.toLowerCase().includes(value) ||
+            issue.location.toLowerCase().includes(value) ||
+            issue.description.toLowerCase().includes(value)
+        );
+        setSearchResults(results);
+    };
+
+    const handleLike = idx => {
+        setIssues(prevIssues => prevIssues.map((issue, i) => {
+            if (i === idx) {
+                if (!issue.liked) {
+                    return { ...issue, likes: issue.likes + 1, liked: true };
+                } else {
+                    return { ...issue, likes: issue.likes - 1, liked: false };
+                }
+            }
+            return issue;
+        }));
+    };
+
+    const handleComment = idx => {
+        setIssues(prevIssues => prevIssues.map((issue, i) => {
+            if (i === idx) {
+                if (!issue.commented) {
+                    return { ...issue, comments: issue.comments + 1, commented: true };
+                } else {
+                    return { ...issue, comments: issue.comments - 1, commented: false };
+                }
+            }
+            return issue;
+        }));
+    };
+
     // console.log(userData)
     // const toggleSidebar = () => {
     //     setSidebarOpen(!sidebarOpen);
@@ -102,16 +145,8 @@ const Dashboard = () => {
         return matchCategory && matchStatus && matchTime;
     });
 
-    // Handle search (can be customized as needed)
-    const handleSearch = (e) => {
-        e.preventDefault();
-        // You can add your search logic here, e.g., filter issues or call an API
-        // For now, just log the value
-        // console.log('Searching for:', searchValue);
-    };
-
     return (
-        <div className="flex min-h-screen bg-gray-100">
+        <div className="flex h-screen bg-gray-100">
             {/* Sidebar */}
             {/* <div className={`fixed md:relative z-20 w-64 bg-white text-black transition-all duration-300 ease-in-out ${sidebarOpen ? 'left-0' : '-left-full'} md:left-0 h-full`}>
                 <div className="flex-col items-center justify-between p-4 border-b border-blue-700">
@@ -146,54 +181,44 @@ const Dashboard = () => {
             </div> */}
 
             {/* Main Content */}
-            <div className="flex-1 min-w-0">
-                <main className="max-w-full w-full px-2 sm:px-4 py-8 mx-auto">
-                    <div className="w-full flex flex-row sm:justify-between sm:items-center p-2 bg-white shadow-sm gap-2 overflow-x-auto">
+            <div className="flex-1 overflow-auto">
+                {/* Mobile Header */}
+                {/* <header className="md:hidden bg-blue shadow p-4 flex items-center">
+                    <button onClick={toggleSidebar} className="mr-4">
+                        <FiMenu size={24} />
+                    </button>
+                    <h1 className="text-xl font-bold text-gray-800">Dashboard</h1>
+                </header> */}
+
+                {/* Dashboard Content */}
+                <main className="container px-4 py-8">
+                    <div className="w-full flex justify-between items-center p-4 bg-white shadow-sm">
+
                         {/* Search Box */}
-                        <div className="flex-1 flex items-center min-w-0 mb-2 sm:mb-0">
-                            {/* Show input on sm and up, icon on xs */}
-                            <form onSubmit={handleSearch} className="w-full flex items-center">
-                                <input
-                                    type="text"
-                                    placeholder="Search for issues..."
-                                    value={searchValue}
-                                    onChange={e => setSearchValue(e.target.value)}
-                                    className={`hidden sm:block w-full max-w-full sm:w-[350px] md:w-[500px] lg:w-[700px] px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 ${showMobileSearch ? 'sm:block' : ''}`}
-                                />
-                                <button
-                                    type="button"
-                                    className="sm:hidden p-2 rounded-full border border-gray-300 bg-white text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    onClick={() => setShowMobileSearch(prev => !prev)}
-                                >
-                                    <GoSearch className="w-5 h-5" />
-                                </button>
-                                {/* Show input on mobile if toggled */}
-                                {showMobileSearch && (
-                                    <input
-                                        type="text"
-                                        placeholder="Search for issues..."
-                                        value={searchValue}
-                                        onChange={e => setSearchValue(e.target.value)}
-                                        autoFocus
-                                        className="block sm:hidden w-full px-4 py-2 ml-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                        onBlur={() => setShowMobileSearch(false)}
-                                    />
-                                )}
-                            </form>
+                        <div onSubmit={handleSearch} className="flex items-center ">
+                            <input
+                                type="text"
+                                placeholder="Search for issues..."
+                                value={searchValue}
+                                onChange={e => setSearchValue(e.target.value)}
+                                className="w-[700px] px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
                         </div>
+
                         {/* Right Side: Notification + Profile */}
-                        <div className="flex items-center gap-2 sm:gap-4 justify-end">
+                        <div className="flex items-center gap-4">
                             <GoBell className="w-5 h-5 text-gray-600 cursor-pointer" />
+
                             <div className="flex items-center gap-2">
                                 <div className="w-8 h-8 rounded-full bg-green-600 flex items-center justify-center text-white font-semibold text-sm">
                                     JS
                                 </div>
-                                <span className="text-gray-800 font-medium hidden xs:inline-block">John Samuel</span>
+                                <span className="text-gray-800 font-medium">John Samuel</span>
                             </div>
                         </div>
                     </div>
-                    
-                    <div className="max-w-6xl w-full mx-auto">
+
+                    <div className="max-w-6xl mx-auto">
                         {/* Header */}
                         <div className="pt-[10px] mb-8">
                             <h1 className="text-3xl font-bold text-gray-800">Welcome back, {userData?.user?.name || 'User'}!</h1>
@@ -201,7 +226,7 @@ const Dashboard = () => {
                         </div>
 
                         {/* Stats Cards */}
-                        <div className="grid sm:grid-col md:grid-6 lg:flex gap-4 mb-8  text-[12px] leading-[18px] font-medium hover:bg-[#A1EEAF]">
+                        <div className="grid sm:grid-col md:grid-6 lg:flex gap-4 mb-8  text-[12px] leading-[18px] font-medium ">
                             <StatCard title="Active Issues" value="10" className='w-[367px] h-[86px]' icon={<CiLocationOn size={20} />} />
                             <StatCard title="Resolved This Week" value="10" className='w-[367px] h-[86px]' icon={<IoMdCheckmarkCircleOutline size={20} color='lightgreen' />} />
                             <StatCard title="Average Response time" value="50 days" className='w-[367px] h-[86px]' icon={<FiClock size={20} color='lightpurple' />} />
@@ -252,7 +277,7 @@ const Dashboard = () => {
                             {/* Issues List */}
                             <div>
                                 {filteredIssues.map((issue, idx) => (
-                                    <div key={idx} className='flex flex-col sm:flex-row justify-between mt-6 sm:mx-8 mb-4 w-full overflow-x-auto'>
+                                    <div key={idx} className='flex flex-col sm:flex-row justify-between mt-[24px] mx-[66px] mb-[17px]'>
                                         <div>
                                             <img src={issue.img} alt={issue.title} />
                                         </div>
@@ -262,21 +287,25 @@ const Dashboard = () => {
                                             <p className='font-poppins font-normal text-[16px] leading-[28px]'>{issue.description}</p>
                                             <div className='flex justify-between '>
                                                 <div className='flex gap-[12px]'>
-                                                    <p className='flex items-center font-poppins font-normal text-[16px] leading-[28px]'><AiOutlineLike /> {issue.likes}</p>
-                                                    <p className='flex items-center font-poppins font-normal text-[16px] leading-[28px]'><BiComment /> {issue.comments}</p>
-                                                </div>
-                                                <p className='font-poppins font-normal text-[14px] leading-[22px] pr-[50px] sm:pr-[5px]'>{issue.date}</p>
+                                                    <button onClick={() => handleLike(originalIdx)} className={`flex items-center font-poppins font-normal text-[16px] leading-[28px] focus:outline-none ${issue.liked ? 'text-green-600' : 'text-gray-800'}`}>
+                                                    <AiOutlineLike /> {issue.likes}
+                                                </button>
+                                                <button onClick={() => handleComment(originalIdx)} className={`flex items-center font-poppins font-normal text-[16px] leading-[28px] focus:outline-none ${issue.commented ? 'text-blue-600' : 'text-gray-800'}`}>
+                                                    <BiComment /> {issue.comments}
+                                                </button>
                                             </div>
+                                            <p className='font-poppins font-normal text-[14px] leading-[22px] pr-[50px] sm:pr-[5px]'>{issue.date}</p>
                                         </div>
                                     </div>
+                                    </div>
                                 ))}
-                            </div>
-
                         </div>
+
                     </div>
-                </main>
             </div>
-        </div>
+        </main>
+            </div >
+        </div >
     );
 };
 

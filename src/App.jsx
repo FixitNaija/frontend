@@ -12,6 +12,7 @@
   import Reset from './Pages/Reset'
   import Verify from './Pages/Verify'
   import UserIssue from './Pages/UserIssue'
+  import Settings from './Pages/Settings'
 
 
   import { GoogleOAuthProvider } from '@react-oauth/google';
@@ -47,6 +48,7 @@ import DashboardLayout from './Components/DashboardLayout'
           <Route path="/" element={<DashboardLayout />}>
   <Route path="UserPage" element={<UserPage />} />
   <Route path="UserIssue" element={<UserIssue />} />
+  <Route path="Settings" element={<Settings/>} />
   {/* Add more routes as needed */}
 </Route>
 
