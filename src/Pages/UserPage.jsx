@@ -18,7 +18,7 @@ import Cookies from 'js-cookie'
 import { jwtDecode } from 'jwt-decode'
 
 const Dashboard = () => {
-    const [sidebarOpen, setSidebarOpen] = useState(false);
+    // const [sidebarOpen, setSidebarOpen] = useState(false);
     const [category, setCategory] = useState('All Categories');
     const [status, setStatus] = useState('All Status');
     const [time, setTime] = useState('All Time');
@@ -286,16 +286,12 @@ const Dashboard = () => {
                                             <p className='font-poppins font-normal text-[16px] leading-[28px]'>{issue.description}</p>
                                             <div className='flex justify-between '>
                                                 <div className='flex gap-[12px]'>
-                                                    <button onClick={() => handleLike(originalIdx)} className={`flex items-center font-poppins font-normal text-[16px] leading-[28px] focus:outline-none ${issue.liked ? 'text-green-600' : 'text-gray-800'}`}>
-                                                    <AiOutlineLike /> {issue.likes}
-                                                </button>
-                                                <button onClick={() => handleComment(originalIdx)} className={`flex items-center font-poppins font-normal text-[16px] leading-[28px] focus:outline-none ${issue.commented ? 'text-blue-600' : 'text-gray-800'}`}>
-                                                    <BiComment /> {issue.comments}
-                                                </button>
+                                                    <p className='flex items-center font-poppins font-normal text-[16px] leading-[28px]'><AiOutlineLike /> {issue.likes}</p>
+                                                    <p className='flex items-center font-poppins font-normal text-[16px] leading-[28px]'><BiComment /> {issue.cgitomments}</p>
+                                                </div>
+                                                <p className='font-poppins font-normal text-[14px] leading-[22px] pr-[50px] sm:pr-[5px]'>{issue.date}</p>
                                             </div>
-                                            <p className='font-poppins font-normal text-[14px] leading-[22px] pr-[50px] sm:pr-[5px]'>{issue.date}</p>
                                         </div>
-                                    </div>
                                     </div>
                                 ))}
                         </div>
