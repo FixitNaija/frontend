@@ -21,7 +21,7 @@ const Settings = () => {
             <div className="flex flex-col space-y-3 ml-4">
               <label className="flex items-center justify-between">
                 <span>Email Notifications</span>
-                <input type="checkbox" checked readOnly className="toggle toggle-success" />
+                <input type="checkbox" readOnly className="toggle toggle-success" />
               </label>
               <label className="flex items-center justify-between">
                 <span>SMS Notifications</span>
@@ -33,7 +33,7 @@ const Settings = () => {
               <p className="font-medium text-gray-600 mb-1">Notification Frequency</p>
               <div className="space-y-2 ml-2">
                 <label className="flex items-center space-x-2">
-                  <input type="radio" name="frequency" defaultChecked />
+                  <input type="radio" name="frequency" />
                   <span>Real-time</span>
                 </label>
                 <label className="flex items-center space-x-2">
