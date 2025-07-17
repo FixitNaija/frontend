@@ -38,8 +38,8 @@ const DashboardLayout = () => {
                 <span>My Issues</span>
               </Link>
             </li>
-            <li className='hover:bg-green-100 rounded-lg transition-colors'>
-              <Link to="#" className="flex items-center p-2">
+            <li className={`hover:bg-green-100 rounded-lg transition-colors ${location.pathname === '/Settings' ? 'bg-green-100' : ''}`}>
+              <Link to="/Settings" className="flex items-center p-2">
                 <IoSettingsOutline className="mr-3" />
                 <span>Settings</span>
               </Link>

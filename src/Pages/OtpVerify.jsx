@@ -3,7 +3,7 @@ import Logo from "../assets/Fixitlogo.png";
 // import { FaEnvelope } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate, useLocation, Link } from "react-router";
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 import axios from "axios";
 import cookies from "js-cookie";
 import { OTPVerify } from "../api/data"; 
