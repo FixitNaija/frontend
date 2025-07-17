@@ -3,6 +3,7 @@ import Logo from "../assets/Fixitlogo.png";
 // import { FaEnvelope } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate, useLocation, Link } from "react-router";
+import { useLocation } from "react-router-dom";
 // import Cookies from 'js-cookie';
 import axios from "axios";
 import cookies from "js-cookie";
@@ -95,7 +96,7 @@ const OtpVerify = () => {
           otp: otpValue,
       
         },
-         }
+      }
       );
       toast.success(res.data.message || "OTP verified successfully!");
       setTimeout(() => {
