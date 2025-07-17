@@ -1,212 +1,159 @@
-import React from 'react'
-import { useState } from 'react'
-import { Link } from 'react-router';
-import { AiOutlineLike } from "react-icons/ai";
-import { BiComment } from "react-icons/bi";
-import PotHoles from '../assets/Holes.png';
-import Road from '../assets/Badroads.png';
-import Trash from '../assets/Trash.png';
-import Light from '../assets/Streetlight.png';
-import { GoBell, GoSearch } from "react-icons/go";
-import Fixit from '../assets/Fixitlogo.png';
-import { FiMenu, FiX, FiHome } from 'react-icons/fi';
-import { IoSettingsOutline } from "react-icons/io5";
-import { RxPerson } from "react-icons/rx";
+import React, { useState } from 'react';
+import Pothole from '../assets/Potholes.jpg'
+import Light from '../assets/Streetlight.png'
+import Roads from '../assets/Badroads.png'
+import Trash from '../assets/Trash.png'
 
-const UserIssue = () => {
+// Dummy data for issues
+const issues = [
+  {
+    id: 1,
+    title: 'Large pothole on Main Street',
+    location: 'Anuoluwapo Estate Road F Panseke Abeokuta',
+    description: 'Deep pothole causing traffic hazard near the intersection',
+    image: Pothole ,
+    status: 'Pending',
+    comments: 8,
+    likes: 24,
+    date: '2023-11-15',
+  },
+  {
+    id: 2,
+    title: 'Broken Streetlight',
+    location: 'Rounder Soyoye, Lafenwa Abeokuta',
+    description: 'The area becomes dark posing safety risks for pedestrians',
+    image: Light ,
+    status: 'In Progress',
+    comments: 8,
+    likes: 18,
+    date: '2023-10-14',
+  },
+  {
+    id: 3,
+    title: 'Bad Roads',
+    location: 'Adigbe-opako, Abeokuta',
+    description: 'The roads have worsened due to rainfall and lack of maintenance',
+    image: Roads ,
+    status: 'Pending',
+    comments: 3,
+    likes: 12,
+    date: '2023-09-15',
+  },
+  {
+    id: 4,
+    title: 'Overflowing Trash Bin',
+    location: 'Kuto Market, Abeokuta',
+    description: 'Trash bin near the park has now turned to a dump place',
+    image: Trash ,
+    status: 'Pending',
+    comments: 8,
+    likes: 24,
+    date: '2023-11-15',
+  },
+];
 
-    const [sidebarOpen, setSidebarOpen] = useState(false);
-    const [showMobileSearch, setShowMobileSearch] = useState(false);
-    const [searchValue, setSearchValue] = useState("");
+const statusColor = {
+  'Pending': 'bg-yellow-100 text-yellow-600',
+  'In Progress': 'bg-blue-100 text-blue-600',
+  'Resolved': 'bg-green-100 text-green-600',
+};
 
+const MyIssues = () => {
+  const [filter, setFilter] = useState('All Status');
 
-    const toggleSidebar = () => {
-        setSidebarOpen(!sidebarOpen);
-    };
-    const issues = [
-        {
-            img: PotHoles,
-            title: 'Large pothole on Main Street',
-            location: 'Anuoluwapo Estate Road F Panseke Abeokuta',
-            description: 'Deep pothole causing traffic hazard near the intersection',
-            likes: 24,
-            comments: 8,
-            date: '2023-11-15',
-            category: 'Road Damage',
-            status: 'Reported',
-            time: 'This Month',
-        },
-        {
-            img: Light,
-            title: 'Broken Streetlight',
-            location: 'Rounder Soyeye, Lafenwa Abeokuta',
-            description: 'The area becomes dark posing safety risks for pedestrians',
-            likes: 18,
-            comments: 8,
-            date: '2023-10-14',
-            category: 'Electricity',
-            status: 'In Progress',
-            time: 'This Month',
-        },
-        {
-            img: Road,
-            title: 'Bad Roads',
-            location: 'Adigbe-opako, Abeokuta',
-            description: 'The roads have worsen due to rainfall and lack of maintenance',
-            likes: 12,
-            comments: 3,
-            date: '2023-09-15',
-            category: 'Road Damage',
-            status: 'Resolved',
-            time: 'This Month',
-        },
-        {
-            img: Trash,
-            title: 'Overflowing Trash Bin',
-            location: 'Kuto Market, Abeokuta',
-            description: 'Trash bin near the park has now turned to a dump place',
-            likes: 24,
-            comments: 8,
-            date: '2023-11-15',
-            category: 'Others',
-            status: 'Reported',
-            time: 'Today',
-        },
-    ];
-    // Responsive search bar state
-
-
-    const filteredIssues = issues.filter(issue => {
-        const currentDate = new Date();
-        const issueDate = new Date(issue.date);
-        const timeDifference = currentDate - issueDate;
-        const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-
-        if (issue.time === 'Today') {
-            return daysDifference === 0;
-        } else if (issue.time === 'This Month') {
-            return issueDate.getMonth() === currentDate.getMonth() && issueDate.getFullYear() === currentDate.getFullYear();
-        }
-        return false;
-    });
-
-    // Handle search (customize as needed)
-    const handleSearch = (e) => {
-        e.preventDefault();
-        // Add your search logic here
-        // console.log('Searching for:', searchValue);
-    };
-
-    return (
-        <div>
-            {/* <div className={`fixed md:relative z-20 w-64 bg-white text-black transition-all duration-300 ease-in-out ${sidebarOpen ? 'left-0' : '-left-full'} md:left-0 h-full`}>
-                <div className="flex-col items-center justify-between p-4 border-b border-blue-700">
-                    <Link to='/Homepage'><img src={Fixit} alt='logo' /></Link>
-                    <h1 className="text-xl font-bold">Community Infrastructure platform</h1>
-                    <button className="md:hidden" onClick={toggleSidebar}>
-                        <FiX size={24} />
-                    </button>
-                </div>
-                <nav className="p-4">
-                    <ul className="space-y-2">
-                        <li className='hover:bg-green-100  rounded-lg transition-colors'>
-                            <Link to="/UserPage" className="flex items-center p-2">
-                                <FiHome className="mr-3" />
-                                <span>Dashboard</span>
-                            </Link>
-                        </li>
-                        <li className='hover:bg-green-100 rounded-lg transition-colors'>
-                            <Link to="/UserIssue" className="flex items-center p-2">
-                                <RxPerson className="mr-3" />
-                                <span>Issues</span>
-                            </Link>
-                        </li>
-                        <li className='hover:bg-green-100 rounded-lg transition-colors'>
-                            <a href="#" className="flex items-center p-2">
-                                <IoSettingsOutline className="mr-3" />
-                                <span>Settings</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div> */}
-            <div>
-                {/* <header className="md:hidden bg-blue shadow p-4 flex items-center">
-                    <button onClick={toggleSidebar} className="mr-4">
-                        <FiMenu size={24} />
-                    </button>
-                    <h1 className="text-xl font-bold text-gray-800">Dashboard</h1>
-                </header> */}
-                <div>
-                    <div className="w-full flex flex-row sm:justify-between sm:items-center p-2 bg-white shadow-sm gap-2 overflow-x-auto">
-                        {/* Search Box */}
-                        <div className="flex-1 flex items-center min-w-0 mb-2 sm:mb-0">
-                            <form onSubmit={handleSearch} className="w-full flex items-center">
-                                <input
-                                    type="text"
-                                    placeholder="Search for issues..."
-                                    value={searchValue}
-                                    onChange={e => setSearchValue(e.target.value)}
-                                    className={`hidden sm:block w-full max-w-full sm:w-[350px] md:w-[500px] lg:w-[700px] px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 ${showMobileSearch ? 'sm:block' : ''}`}
-                                />
-                                <button
-                                    type="button"
-                                    className="sm:hidden p-2 rounded-full border border-gray-300 bg-white text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    onClick={() => setShowMobileSearch(prev => !prev)}
-                                >
-                                    <GoSearch className="w-5 h-5" />
-                                </button>
-                                {/* Show input on mobile if toggled */}
-                                {showMobileSearch && (
-                                    <input
-                                        type="text"
-                                        placeholder="Search for issues..."
-                                        value={searchValue}
-                                        onChange={e => setSearchValue(e.target.value)}
-                                        autoFocus
-                                        className="block sm:hidden w-full px-4 py-2 ml-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                        onBlur={() => setShowMobileSearch(false)}
-                                    />
-                                )}
-                            </form>
-                        </div>
-                        {/* Right Side: Notification + Profile */}
-                        <div className="flex items-center gap-2 sm:gap-4 justify-end">
-                            <GoBell className="w-5 h-5 text-gray-600 cursor-pointer" />
-                            <div className="flex items-center gap-2">
-                                <div className="w-8 h-8 rounded-full bg-green-600 flex items-center justify-center text-white font-semibold text-sm">
-                                    JS
-                                </div>
-                                <span className="text-gray-800 font-medium hidden xs:inline-block">John Samuel</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* {filteredIssues.map((issue, idx) => ( */}
-                    {issues.map((issue, idx) => (
-                        <div key={idx} className=' w-full flex flex-col sm:flex-row justify-between align-center mt-2 sm:mx-4 mb-2 gap-1 sm:gap-2'>
-                            <div>
-                                <img src={issue.img} alt={issue.title} />
-                            </div>
-                            <div>
-                                <h2 className='font-poppins font-medium  text-[20px] leading-[38px]'>{issue.title}</h2>
-                                <p className='font-poppins font-normal text-[16px] leading-[28px]'>{issue.location}</p>
-                                <p className='font-poppins font-normal text-[16px] leading-[28px]'>{issue.description}</p>
-                                <div className='flex justify-between '>
-                                    <div className='flex gap-[12px]'>
-                                        <p className='flex items-center font-poppins font-normal text-[16px] leading-[28px]'><AiOutlineLike /> {issue.likes}</p>
-                                        <p className='flex items-center font-poppins font-normal text-[16px] leading-[28px]'><BiComment /> {issue.comments}</p>
-                                    </div>
-                                    <p className='font-poppins font-normal text-[14px] leading-[22px] pr-[50px] sm:pr-[5px]'>{issue.date}</p>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-
-            </div>
+  return (
+    <div className="min-h-screen bg-white-100 px-4 md:px-10 py-6">
+      {/* Header */}
+      <div className="flex justify-between  items-center mb-6">
+        <input
+          type="text"
+          placeholder="Search for issues..."
+          className="w-full md:w-96 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-600"
+        />
+        <div className="hidden md:flex items-center space-x-4">
+          <div className="text-sm text-gray-600">John Samuel</div>
+          <div className="w-8 h-8 rounded-full bg-green-700 text-white flex items-center justify-center font-bold text-sm">
+            JS
+          </div>
         </div>
-    )
-}
+      </div>
 
-export default UserIssue
+      {/* Title */}
+      <h2 className="text-xl font-semibold text-gray-800 mb-1">My Issues</h2>
+      <p className="text-gray-500 mb-4">Track and manage issues you've reported or followed</p>
+
+      {/* Filter */}
+      <div className="flex justify-between items-center mb-4">
+        <h3 className="text-md font-medium text-gray-700">Issues you’ve reported</h3>
+        <select
+          className="text-sm border border-gray-300 rounded px-3 py-1 focus:outline-none"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+        >
+          <option>All Status</option>
+          <option>Pending</option>
+          <option>In Progress</option>
+          <option>Resolved</option>
+        </select>
+      </div>
+
+      {/* Issues List */}
+      <div className="space-y-4">
+        {issues.map((issue) => (
+          <div
+            key={issue.id}
+            className="bg-white rounded-xl shadow-sm p-4 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between"
+          >
+            {/* Image */}
+            <img
+              src={issue.image}
+              alt={issue.title}
+              className="w-full md:w-32 h-24 object-cover rounded-lg"
+            />
+
+            {/* Details */}
+            <div className="flex-1 md:ml-4">
+              <h4 className="text-md font-semibold text-gray-800">{issue.title}</h4>
+              <p className="text-sm text-gray-600">{issue.location}</p>
+              <p className="text-sm text-gray-500 mt-1">{issue.description}</p>
+
+              <div className="flex items-center gap-4 mt-2 text-sm text-gray-500">
+                <div className="flex items-center gap-1">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2"
+                    viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round"
+                      d="M5 15l7-7 7 7" />
+                  </svg>
+                  {issue.likes}
+                </div>
+                <div className="flex items-center gap-1">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2"
+                    viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round"
+                      d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8s-9-3.582-9-8 4.03-8 9-8 9 3.582 9 8z" />
+                  </svg>
+                  {issue.comments}
+                </div>
+              </div>
+            </div>
+
+            {/* Status & Date */}
+            <div className="flex flex-col items-end gap-2 mt-2 md:mt-0">
+              <span
+                className={`text-xs font-semibold px-3 py-1 rounded-full ${statusColor[issue.status]}`}
+              >
+                {issue.status}
+              </span>
+              <span className="text-sm text-gray-400">{issue.date}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+ 
+      
+    </div>
+  );
+};
+
+export default MyIssues;
