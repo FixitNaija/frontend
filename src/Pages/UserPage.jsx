@@ -9,13 +9,14 @@ import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { MdShowChart } from "react-icons/md";
 import PotHoles from '../assets/Holes.png';
 import Road from '../assets/Badroads.png';
-import Trash from '../assets/Trash.png';
+import Drainage from '../assets/Wusedrainage.jpg';
 import Light from '../assets/Streetlight.png';
 import { AiOutlineLike } from "react-icons/ai";
 import { BiComment } from "react-icons/bi";
 import { GoBell } from "react-icons/go";
 import Cookies from 'js-cookie'
 import { jwtDecode } from 'jwt-decode'
+import Hydrant from '../assets/Hydrant.png'
 
 const Dashboard = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -79,18 +80,36 @@ const Dashboard = () => {
             time: 'This Month',
         },
         {
-            img: Trash,
-            title: 'Overflowing Trash Bin',
-            location: 'Kuto Market, Abeokuta',
+            img: Drainage,
+            title: 'Blocked Drainage',
+            location: 'Oke ile iwo, Abeokuta',
             description: 'Trash bin near the park has now turned to a dump place',
             likes: 24,
             comments: 8,
             date: '2023-11-15',
-            category: 'Others',
+            category: 'Drainage',
             status: 'Reported',
-            time: 'Today',
+            time: 'This Month',
+        },
+        {
+            img: Hydrant,
+            title: 'Water Supply disruption',
+            location: 'Panseke, Abeokuta',
+            description: 'Underground pipes have started leaking, causing water was ',
+            likes: 14,
+            comments: 8,
+            date: '2023-11-15',
+            category: 'Water Supply',
+            status: 'Reported',
+            time: 'This Week',
         },
     ];
+
+    const statusColor = {
+        'Pending': 'bg-yellow-100 text-yellow-600',
+        'In Progress': 'bg-blue-100 text-blue-600',
+        'Resolved': 'bg-green-100 text-green-600',
+    };
 
     // Filtering logic
     const filteredIssues = issues.filter(issue => {
@@ -101,7 +120,7 @@ const Dashboard = () => {
     });
 
     return (
-        <div className="flex h-screen bg-gray-100">
+        <div className="flex flex-col min-h-screen bg-gray-100">
             {/* Sidebar */}
             {/* <div className={`fixed md:relative z-20 w-64 bg-white text-black transition-all duration-300 ease-in-out ${sidebarOpen ? 'left-0' : '-left-full'} md:left-0 h-full`}>
                 <div className="flex-col items-center justify-between p-4 border-b border-blue-700">
@@ -136,7 +155,7 @@ const Dashboard = () => {
             </div> */}
 
             {/* Main Content */}
-            <div className="flex-1 overflow-auto">
+            <div className="flex-1 w-full">
                 {/* Mobile Header */}
                 {/* <header className="md:hidden bg-blue shadow p-4 flex items-center">
                     <button onClick={toggleSidebar} className="mr-4">
@@ -146,32 +165,32 @@ const Dashboard = () => {
                 </header> */}
 
                 {/* Dashboard Content */}
-                <main className="container px-4 py-8">
-                    <div className="w-full flex justify-between items-center p-4 bg-white shadow-sm">
+                <main className="container px-2 sm:px-4 py-4 sm:py-8 mx-auto">
+                    <div className="w-full flex flex-col sm:flex-row sm:justify-between sm:items-center p-2 sm:p-4 bg-white shadow-sm gap-2 overflow-x-auto">
 
                         {/* Search Box */}
-                        <div className="flex items-center ">
+                        <div className="flex-1 flex items-center min-w-0 mb-2 sm:mb-0">
                             <input
                                 type="text"
                                 placeholder="Search for issues..."
-                                className="w-[700px] px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="w-full max-w-full sm:w-[350px] md:w-[500px] lg:w-[700px] px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
                         </div>
 
                         {/* Right Side: Notification + Profile */}
-                        <div className="flex items-center gap-4">
-                            <GoBell className="w-5 h-5 text-gray-600 cursor-pointer" />
+                        <div className="flex items-center gap-2 sm:gap-4 justify-end">
+                            <GoBell className="w-5 h-5 sm:w-8 sm:h-8 text-gray-600 cursor-pointer" />
 
                             <div className="flex items-center gap-2">
                                 <div className="w-8 h-8 rounded-full bg-green-600 flex items-center justify-center text-white font-semibold text-sm">
                                     JS
                                 </div>
-                                <span className="text-gray-800 font-medium">John Samuel</span>
+                                <span className="text-gray-800 font-medium hidden xs:inline-block">John Samuel</span>
                             </div>
                         </div>
                     </div>
 
-                    <div className="max-w-6xl mx-auto">
+                    <div className="max-w-6xl w-full mx-auto">
                         {/* Header */}
                         <div className="pt-[10px] mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                             <div>
@@ -179,7 +198,7 @@ const Dashboard = () => {
                                 <p className="text-gray-600">Here's what's happening in your community.</p>
                             </div>
                             <button
-                                className="bg-green-700 hover:bg-green-800 text-white font-semibold px-6 py-2 rounded-md shadow"
+                                className="bg-green-700 hover:bg-green-800 text-white font-semibold px-6 py-2 rounded-md shadow w-full sm:w-auto"
                                 onClick={() => window.location.href = '/Issue'}
                             >
                                 + Report Issue
@@ -187,17 +206,17 @@ const Dashboard = () => {
                         </div>
 
                         {/* Stats Cards */}
-                        <div className="grid sm:grid-col md:grid-6 lg:flex gap-4 mb-8  text-[12px] leading-[18px] font-medium ">
-                            <StatCard title="Active Issues" value="10" className='w-[367px] h-[86px]' icon={<CiLocationOn size={20} />} />
-                            <StatCard title="Resolved This Week" value="10" className='w-[367px] h-[86px]' icon={<IoMdCheckmarkCircleOutline size={20} color='lightgreen' />} />
-                            <StatCard title="Average Response time" value="50 days" className='w-[367px] h-[86px]' icon={<FiClock size={20} color='lightpurple' />} />
-                            <StatCard title="Community Engagement" value="10" className='w-[367px] h-[86px]' icon={<MdShowChart size={20} color='orange' />} />
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-8 text-[12px] leading-[18px] font-medium">
+                            <StatCard title="Active Issues" value="10" className='w-full h-[86px]' icon={<CiLocationOn size={20} />} />
+                            <StatCard title="Resolved This Week" value="10" className='w-full h-[86px]' icon={<IoMdCheckmarkCircleOutline size={20} color='lightgreen' />} />
+                            <StatCard title="Average Response time" value="50 days" className='w-full h-[86px]' icon={<FiClock size={20} color='lightpurple' />} />
+                            <StatCard title="Community Engagement" value="10" className='w-full h-[86px]' icon={<MdShowChart size={20} color='orange' />} />
                         </div>
 
                         {/* Recent Issues Section */}
                         <div className="bg-white rounded-lg shadow overflow-hidden">
                             {/* Filters */}
-                            <div className="border-b border-gray-200 px-6 py-4 flex flex-wrap items-center gap-4">
+                            <div className="border-b border-gray-200 px-4 sm:px-6 py-4 flex flex-wrap items-center gap-4">
                                 <h2 className="text-lg font-semibold text-gray-800">Recent Issues</h2>
                                 <div className="flex flex-wrap gap-2 ml-auto">
                                     <select
@@ -238,26 +257,27 @@ const Dashboard = () => {
                             {/* Issues List */}
                             <div>
                                 {filteredIssues.map((issue, idx) => (
-                                    <div key={idx} className='flex flex-col sm:flex-row justify-between mt-[24px] mx-[66px] mb-[17px]'>
-                                        <div>
-                                            <img src={issue.img} alt={issue.title} />
+                                    <div key={idx} className='flex flex-col sm:flex-row justify-between mt-6 sm:mx-4 lg:mx-[66px] mb-4 w-full overflow-x-auto'>
+                                        <div className="w-full sm:w-1/3 flex-shrink-0">
+                                            <img src={issue.img} alt={issue.title} className="w-full h-auto max-h-[180px] object-cover rounded-lg" />
                                         </div>
-                                        <div>
-                                            <h2 className='font-poppins font-medium  text-[20px] leading-[38px]'>{issue.title}</h2>
-                                            <p className='font-poppins font-normal text-[16px] leading-[28px]'>{issue.location}</p>
-                                            <p className='font-poppins font-normal text-[16px] leading-[28px]'>{issue.description}</p>
-                                            <div className='flex justify-between '>
-                                                <div className='flex gap-[12px]'>
-                                                    <p className='flex items-center font-poppins font-normal text-[16px] leading-[28px]'><AiOutlineLike /> {issue.likes}</p>
-                                                    <p className='flex items-center font-poppins font-normal text-[16px] leading-[28px]'><BiComment /> {issue.comments}</p>
+                                        <div className="flex-1 min-w-0 sm:pl-6 pl-0"> {/* Add left padding for spacing */}
+                                            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                                                <div>
+                                                    <h2 className='font-poppins font-medium text-[20px] leading-[38px]'>{issue.title}</h2>
+                                                    <p className='font-poppins font-normal text-[16px] leading-[28px]'>{issue.location}</p>
+                                                    <p className='font-poppins font-normal text-[16px] leading-[28px]'>{issue.description}</p>
+                                                    <p className='font-poppins font-normal text-[14px] leading-[22px] mt-2'>{issue.date}</p> {/* Date moved back inside */}
                                                 </div>
-                                                <p className='font-poppins font-normal text-[14px] leading-[22px] pr-[50px] sm:pr-[5px]'>{issue.date}</p>
+                                            </div>
+                                            <div className='flex gap-[12px] mt-2'>
+                                                <p className='flex items-center font-poppins font-normal text-[16px] leading-[28px]'><AiOutlineLike /> {issue.likes}</p>
+                                                <p className='flex items-center font-poppins font-normal text-[16px] leading-[28px]'><BiComment /> {issue.comments}</p>
                                             </div>
                                         </div>
                                     </div>
                                 ))}
                             </div>
-
                         </div>
                     </div>
                 </main>
@@ -269,7 +289,7 @@ const Dashboard = () => {
 // Stat Card Component
 const StatCard = ({ title, value, icon }) => {
     return (
-        <div className="bg-white rounded-lg shadow p-4 sm:p-6 flex items-start w-full h-full min-h-[86px]">
+        <div className="bg-white rounded-lg shadow p-4 sm:p-6 flex items-start w-full h-full min-h-[86px] transition-colors duration-200 hover:bg-green-100 hover:border-green-600 border border-transparent cursor-pointer">
             <div className="p-2 rounded-full bg-blue-100 text-blue-600 mr-4 flex-shrink-0">
                 {icon}
             </div>
@@ -301,6 +321,11 @@ const IssueItem = ({ title, location, description, stats, date }) => {
                         </span>
                     </div>
                     <p className="text-gray-500 text-sm mt-1">{date}</p>
+                    <span
+                        className={`text-xs font-semibold px-3 py-1 rounded-full ${statusColor[issue.status]}`}
+                    >
+                        {issue.status}
+                    </span>
                 </div>
             </div>
         </div>
