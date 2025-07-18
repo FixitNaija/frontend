@@ -15,8 +15,8 @@ const DashboardLayout = () => {
 
   return (
     <div className="flex min-h-screen">
-      {/* Sidebar */}
-      <div className={`fixed md:relative z-20 w-64 bg-white text-black transition-all duration-300 ease-in-out ${sidebarOpen ? 'left-0' : '-left-full'} md:left-0 h-full`}>
+      {/* Sidebar - fixed on all screens */}
+      <div className={`fixed top-0 left-0 z-20 w-64 bg-white text-black h-screen transition-all duration-300 ease-in-out ${sidebarOpen ? 'left-0' : '-left-full'} md:left-0`}>
         <div className="flex-col items-center justify-between p-4 border-b border-blue-700">
           <Link to="/Homepage"><img src={Fixit} alt="logo" /></Link>
           <h1 className="text-xl font-bold">Community Infrastructure platform</h1>
@@ -38,8 +38,8 @@ const DashboardLayout = () => {
                 <span>My Issues</span>
               </Link>
             </li>
-            <li className='hover:bg-green-100 rounded-lg transition-colors'>
-              <Link to="#" className="flex items-center p-2">
+            <li className={`hover:bg-green-100 rounded-lg transition-colors ${location.pathname === '/Settings' ? 'bg-green-100' : ''}`}>
+              <Link to="/Settings" className="flex items-center p-2">
                 <IoSettingsOutline className="mr-3" />
                 <span>Settings</span>
               </Link>
@@ -47,9 +47,8 @@ const DashboardLayout = () => {
           </ul>
         </nav>
       </div>
-      {/* Main Content */}
-      {/* <div className="flex-1 md:ml-64"> */}
-      <div className="flex-1 ">
+      {/* Main Content - add left margin for fixed sidebar */}
+      <div className="flex-1 md:ml-64">
         <header className="md:hidden bg-blue shadow p-4 flex items-center">
           <button onClick={toggleSidebar} className="mr-4">
             <FiMenu size={24} />
