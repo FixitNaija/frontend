@@ -2,9 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import Logo from "../assets/Fixitlogo.png";
 // import { FaEnvelope } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
-import { useNavigate, useLocation, Link } from "react-router";
-import { useLocation } from "react-router-dom";
-// import Cookies from 'js-cookie';
+
+import { Link, useLocation, useNavigate } from "react-router";
+import Cookies from 'js-cookie';
 import axios from "axios";
 import cookies from "js-cookie";
 import { OTPVerify } from "../api/data"; 
@@ -64,7 +64,7 @@ const OtpVerify = () => {
     }
   };
 
-   useEffect(() => {
+  useEffect(() => {
           let savedEmail = Cookies.get('email')
           if(savedEmail){
               setEmail(savedEmail)
@@ -89,14 +89,14 @@ const OtpVerify = () => {
       // Replace with your backend endpoint
       const res = await axios.post(
         "https://fixitbackend-7zrf.onrender.com/api/v1/user/verify",
-       {
+      {
         
       
-          // email: userEmail,
+          email: userEmail,
           otp: otpValue,
       
         },
-      }
+      
       );
       toast.success(res.data.message || "OTP verified successfully!");
       setTimeout(() => {
