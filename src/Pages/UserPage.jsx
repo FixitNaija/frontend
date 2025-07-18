@@ -170,7 +170,7 @@
 //                             </div>
 //                         </div>
 //                     </div>
-                    
+
 //                     <div className="max-w-6xl mx-auto">
 //                         {/* Header */}
 //                         <div className="pt-[10px] mb-8">
@@ -305,207 +305,246 @@
 
 
 import React, { useState } from 'react';
+import Roads from '../assets/Badroads.png'
+import Pothole from '../assets/Potholes.jpg'
+import Light from '../assets/Streetlight.png'
+import Drainage from '../assets/Wusedrainage.jpg'
+import Hydrant from '../assets/Hydrant.png'
+import Cookies from 'js-cookie'
+import { jwtDecode } from 'jwt-decode'
+
+
 
 // Dummy data for demonstration
 const stats = [
-  { title: 'Active Issues', value: 10, icon: '📍', color: 'text-blue-600' },
-  { title: 'Resolved This Week', value: 10, icon: '✅', color: 'text-green-600' },
-  { title: 'Average Response time', value: '50 days', icon: '⏱️', color: 'text-purple-600' },
-  { title: 'Community Engagement', value: 10, icon: '📣', color: 'text-orange-600' },
+    { title: 'Active Issues', value: 10, icon: '📍', color: 'text-blue-600' },
+    { title: 'Resolved This Week', value: 10, icon: '✅', color: 'text-green-600' },
+    { title: 'Average Response time', value: '50 days', icon: '⏱️', color: 'text-purple-600' },
+    { title: 'Community Engagement', value: 10, icon: '📣', color: 'text-orange-600' },
 ];
 
+useEffect(() => {
+    // const storedUsername = localStorage.getItem('fixitnaija_username');
+    // if (storedUsername) {
+    //         //     setUsername(storedUsername);
+    //         // }
+    let savedToken = Cookies.get('token')
+    if (savedToken) {
+        const data = jwtDecode(savedToken)
+        setUserData(data)
+    }
+}, []);
 const issues = [
-  {
-    id: 1,
-    title: 'Large pothole on Main Street',
-    location: 'Anuoluwapo Estate Road F Panseke Abeokuta',
-    description: 'Deep pothole causing traffic hazard near the intersection',
-    image: '/images/pothole.jpg',
-    status: 'Pending',
-    comments: 8,
-    likes: 24,
-    date: '2023-11-15',
-  },
-  {
-    id: 2,
-    title: 'Broken Streetlight',
-    location: 'Rounder Soyoye, Lafenwa Abeokuta',
-    description: 'The area becomes dark posing safety risks for pedestrians',
-    image: '/images/streetlight.jpg',
-    status: 'In Progress',
-    comments: 8,
-    likes: 18,
-    date: '2023-10-14',
-  },
-  {
-    id: 3,
-    title: 'Bad Roads',
-    location: 'Adigbe-opako, Abeokuta',
-    description: 'The roads have worsened due to rainfall and lack of maintenance',
-    image: '/images/badroad.jpg',
-    status: 'Pending',
-    comments: 3,
-    likes: 12,
-    date: '2023-09-15',
-  },
-  {
-    id: 4,
-    title: 'Water Supply Disruption',
-    location: 'Panseke, Abeokuta',
-    description: 'Underground pipes have started leaking, causing water was...',
-    image: '/images/hydrant.jpg',
-    status: 'Pending',
-    comments: 8,
-    likes: 14,
-    date: '2023-11-15',
-  },
-  {
-    id: 5,
-    title: 'Blocked Drainage',
-    location: 'oke-ile owo, Abeokuta',
-    description: 'Trash bin near the park has now turned to a dump place',
-    image: '/images/drainage.jpg',
-    status: 'Pending',
-    comments: 8,
-    likes: 24,
-    date: '2023-11-15',
-  },
+    {
+        id: 1,
+        title: 'Large pothole on Main Street',
+        location: 'Anuoluwapo Estate Road F Panseke Abeokuta',
+        description: 'Deep pothole causing traffic hazard near the intersection',
+        image: Pothole,
+        status: 'Pending',
+        comments: 8,
+        likes: 24,
+        date: '2023-11-15',
+    },
+    {
+        id: 2,
+        title: 'Broken Streetlight',
+        location: 'Rounder Soyoye, Lafenwa Abeokuta',
+        description: 'The area becomes dark posing safety risks for pedestrians',
+        image: Light,
+        status: 'In Progress',
+        comments: 8,
+        likes: 18,
+        date: '2023-10-14',
+    },
+    {
+        id: 3,
+        title: 'Bad Roads',
+        location: 'Adigbe-opako, Abeokuta',
+        description: 'The roads have worsened due to rainfall and lack of maintenance',
+        image: Roads,
+        status: 'Pending',
+        comments: 3,
+        likes: 12,
+        date: '2023-09-15',
+    },
+    {
+        id: 4,
+        title: 'Water Supply Disruption',
+        location: 'Panseke, Abeokuta',
+        description: 'Underground pipes have started leaking, causing water was...',
+        image: Hydrant,
+        status: 'Pending',
+        comments: 8,
+        likes: 14,
+        date: '2023-11-15',
+    },
+    {
+        id: 5,
+        title: 'Blocked Drainage',
+        location: 'oke-ile owo, Abeokuta',
+        description: 'Trash bin near the park has now turned to a dump place',
+        image: Drainage,
+        status: 'Pending',
+        comments: 8,
+        likes: 24,
+        date: '2023-11-15',
+    },
 ];
 
 const statusColors = {
-  Pending: 'bg-yellow-100 text-yellow-600',
-  'In Progress': 'bg-blue-100 text-blue-600',
-  Resolved: 'bg-green-100 text-green-600',
+    Pending: 'bg-yellow-100 text-yellow-600',
+    'In Progress': 'bg-blue-100 text-blue-600',
+    Resolved: 'bg-green-100 text-green-600',
 };
+//     // Filtering logic
+const filteredIssues = issues.filter(issue => {
+    const matchCategory = category === 'All Categories' || issue.category === category;
+    const matchStatus = status === 'All Status' || issue.status === status;
+    const matchTime = time === 'All Time' || issue.time === time;
+    return matchCategory && matchStatus && matchTime;
+});
+
 
 const UserDashboard = () => {
-  const [view, setView] = useState('list');
+    const [view, setView] = useState('list');
 
-  return (
-    <div className="min-h-screen bg-gray-100 p-4 md:p-10">
-      {/* Search & Profile */}
-      <div className="flex justify-between items-center mb-6">
-        <input
-          type="text"
-          placeholder="Search for issues..."
-          className="w-full md:w-1/2 border border-gray-300 rounded-lg px-4 py-2 focus:ring-green-600 focus:outline-none"
-        />
-        <div className="hidden md:flex items-center space-x-4">
-          <button className="text-white bg-green-700 hover:bg-green-800 px-4 py-2 rounded-lg">
-            + Report Issue
-          </button>
-          <span className="text-gray-700">John Samuel</span>
-          <div className="w-8 h-8 rounded-full bg-green-700 text-white flex items-center justify-center font-bold text-sm">
-            JS
-          </div>
-        </div>
-      </div>
+    return (
+        <div className="min-h-screen bg-gray-100 p-4 md:p-10">
+            {/* Search & Profile */}
+            <div className="flex justify-between items-center mb-6">
+                <input
+                    type="text"
+                    placeholder="Search for issues..."
+                    className="w-full md:w-1/2 border border-gray-300 rounded-lg px-4 py-2 focus:ring-green-600 focus:outline-none"
+                />
+               
+                         {/* Right Side: Notification + Profile */}
+                        <div className="flex items-center gap-4">
+                             <GoBell className="w-5 h-5 text-gray-600 cursor-pointer" />
 
-      {/* Welcome and Stats */}
-      <h2 className="text-xl font-semibold text-gray-800 mb-1">Welcome back, John!</h2>
-      <p className="text-gray-500 mb-6">Here's what's happening in your community.</p>
+                            <div className="flex items-center gap-2">
+                               <div className="w-8 h-8 rounded-full bg-green-600 flex items-center justify-center text-white font-semibold text-sm">
+                                   JS
+                                </div>
+                                <span className="text-gray-800 font-medium">John Samuel</span>                             </div>
+                         </div>
+                    
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-        {stats.map((stat, i) => (
-          <div key={i} className="bg-white rounded-xl shadow p-4 flex flex-col">
-            <span className={`text-2xl mb-2 ${stat.color}`}>{stat.icon}</span>
-            <p className="text-sm text-gray-500">{stat.title}</p>
-            <p className="text-xl font-bold">{stat.value}</p>
-          </div>
-        ))}
-      </div>
+                   
+                   
+              
+            </div>
 
-      {/* Filters */}
-      <div className="flex flex-wrap justify-between items-center mb-4 gap-2">
-        <h3 className="font-medium text-gray-700">Recent Issues</h3>
-        <div className="flex flex-wrap gap-2">
-          <select className="px-3 py-1 text-sm rounded border border-gray-300">
-            <option>All Categories</option>
-          </select>
-          <select className="px-3 py-1 text-sm rounded border border-gray-300">
-            <option>All Status</option>
-          </select>
-          <select className="px-3 py-1 text-sm rounded border border-gray-300">
-            <option>All Time</option>
-          </select>
-        </div>
-      </div>
+            {/* Welcome and Stats */}
+            <h2 className="text-xl font-semibold text-gray-800 mb-1">Welcome back, John!</h2>
+            <p className="text-gray-500 mb-6">Here's what's happening in your community.</p>
+              <button className="text-white bg-green-700 hover:bg-green-800 px-4 py-2 rounded-lg">
+                        + Report Issue
+                    </button>
+                   
 
-      {/* Issue List + Map View */}
-      <div className="flex flex-col lg:flex-row gap-6">
-        {/* Left: Issues List */}
-        <div className="flex-1 space-y-4">
-          {issues.map((issue) => (
-            <div
-              key={issue.id}
-              className="bg-white rounded-xl shadow-sm p-4 flex flex-col md:flex-row gap-4"
-            >
-              <img
-                src={issue.image}
-                alt={issue.title}
-                className="w-full md:w-32 h-24 object-cover rounded-lg"
-              />
-              <div className="flex-1">
-                <h4 className="font-semibold text-gray-800">{issue.title}</h4>
-                <p className="text-sm text-gray-600">{issue.location}</p>
-                <p className="text-sm text-gray-500 mt-1 truncate">{issue.description}</p>
-                <div className="flex items-center gap-4 mt-2 text-sm text-gray-500">
-                  <span>👍 {issue.likes}</span>
-                  <span>💬 {issue.comments}</span>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                {stats.map((stat, i) => (
+                    <div key={i} className="bg-white rounded-xl shadow p-4 flex flex-col">
+                        <span className={`text-2xl mb-2 ${stat.color}`}>{stat.icon}</span>
+                        <p className="text-sm text-gray-500">{stat.title}</p>
+                        <p className="text-xl font-bold">{stat.value}</p>
+                    </div>
+                ))}
+            </div>
+
+            {/* Filters */}
+            <div className="flex flex-wrap justify-between items-center mb-4 gap-2">
+                <h3 className="font-medium text-gray-700">Recent Issues</h3>
+                <div className="flex flex-wrap gap-2">
+                    <select className="px-3 py-1 text-sm rounded border border-gray-300">
+                        <option>All Categories</option>
+                    </select>
+                    <select className="px-3 py-1 text-sm rounded border border-gray-300">
+                        <option>All Status</option>
+                    </select>
+                    <select className="px-3 py-1 text-sm rounded border border-gray-300">
+                        <option>All Time</option>
+                    </select>
                 </div>
-              </div>
-              <div className="flex flex-col items-end gap-2">
-                <span className={`text-xs px-3 py-1 rounded-full ${statusColors[issue.status]}`}>
-                  {issue.status}
-                </span>
-                <span className="text-sm text-gray-400">{issue.date}</span>
-              </div>
             </div>
-          ))}
 
-          {/* Pagination */}
-          <div className="flex justify-center mt-6 space-x-2 text-sm items-center">
-            <button className="border px-2 py-1 rounded text-gray-600">{'<'}</button>
-            <span className="bg-green-100 text-green-700 px-3 py-1 rounded">1</span>
-            <span className="text-gray-500">of 2</span>
-            <button className="border px-2 py-1 rounded text-gray-600">{'>'}</button>
-          </div>
+            {/* Issue List + Map View */}
+            <div className="flex flex-col lg:flex-row gap-6">
+                {/* Left: Issues List */}
+                <div className="flex-1 space-y-4">
+                    {issues.map((issue) => (
+                        <div
+                            key={issue.id}
+                            className="bg-white rounded-xl shadow-sm p-4 flex flex-col md:flex-row gap-4"
+                        >
+                            <img
+                                src={issue.image}
+                                alt={issue.title}
+                                className="w-full md:w-32 h-24 object-cover rounded-lg"
+                            />
+                            <div className="flex-1">
+                                <h4 className="font-semibold text-gray-800">{issue.title}</h4>
+                                <p className="text-sm text-gray-600">{issue.location}</p>
+                                <p className="text-sm text-gray-500 mt-1 truncate">{issue.description}</p>
+                                <div className="flex items-center gap-4 mt-2 text-sm text-gray-500">
+                                    <span>👍 {issue.likes}</span>
+                                    <span>💬 {issue.comments}</span>
+                                </div>
+                            </div>
+                            <div className="flex flex-col items-end gap-2">
+                                <span className={`text-xs px-3 py-1 rounded-full ${statusColors[issue.status]}`}>
+                                    {issue.status}
+                                </span>
+                                <span className="text-sm text-gray-400">{issue.date}</span>
+                            </div>
+                        </div>
+                    ))}
+
+                    {/* Pagination */}
+                    <div className="flex justify-center mt-6 space-x-2 text-sm items-center">
+                        <button className="border px-2 py-1 rounded text-gray-600">{'<'}</button>
+                        <span className="bg-green-100 text-green-700 px-3 py-1 rounded">1</span>
+                        <span className="text-gray-500">of 2</span>
+                        <button className="border px-2 py-1 rounded text-gray-600">{'>'}</button>
+                    </div>
+                </div>
+
+                {/* Right: Map View Toggle */}
+                <div className="w-full lg:w-[300px]">
+                    <div className="bg-white rounded-xl p-4 shadow-sm mb-4">
+                        <div className="flex justify-between items-center mb-2">
+                            <p className="font-semibold">Issues Near You</p>
+                            <div className="flex gap-2 text-sm">
+                                <button
+                                    onClick={() => setView('list')}
+                                    className={`px-2 py-1 rounded ${view === 'list' ? 'bg-green-100 text-green-700' : 'text-gray-500'}`}
+                                >
+                                    List View
+                                </button>
+                                <button
+                                    onClick={() => setView('map')}
+                                    className={`px-2 py-1 rounded ${view === 'map' ? 'bg-green-100 text-green-700' : 'text-gray-500'}`}
+                                >
+                                    Map View
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className="h-60 w-full bg-gray-200 rounded-md overflow-hidden">
+                            {/* Replace this with real map component (e.g., Google Maps) */}
+                            <iframe
+                                title="Map"
+                                src="https://maps.google.com/maps?q=abeokuta&t=&z=10&ie=UTF8&iwloc=&output=embed"
+                                className="w-full h-full"
+                            ></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        {/* Right: Map View Toggle */}
-        <div className="w-full lg:w-[300px]">
-          <div className="bg-white rounded-xl p-4 shadow-sm mb-4">
-            <div className="flex justify-between items-center mb-2">
-              <p className="font-semibold">Issues Near You</p>
-              <div className="flex gap-2 text-sm">
-                <button
-                  onClick={() => setView('list')}
-                  className={`px-2 py-1 rounded ${view === 'list' ? 'bg-green-100 text-green-700' : 'text-gray-500'}`}
-                >
-                  List View
-                </button>
-                <button
-                  onClick={() => setView('map')}
-                  className={`px-2 py-1 rounded ${view === 'map' ? 'bg-green-100 text-green-700' : 'text-gray-500'}`}
-                >
-                  Map View
-                </button>
-              </div>
-            </div>
-
-            <div className="h-60 w-full bg-gray-200 rounded-md overflow-hidden">
-              {/* Replace this with real map component (e.g., Google Maps) */}
-              <iframe
-                title="Map"
-                src="https://maps.google.com/maps?q=abeokuta&t=&z=10&ie=UTF8&iwloc=&output=embed"
-                className="w-full h-full"
-              ></iframe>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default UserDashboard;
