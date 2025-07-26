@@ -4,7 +4,7 @@ import Logo from "../assets/Fixitlogo.png";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate, useLocation, Link } from "react-router";
 // import { useLocation } from "react-router-dom";
-// import Cookies from 'js-cookie';
+import Cookies from 'js-cookie';
 import axios from "axios";
 import cookies from "js-cookie";
 import { OTPVerify } from "../api/data"; 
@@ -18,10 +18,10 @@ const OtpVerify = () => {
   const navigate = useNavigate();
   const inputsRef = useRef([]);
   
-
-  // Get email from location state or fallback
+  // To Get email from location state or fallback
   const params = new URLSearchParams(location.search);
   const userEmail = params.get("email") || "example203@gmail.com";
+
   // console.log(userEmail);
   const handleChange = (e, idx) => {
     const value = e.target.value.replace(/[^0-9]/g, "");
@@ -32,6 +32,7 @@ const OtpVerify = () => {
     if (idx < 5 && value) {
       inputsRef.current[idx + 1].focus();
     }
+
   };
 
   const handleKeyDown = (e, idx) => {
@@ -79,35 +80,25 @@ const OtpVerify = () => {
       return;
     }
     setLoading(true);
-
-
-
-
-
-
     try {
       // Replace with your backend endpoint
       const res = await axios.post(
         "https://fixitbackend-7zrf.onrender.com/api/v1/user/verify",
-      {
-        
-      
+        {
           // email: userEmail,
           otp: otpValue,
-      
-        },
+        }
       );
       toast.success(res.data.message || "OTP verified successfully!");
       setTimeout(() => {
         navigate("/CreateAccount");
       }, 2000);
-    }
-     catch (error) {
+    } catch (error) {
       toast.error(error.response?.data?.message || "OTP verification failed.");
-    } 
-    finally {
+    } finally {
       setLoading(false);
-    };
+    }
+  };
   
 
 
@@ -153,7 +144,7 @@ const OtpVerify = () => {
             </p>
           </div>
           <form
-            onSubmit={handleSubmit}
+            onSubmit= {handleSubmit}
             className="flex flex-col items-center w-full"
           >
             <div
@@ -175,7 +166,7 @@ const OtpVerify = () => {
                 />
               ))}
             </div>
-            <button
+            <button onClick={handleSubmit}
               type="submit"
               className="w-[220px] h-[48px] bg-[#15803D] rounded-[16px] text-white mt-6 hover:bg-green-700 transition"
               disabled={loading}
@@ -203,6 +194,7 @@ const OtpVerify = () => {
       </section>
   </div>
 );
-}
+  };
 
 export default OtpVerify;
+
