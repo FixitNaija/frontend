@@ -3,7 +3,7 @@ import Logo from "../assets/Fixitlogo.png";
 // import { FaEnvelope } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate, useLocation, Link } from "react-router";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 // import Cookies from 'js-cookie';
 import axios from "axios";
 import cookies from "js-cookie";
@@ -89,25 +89,26 @@ const OtpVerify = () => {
       // Replace with your backend endpoint
       const res = await axios.post(
         "https://fixitbackend-7zrf.onrender.com/api/v1/user/verify",
-       {
+      {
         
       
           // email: userEmail,
           otp: otpValue,
       
         },
-      }
       );
       toast.success(res.data.message || "OTP verified successfully!");
       setTimeout(() => {
         navigate("/CreateAccount");
       }, 2000);
-    } catch (error) {
-      toast.error(error.response?.data?.message || "OTP verification failed.");
-    } finally {
-      setLoading(false);
     }
-  };
+     catch (error) {
+      toast.error(error.response?.data?.message || "OTP verification failed.");
+    } 
+    finally {
+      setLoading(false);
+    };
+  
 
 
   const handleResend = async () => {
@@ -200,8 +201,8 @@ const OtpVerify = () => {
           </Link>
         </div>
       </section>
-    </div>
-  );
-};
+  </div>
+);
+}
 
 export default OtpVerify;

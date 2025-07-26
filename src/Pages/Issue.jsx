@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router';
+// import { useNavigate } from 'react-router';
 import { AiOutlinePicture } from "react-icons/ai";
 import { issue } from '../api/data';
 import Cookies from 'js-cookie'
-import { jwtDecode } from 'jwt-decode';
+// import { jwtDecode } from 'jwt-decode';
 
 const ReportIssue = () => {
     const [form, setForm] = useState({
