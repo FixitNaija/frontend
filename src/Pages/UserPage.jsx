@@ -17,9 +17,10 @@ import { GoBell } from "react-icons/go";
 import Cookies from 'js-cookie'
 import { jwtDecode } from 'jwt-decode'
 import Hydrant from '../assets/Hydrant.png'
+import DashboardLayout from '../Components/DashboardLayout';
 
 const Dashboard = () => {
-    const [sidebarOpen, setSidebarOpen] = useState(false);
+    // const [sidebarOpen, setSidebarOpen] = useState(false);
     const [category, setCategory] = useState('All Categories');
     const [status, setStatus] = useState('All Status');
     const [time, setTime] = useState('All Time');
@@ -62,7 +63,7 @@ const Dashboard = () => {
             description: 'The area becomes dark posing safety risks for pedestrians',
             likes: 18,
             comments: 8,
-            date: '2023-10-14',
+            date: '2024-10-14',
             category: 'Electricity',
             status: 'In Progress',
             time: 'This Month',
@@ -74,7 +75,7 @@ const Dashboard = () => {
             description: 'The roads have worsen due to rainfall and lack of maintenance',
             likes: 12,
             comments: 3,
-            date: '2023-09-15',
+            date: '2025-09-15',
             category: 'Road Damage',
             status: 'Resolved',
             time: 'This Month',
@@ -86,7 +87,7 @@ const Dashboard = () => {
             description: 'Trash bin near the park has now turned to a dump place',
             likes: 24,
             comments: 8,
-            date: '2023-11-15',
+            date: '2024-11-15',
             category: 'Drainage',
             status: 'Reported',
             time: 'This Month',
@@ -98,18 +99,14 @@ const Dashboard = () => {
             description: 'Underground pipes have started leaking, causing water was ',
             likes: 14,
             comments: 8,
-            date: '2023-11-15',
+            date: '2025-11-15',
             category: 'Water Supply',
             status: 'Reported',
             time: 'This Week',
         },
     ];
 
-    const statusColor = {
-        'Pending': 'bg-yellow-100 text-yellow-600',
-        'In Progress': 'bg-blue-100 text-blue-600',
-        'Resolved': 'bg-green-100 text-green-600',
-    };
+    
 
     // Filtering logic
     const filteredIssues = issues.filter(issue => {
@@ -163,7 +160,7 @@ const Dashboard = () => {
                     </button>
                     <h1 className="text-xl font-bold text-gray-800">Dashboard</h1>
                 </header> */}
-
+<DashboardLayout/>
                 {/* Dashboard Content */}
                 <main className="container px-2 sm:px-4 py-4 sm:py-8 mx-auto">
                     <div className="w-full flex flex-col sm:flex-row sm:justify-between sm:items-center p-2 sm:p-4 bg-white shadow-sm gap-2 overflow-x-auto">
@@ -261,7 +258,7 @@ const Dashboard = () => {
                                         <div className="w-full sm:w-1/3 flex-shrink-0">
                                             <img src={issue.img} alt={issue.title} className="w-full h-auto max-h-[180px] object-cover rounded-lg" />
                                         </div>
-                                        <div className="flex-1 min-w-0 sm:pl-6 pl-0"> {/* Add left padding for spacing */}
+                                        <div className="flex-1 min-w-0 sm:pl-6 pl-[3px] "> 
                                             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
                                                 <div>
                                                     <h2 className='font-poppins font-medium text-[20px] leading-[38px]'>{issue.title}</h2>
@@ -302,7 +299,12 @@ const StatCard = ({ title, value, icon }) => {
 };
 
 // Issue Item Component
-const IssueItem = ({ title, location, description, stats, date }) => {
+const IssueItem = ({ title, location, description,issue,stats, date }) => {
+    const statusColor = {
+        'Pending': 'bg-yellow-100 text-yellow-600',
+        'In Progress': 'bg-blue-100 text-blue-600',
+        'Resolved': 'bg-green-100 text-green-600',
+    };
     return (
         <div className="p-6 hover:bg-gray-50">
             <div className="flex justify-between items-start">
@@ -310,6 +312,13 @@ const IssueItem = ({ title, location, description, stats, date }) => {
                     <h3 className="text-lg font-semibold text-gray-800">{title}</h3>
                     <p className="text-gray-600">{location}</p>
                     <p className="text-gray-700 mt-2">{description}</p>
+                    mmm
+                    <p>
+                        <span
+                        className={`text-xs font-semibold px-3 py-1 rounded-full ${statusColor[issue.status]}`}>
+                        {issue.status}
+                    </span>
+                            </p>
                 </div>
                 <div className="text-right">
                     <div className="flex items-center gap-2">
@@ -321,11 +330,12 @@ const IssueItem = ({ title, location, description, stats, date }) => {
                         </span>
                     </div>
                     <p className="text-gray-500 text-sm mt-1">{date}</p>
-                    <span
-                        className={`text-xs font-semibold px-3 py-1 rounded-full ${statusColor[issue.status]}`}
-                    >
+                    <p>
+                        <span
+                        className={`text-xs font-semibold px-3 py-1 rounded-full ${statusColor[issue.status]}`}>
                         {issue.status}
                     </span>
+                            </p>
                 </div>
             </div>
         </div>

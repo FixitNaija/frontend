@@ -767,10 +767,10 @@ const CreateAccount = () => {
                 </span>
               </p>
             </div>
-            <div className="flex justify-between sm:justify-around items-center mt-[24px]">
-              <hr className="w-[98px] border border-[#D1D5DB] " />
+               <div className="flex justify-between sm:justify-around items-center mt-[24px]">
+              <hr className=" w-[80px] sm:w-[128px] md:w-[134px] border border-[#D1D5DB] " />
               <div className="flex justify-center ">Or Continue with</div>
-              <hr className=" w-[98px] border border-[#D1D5DB] " />
+              <hr className=" w-[80px] sm:w-[128px]  md:w-[134px] border border-[#D1D5DB] " />
             </div>
             {/* Only show the icon for display, not for login
             <div className="cursor-pointer flex justify-center items-center align-middle w-full h-[48px] bg-[#DDDDDD] rounded-[16px] text-white mt-6">
@@ -866,16 +866,15 @@ const CreateAccount = () => {
                 Forgot Password?
               </Link>
             </div>
-            <div className="flex justify-around items-center mt-[24px]">
-              <hr className="w-[98px] border border-[#D1D5DB] " />
-              <div className="sm:w-[201px] sm:h-[34px] w-[134px] h-[20px] ">
-                Or Continue with
-              </div>
-              <hr className=" w-[98px] border border-[#D1D5DB] " />
+            
+            
+
+                <div className="flex justify-between sm:justify-around items-center mt-[24px]">
+              <hr className=" w-[80px] sm:w-[128px] md:w-[134px] border border-[#D1D5DB] " />
+              <div className="flex justify-center ">Or Continue with</div>
+              <hr className=" w-[80px] sm:w-[128px]  md:w-[134px] border border-[#D1D5DB] " />
             </div>
-            {/* <div className=" flex justify-center items-center align-middle w-full h-[48px] bg-[#DDDDDD] rounded-[16px] text-white mt-6 cursor-pointer">
-            <FcGoogle className="h-[32px] w-[32px] " />
-            </div> */}
+        
 
             <div className="flex justify-center w-full mt-4 cursor-pointer">
               <GoogleLogin className="h-[32px] w-[32px]"
