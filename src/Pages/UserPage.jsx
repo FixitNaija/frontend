@@ -19,7 +19,7 @@ import { jwtDecode } from 'jwt-decode'
 import Hydrant from '../assets/Hydrant.png'
 
 const Dashboard = () => {
-    const [sidebarOpen, setSidebarOpen] = useState(false);
+    // const [sidebarOpen, setSidebarOpen] = useState(false);
     const [category, setCategory] = useState('All Categories');
     const [status, setStatus] = useState('All Status');
     const [time, setTime] = useState('All Time');
@@ -105,11 +105,7 @@ const Dashboard = () => {
         },
     ];
 
-    const statusColor = {
-        'Pending': 'bg-yellow-100 text-yellow-600',
-        'In Progress': 'bg-blue-100 text-blue-600',
-        'Resolved': 'bg-green-100 text-green-600',
-    };
+    
 
     // Filtering logic
     const filteredIssues = issues.filter(issue => {
@@ -302,7 +298,12 @@ const StatCard = ({ title, value, icon }) => {
 };
 
 // Issue Item Component
-const IssueItem = ({ title, location, description, stats, date }) => {
+const IssueItem = ({ title, location,issue, description, stats, date }) => {
+    const statusColor = {
+        'Pending': 'bg-yellow-100 text-yellow-600',
+        'In Progress': 'bg-blue-100 text-blue-600',
+        'Resolved': 'bg-green-100 text-green-600',
+    };
     return (
         <div className="p-6 hover:bg-gray-50">
             <div className="flex justify-between items-start">

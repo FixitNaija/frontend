@@ -3,7 +3,8 @@ import Logo from "../assets/Fixitlogo.png";
 // import { FaEnvelope } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate, useLocation, Link } from "react-router";
-// import Cookies from 'js-cookie';
+// import { useLocation } from "react-router-dom";
+import Cookies from 'js-cookie';
 import axios from "axios";
 import cookies from "js-cookie";
 import { OTPVerify } from "../api/data"; 
@@ -17,10 +18,10 @@ const OtpVerify = () => {
   const navigate = useNavigate();
   const inputsRef = useRef([]);
   
-
-  // Get email from location state or fallback
+  // To Get email from location state or fallback
   const params = new URLSearchParams(location.search);
   const userEmail = params.get("email") || "example203@gmail.com";
+
   // console.log(userEmail);
   const handleChange = (e, idx) => {
     const value = e.target.value.replace(/[^0-9]/g, "");
@@ -31,6 +32,7 @@ const OtpVerify = () => {
     if (idx < 5 && value) {
       inputsRef.current[idx + 1].focus();
     }
+
   };
 
   const handleKeyDown = (e, idx) => {
@@ -78,23 +80,14 @@ const OtpVerify = () => {
       return;
     }
     setLoading(true);
-
-
-
-
-
-
     try {
       // Replace with your backend endpoint
       const res = await axios.post(
         "https://fixitbackend-7zrf.onrender.com/api/v1/user/verify",
-       {
-
-       params: {
-          email: userEmail,
+        {
+          // email: userEmail,
           otp: otpValue,
-        },
-         }
+        }
       );
       toast.success(res.data.message || "OTP verified successfully!");
       setTimeout(() => {
@@ -106,6 +99,7 @@ const OtpVerify = () => {
       setLoading(false);
     }
   };
+  
 
 
   const handleResend = async () => {
@@ -113,10 +107,11 @@ const OtpVerify = () => {
     try {
       // Replace with your backend endpoint for resending OTP
       await axios.post(
-        "https://fixitbackend-7zrf.onrender.com/api/v1/user/reVerify",
+        "https://fixitbackend-7zrf.onrender.com/api/v1/user/resendotp",
         
         {
           email: userEmail,
+        
         }
       );
       toast.success("OTP resent to your email.");
@@ -149,7 +144,7 @@ const OtpVerify = () => {
             </p>
           </div>
           <form
-            onSubmit={handleSubmit}
+            onSubmit= {handleSubmit}
             className="flex flex-col items-center w-full"
           >
             <div
@@ -171,7 +166,7 @@ const OtpVerify = () => {
                 />
               ))}
             </div>
-            <button
+            <button onClick={handleSubmit}
               type="submit"
               className="w-[220px] h-[48px] bg-[#15803D] rounded-[16px] text-white mt-6 hover:bg-green-700 transition"
               disabled={loading}
@@ -197,8 +192,9 @@ const OtpVerify = () => {
           </Link>
         </div>
       </section>
-    </div>
-  );
-};
+  </div>
+);
+  };
 
 export default OtpVerify;
+
